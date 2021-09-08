@@ -1,12 +1,12 @@
-/*È¸¿ø°ü¸®*/
+/*íšŒì›ê´€ë¦¬*/
 create table xmember(
 	mem_num number not null,
 	id varchar2(12) unique not null,
-	auth number(1) default 2 not null,	/* È¸¿øµî±Ş : 0(Å»Åğ) ´ë¿©±İÁöÈ¸¿ø(1) È¸¿ø(2) °ü¸®ÀÚ(3) */
+	auth number(1) default 2 not null,	/* íšŒì›ë“±ê¸‰ : 0(íƒˆí‡´) ëŒ€ì—¬ê¸ˆì§€íšŒì›(1) íšŒì›(2) ê´€ë¦¬ì(3) */
 	constraint xmember_pk primary key (mem_num)
 );
 
-/* Q&A °Ô½ÃÆÇ - Áú¹® */
+/* Q&A ê²Œì‹œíŒ */
 create table xboard_qna(
 	qna_num number not null,
 	title varchar2(150) not null,
