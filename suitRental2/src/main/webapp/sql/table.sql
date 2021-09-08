@@ -5,7 +5,7 @@ create table xmember(
 	auth number(1) default 2 not null,	/* 회원등급 : 0(탈퇴) 대여금지회원(1) 회원(2) 관리자(3) */
 	constraint xmember_pk primary key (mem_num)
 );
-  
+ 
 /* Q&A 게시판 */
 create table xboard_qna(
 	qna_num number not null,
