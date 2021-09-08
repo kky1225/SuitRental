@@ -23,3 +23,24 @@ create table xboard_qna(
 );
 
 create sequence xboard_qna_seq;
+
+
+/*제품 등록*/
+create table suit(
+    x_code number not null,
+    x_name varchar2(20) not null,
+    x_price number(10) not null,  
+    x_stock number(10) not null, 
+    x_size varchar2(20) not null, 
+    x_brand varchar2(20) not null, 
+    x_rental_count number(10) default 0 not null, 
+    x_gender varchar2(20) not null, 
+    x_hit number default 0 not null,  
+    x_like number(18) default 0 not null, 
+    x_reg_date date default sysdate not null, 
+    x_purchase number(10) default 0 not null,
+    x_type varchar2(20) not null,
+    CONSTRAINT suit_pk PRIMARY KEY(x_code)
+);
+
+create sequence suit_seq;
