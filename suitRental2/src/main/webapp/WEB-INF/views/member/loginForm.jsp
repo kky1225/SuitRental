@@ -2,41 +2,41 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>로그인</title>
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
-		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-		<script type="text/javascript">
-			$(document).ready(function(){
-				$('#login_form').submit(function(){
-					if($('#id').val().trim()==''){
-						alert('아이디를 입력하세요');
-						$('#id').val('').focus();
-						return false;
-					}
-					if($('#passwd').val().trim()==''){
-						alert('비밀번호를 입력하세요');
-						$('#passwd').val('').focus();
-						return false;
-					}
-				});
-			});
+<head>
+<meta charset="UTF-8">
+<title>로그인</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#login_form').submit(function() {
+			if($('#id').val().trim()==''){
+				alert('ID를 입력하세요!');
+				$('#id').val('').focus();
+				return false;
+			}
+			if($('#passwd').val().trim()==''){
+				alert('비밀번호를 입력하세요!');
+				$('#passwd').val('').focus();
+				return false;
+			}
+		});
+	});
 </script>
-	</head>
-	<body>
-		<div class="page-main">
+</head>
+<body>
+	<div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-		<h2>로그인</h2>
+		<h2 class="align-center">로그인</h2>
 		<form id="login_form" action="login.do" method="post">
 			<ul>
 				<li>
-					<label for="id">아이디</label>
+					<label for="id">ID</label>
 					<input type="text" name="id" id="id" maxlength="12">
 				</li>
 				<li>
 					<label for="passwd">비밀번호</label>
-					<input type="password" name="passwd" id="passwd" maxlength="20">
+					<input type="password" name="passwd" id="passwd" maxlength="12">
 				</li>
 			</ul>
 			<div class="align-center">
@@ -44,6 +44,6 @@
 				<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 			</div>
 		</form>
-</div>
-	</body>
+	</div>
+</body>
 </html>

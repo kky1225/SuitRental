@@ -8,73 +8,44 @@ import kr.controller.Action;
 import kr.member.dao.MemberDAO;
 import kr.member.vo.MemberVO;
 
-public class DeleteUserAction implements Action{
+public class UpdateAuthAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// 회원제 서비스
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		if(user_num == null) {	// 로그인이 안된 경우
+		
+		if(user_num == null) {	
 			return "redirect:/member/loginForm.do";
 		}
 		
 		request.setCharacterEncoding("utf-8");
-		
-		String id = request.getParameter("id");
+		String member_id = request.getParameter("member_id");
+		String manager_id = request.getParameter("manager_id");
 		String passwd = request.getParameter("passwd");
+		int auth = Integer.parseInt(request.getParameter("auth"));
 		
-		// 현재 로그인 한 아이디
-		String user_id = (String)session.getAttribute("user_id");
+		// 회원 아이디 체크
+		MemberDAO mem_Dao = MemberDAO.getInstance();
+		MemberVO member = mem_Dao.checkMember(member_id);
 		
-		MemberDAO dao = MemberDAO.getInstance();
-		MemberVO member = dao.checkMember(id);
+		// 관리자 아이디 체크
+		MemberDAO man_Dao = MemberDAO.getInstance();
+		MemberVO manager = man_Dao.checkMember(manager_id);
+		
 		boolean check = false;
 		
-		if(member != null && id.equals(user_id)) {
-			check = member.isCheckedPassword(passwd);
+		if(manager_id.equals(manager.getId()) && member != null && member.getAuth() > 0) {
+			check = manager.isCheckedPassword(passwd);
 		}
 		
 		if(check) {
-			dao.deleteMember(user_num);
-			session.invalidate();
+			mem_Dao.updateAuth(auth,member_id);
 		}
 		
 		request.setAttribute("check", check);
 		
-		return "/WEB-INF/views/member/deleteUser.jsp";
+		return "/WEB-INF/views/member/updateAuth.jsp";
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

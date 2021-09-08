@@ -18,7 +18,7 @@ public class ModifyUserFormAction implements Action{
 		}
 		
 		// 로그인 된 경우
-		return "/WEB-INF/views/member/ModifyUserForm.jsp";
+		return "/WEB-INF/views/member/modifyUserForm.jsp";
 	}
 
 }

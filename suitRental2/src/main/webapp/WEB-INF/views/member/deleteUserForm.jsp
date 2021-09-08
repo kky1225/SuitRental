@@ -25,8 +25,9 @@
 				$('#cpasswd').val('').focus();
 				return false;
 			}
+			
 			if($('#passwd').val() != $('#cpasswd').val()){
-				aleret('비밀번호와 비밀번호 확인 불일치');
+				alert('비밀번호와 비밀번호 확인 불일치!');
 				$('#cpasswd').val('').focus();
 				return false;
 			}
@@ -46,7 +47,6 @@
 				$('#message_id').text('');
 			}
 		});
-		
 	})
 </script>
 </head>

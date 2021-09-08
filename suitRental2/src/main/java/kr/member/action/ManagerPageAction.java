@@ -6,20 +6,18 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 
-public class ModifyPasswordFormAction implements Action{
+public class ManagerPageAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// 회원제 서비스
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
 		
-		if(user_num == null) {	// 로그인이 안된 경우
+		if(user_num == null) {	// �α����� �ȵ� ���
 			return "redirect:/member/loginForm.do";
 		}
 		
-		// 로그인 된 경우
-		return "/WEB-INF/views/member/modifyPasswordForm.jsp";
+		return "/WEB-INF/views/member/managerPage.jsp";
 	}
 
 }

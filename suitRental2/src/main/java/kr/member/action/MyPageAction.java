@@ -5,21 +5,30 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
+import kr.member.dao.MemberDAO;
+import kr.member.vo.MemberVO;
 
-public class ModifyPasswordFormAction implements Action{
+public class MyPageAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// íšŒì›ì œ ì„œë¹„ìŠ¤
+		
+		// ¼¼¼Ç¿¡¼­ ·Î±×ÀÎÀÌ µÇ¾îÀÖ´ÂÁö Á¤º¸¸¦ ¹Ş¾Æ¿Í¾ßÇÔ
+		// È¸¿øÁ¦ ¼­ºñ½ºÀÏ °æ¿ì ÀÌ°Ô ¸Ç À§¿¡ ÀÖ¾î¾ß ÇÑ´Ù.
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
 		
-		if(user_num == null) {	// ë¡œê·¸ì¸ì´ ì•ˆëœ ê²½ìš°
+		if(user_num == null) {	// ·Î±×ÀÎÀÌ ¾ÈµÈ °æ¿ì
 			return "redirect:/member/loginForm.do";
 		}
 		
-		// ë¡œê·¸ì¸ ëœ ê²½ìš°
-		return "/WEB-INF/views/member/modifyPasswordForm.jsp";
+		// ·Î±×ÀÎ µÈ °æ¿ì
+		MemberDAO dao = MemberDAO.getInstance();
+		MemberVO member = dao.getMember(user_num);
+		
+		request.setAttribute("member", member);
+		
+		return "/WEB-INF/views/member/myPage.jsp";
 	}
 
 }
