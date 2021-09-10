@@ -40,6 +40,7 @@ create table suit(
     x_reg_date date default sysdate not null, 
     x_purchase number(10) default 0 not null,
     x_type varchar2(20) not null,
+    x_contents VARCHAR2(300) not null, 
     CONSTRAINT suit_pk PRIMARY KEY(x_code)
 );
 
