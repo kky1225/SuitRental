@@ -28,11 +28,11 @@ create sequence xboard_qna_seq;
 /*제품 등록*/
 create table suit(
     x_code number not null,
-    x_name varchar2(20) not null,
+    x_name varchar2(30) not null,
     x_price number(10) not null,  
     x_stock number(10) not null, 
-    x_size varchar2(20) not null, 
-    x_brand varchar2(20) not null, 
+    x_size varchar2(5) not null, 
+    x_brand varchar2(30) not null, 
     x_rental_count number(10) default 0 not null, 
     x_gender varchar2(20) not null, 
     x_hit number default 0 not null,  
@@ -40,7 +40,9 @@ create table suit(
     x_reg_date date default sysdate not null, 
     x_purchase number(10) default 0 not null,
     x_type varchar2(20) not null,
-    x_contents VARCHAR2(300) not null, 
+    x_contents CLOB not null, 
+    x_file VARCHAR(150) NOT NULL,
+    
     CONSTRAINT suit_pk PRIMARY KEY(x_code)
 );
 

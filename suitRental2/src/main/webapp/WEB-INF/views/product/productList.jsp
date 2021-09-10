@@ -15,7 +15,7 @@
 <h3> 상품 리스트 </h3>
 <div class="list-space align-right">
 			<input type="button" value="상품등록" onclick="location.href='productWriteForm.do'"
-				<%-- <c:if test="${empty user_num}">disabled="disabled"</c:if> --%>
+				<c:if test="${empty user_num}">disabled="disabled"</c:if>
 			>
 			<input type="button" value="목록" onclick="location.href='ProductList.do'">
 			<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">		
@@ -55,7 +55,7 @@
       <c:if test="${endBlock < allPage }">
          <a href="productList_list.do?page=${endBlock + 1 }">▶</a>
          <a href="productList_list.do?page=${allPage }">[마지막]</a>
-      </c:if>--%>
+      </c:if>
       <div></div>
       <br> <br>     
 </table>

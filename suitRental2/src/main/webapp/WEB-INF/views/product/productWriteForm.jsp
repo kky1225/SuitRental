@@ -55,14 +55,7 @@ $(document).ready(function() {
                             
         });
     
-    $('#register_form').submit(function(){
-		
-		if($('#code').val().trim()==''){
-			alert('상품코드를 입력하세요!');
-			$('#code').focus();
-			$('#code').val('');
-			return false;
-		}
+    $('#productWrite_form').submit(function(){
 		if($('#name').val().trim()==''){
 			alert('상품명을 입력하세요!');
 			$('#name').focus();
@@ -75,13 +68,35 @@ $(document).ready(function() {
 			$('#brand').val('');
 			return false;
 		}
+		if($('#filename').val()==''){
+			alert('상품 이미지를 등록하세요!');
+			return false;
+		}
+		
+		if($(':radio[name="gender"]:checked').length < 1){
+			alert('성별을 입력하세요');
+			return false;
+		}
+		
+		if($(':radio[name="type"]:checked').length < 1){
+			alert('종류를 입력하세요');
+			return false;
+		}
+		
 		if($('#price').val()==''){
 			alert('가격을 입력하세요!');
 			$('#price').focus();
 			$('#price').val('');
 			return false;
 		}
-		if($('#contents').val().trim()==''){
+		if($('#stoke').val()==''){
+			alert('재고를 입력하세요!');
+			$('#stoke').focus();
+			$('#stoke').val('');
+			return false;
+		}
+		
+		if($('#content').val().trim()==''){
 			alert('상세정보를 입력하세요!');
 			$('#contents').focus();
 			$('#contents').val('');
@@ -101,39 +116,33 @@ $(document).ready(function() {
 	<form id="productWrite_form" action="productWrite.do" method="post" enctype="multipart.form-data">
 		<table border="0">
 			<tr>
-				<th>상품 코드</th>
-				<td align="left">
-					<input type="text" name="code" id="code" value="${product.code}" maxlength="10">
-				</td>
-			</tr>
-			<tr>
 				<th>상품명</th>
 				<td>
-					<input type="text" name="name" id="name" value="${product.name}" maxlength="20">
+					<input type="text" name="name" id="name" maxlength="20">
 				</td>
 			</tr>
 			<tr>
 				<th>브랜드</th>
 				<td>
-					<input type="text" name="brand" id="brand" value="${product.brand}" maxlength="20">
+					<input type="text" name="brand" id="brand" maxlength="20">
 				</td>
 			</tr>
 			<tr>
 				<th>상품 이미지</th>
 				<td>
-					<input type="file" name="image" id="image" value="${product.image}">
+					<input type="file" name="filename" id="filename">
 				</td>
 			</tr>
 			<tr>
 				<th>성별</th>
 				<td>
-					<input type="radio" name="gender" id="radioMale" value="${product.male}" ><label for="radioMale">남성</label>
-					<input type="radio" name="gender" id="radioFemale" value="${product.female}" ><label for="radioFemale">여성</label>
+					<input type="radio" name="gender" id="male" value="male">남자
+					<input type="radio" name="gender" id="female" value="female">여자
 					<br>
         			<br>
         <span id="viewMale">
             남성 사이즈: 
-            <select class="form-control male" name="size" style="width:200px">
+            <select class="form-control male" name="size" id="male_size" style="width:200px">
                 <option value="">100</option>
                 <option value="1">105</option>
                 <option value="2">110</option>
@@ -142,7 +151,7 @@ $(document).ready(function() {
         </span>
         <span id="viewFemale" style="display:none">
             여성 사이즈: 
-            <select class="form-control female" name="size" style="width:200px">
+            <select class="form-control female" name="size" id="female_size" style="width:200px">
                 <option value="">44</option>
                 <option value="1">55</option>
                 <option value="2">66</option>
@@ -151,16 +160,31 @@ $(document).ready(function() {
         </span>
         	</td>
         	</tr>
+        	<tr>
+				<th>종류</th>
+				<td>
+					<input type="radio" name="type" id="jacket" value="jacket">재킷
+					<input type="radio" name="type" id="shirts" value="shirts">셔츠
+					<input type="radio" name="type" id="slacks" value="slacks">슬랙스
+					<input type="radio" name="type" id="shoes" value="shoes">구두
+        		</td>
+        	</tr>
 			<tr>
 				<th>가격</th>
 				<td>
-					<input type="text" name="price" id="price" value="${product.price}" maxlength="10">
+					<input type="number" name="price" id="price" maxlength="10">
+				</td>
+			</tr>
+			<tr>
+				<th>재고</th>
+				<td>
+					<input type="number" name="stoke" id="stoke" maxlength="10">
 				</td>
 			</tr>
 			<tr>
 				<th>상세 설명</th>
 				<td>
-					<textarea name="contents" row="5" cols="50"></textarea>
+					<textarea name="content" rows="5" cols="50" id="content"></textarea>
 				</td>
 			</tr>
 			<tr>
