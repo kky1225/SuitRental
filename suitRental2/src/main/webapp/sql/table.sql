@@ -45,3 +45,51 @@ create table suit(
 );
 
 create sequence suit_seq;
+
+/* 회원 정보 - 경규영*/
+CREATE TABLE xmember(
+	mem_num NUMBER PRIMARY KEY,
+	id VARCHAR2(12) UNIQUE NOT NULL,
+	auth NUMBER(1) DEFAULT 2 NOT NULL
+);
+
+CREATE SEQUENCE xmember_seq;
+
+/* 회원 상세 정보 - 경규영 */
+CREATE TABLE xmember_detail(
+	mem_num NUMBER PRIMARY KEY,
+	name VARCHAR2(30) NOT NULL,
+	passwd VARCHAR2(35) NOT NULL,
+	phone VARCHAR2(15) UNIQUE NOT NULL,
+	email VARCHAR2(50) UNIQUE NOT NULL,
+	zipcode VARCHAR2(5) NOT NULL,
+	address1 VARCHAR2(90) NOT NULL,
+	address2 VARCHAR2(90) NOT NULL,
+	gender VARCHAR2(20) NOT NULL,
+	rental_total NUMBER(10) DEFAULT 0 NOT NULL,
+	rental_now NUMBER(10) DEFAULT 0 NOT NULL,
+    non_return NUMBER(10) DEFAULT 0 NOT NULL,
+	reg_date DATE DEFAULT SYSDATE NOT NULL,
+	modify_date DATE DEFAULT SYSDATE NOT NULL,
+    
+	CONSTRAINT gender1 CHECK (gender IN ('male', 'female')),
+	CONSTRAINT xmember_detail_fk FOREIGN KEY (mem_num) REFERENCES xmember(mem_num);
+	
+);
+
+/* 리뷰 게시판 테이블 - 경규영 */
+CREATE TABLE xreview(
+	review_num NUMBER PRIMARY KEY,
+	title VARCHAR2(150) NOT NULL,
+	content CLOB NOT NULL,
+	hit NUMBER(18) DEFAULT 0 NOT NULL,
+	reg_date DATE DEFAULT SYSDATE NOT NULL,
+	modify_date DATE,
+	filename VARCHAR2(150),
+	ip VARCHAR2(30) NOT NULL,
+    mem_num NUMBER,
+	
+	CONSTRAINT xreview_mem_num_fk FOREIGN KEY (mem_num) REFERENCES xmember(mem_num)
+);
+
+CREATE SEQUENCE xreview_seq;

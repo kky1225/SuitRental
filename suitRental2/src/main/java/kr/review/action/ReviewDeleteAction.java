@@ -4,13 +4,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.controller.Action;
+import kr.review.dao.ReviewDAO;
 
-public class ReviewWriteFormAction implements Action {
+public class ReviewDeleteAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		return "/WEB-INF/views/review/reviewWriteForm.jsp";
+		int review_num = Integer.parseInt(request.getParameter("review_num"));
+		
+		ReviewDAO.getInstance().reviewDelete(review_num);
+		
+		return "/WEB-INF/views/review/reviewDelete.jsp";
 	}
 
 }

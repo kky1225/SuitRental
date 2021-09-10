@@ -11,7 +11,7 @@ import kr.review.dao.ReviewDAO;
 import kr.review.vo.ReviewVO;
 import kr.util.FileUtil;
 
-public class ReviewWriteAction implements Action {
+public class ReviewModifyAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -26,14 +26,24 @@ public class ReviewWriteAction implements Action {
 		
 		MultipartRequest multi = FileUtil.createFile(request);
 		ReviewVO reviewVO = new ReviewVO();
+		reviewVO.setReview_num(Integer.parseInt(multi.getParameter("review_num")));
 		reviewVO.setTitle(multi.getParameter("title"));
 		reviewVO.setContent(multi.getParameter("content"));
 		reviewVO.setIp(request.getRemoteAddr());
 		reviewVO.setFilename(multi.getFilesystemName("filename"));
 		reviewVO.setMem_num(user_num);
 		
-		ReviewDAO.getInstance().reviewInsert(reviewVO);
-			
-		return "/WEB-INF/views/review/reviewWrite.jsp";
+		System.out.println();
+		System.out.println("filename : " + multi.getFilesystemName("filename"));
+		System.out.println("file_check2 : " + multi.getParameter("file_check2"));
+
+		if(multi.getFilesystemName("filename") == null && multi.getParameter("file_check2").equals("none")) {
+			ReviewDAO.getInstance().reviewUpdate(reviewVO, 0);
+		}else {
+			ReviewDAO.getInstance().reviewUpdate(reviewVO, 1);
+		}
+		
+		return "/WEB-INF/views/review/reviewModify.jsp";
 	}
+
 }

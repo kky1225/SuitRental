@@ -12,13 +12,14 @@ public class ReviewVO {
 	private String filename;
 	private String ip;
 	private int mem_num;
+	private String id;
 	
 	public ReviewVO() {
 		
 	}
 
 	public ReviewVO(int review_num, String title, String content, int hit, Date reg_date, Date modify_date,
-			String filename, String ip, int mem_num) {
+			String filename, String ip, int mem_num, String id) {
 		this.review_num = review_num;
 		this.title = title;
 		this.content = content;
@@ -28,6 +29,7 @@ public class ReviewVO {
 		this.filename = filename;
 		this.ip = ip;
 		this.mem_num = mem_num;
+		this.id = id;
 	}
 
 	public int getReview_num() {
@@ -94,6 +96,14 @@ public class ReviewVO {
 		this.ip = ip;
 	}
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public int getMem_num() {
 		return mem_num;
 	}
@@ -101,6 +111,11 @@ public class ReviewVO {
 	public void setMem_num(int mem_num) {
 		this.mem_num = mem_num;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "ReviewVO [review_num=" + review_num + ", title=" + title + ", content=" + content + ", hit=" + hit
+				+ ", reg_date=" + reg_date + ", modify_date=" + modify_date + ", filename=" + filename + ", ip=" + ip
+				+ ", mem_num=" + mem_num + ", id=" + id + "]";
+	}
 }

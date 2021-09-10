@@ -4,7 +4,7 @@
 	<html>
 	<head>
 		<meta charset="UTF-8">
-		<title>게시글 작성</title>
+		<title>리뷰 게시글 작성</title>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 		<script type="text/javascript">
@@ -29,7 +29,7 @@
 		<div class="page-main">
 			<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 			<h2>리뷰 게시글 작성</h2>
-			<form id="write_form" action="write.do" method="post" enctype="multipart/form-data">
+			<form id="write_form" action="reviewWrite.do" method="post" enctype="multipart/form-data">
 				<ul>
 					<li>
 						<label for="title">제목</label>
@@ -46,7 +46,7 @@
 				</ul>
 				<div class="align-center">
 					<input type="submit" value="등록">
-					<input type="button" value="목록" onclick="location.href='list.do'">
+					<input type="button" value="목록" onclick="location.href='writeList.do'">
 				</div>
 			</form>
 		</div>
