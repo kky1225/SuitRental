@@ -6,14 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.sql.DataSource;
-
-import com.oreilly.servlet.MultipartRequest;
-
-
 import kr.productdetail.vo.ProductDetailVO;
 import kr.util.DBUtil;
 
@@ -87,37 +79,35 @@ public class ProductDAO {
 	}
 	
 	//게시물을 보여주는 메서드
-	public List<ProductDetailVO> getProductList(int page,int rowsize) throws Exception {
-		List<ProductDetailVO> list = new ArrayList<ProductDetailVO>();
-		
-		//해당 페이지에서의 시작번호
-		int startNo = (page * rowsize) - (rowsize - 1);
-		
-		//해당 페이지에서의 마지막번호
-		int endNo = (page * rowsize);
+	public List<ProductDetailVO> getProductList(int start, int end) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		List<ProductDetailVO> list = null;
 		
 		try {
 			//커넥션풀로부터 커넥션 할당
 			conn=DBUtil.getConnection();
-			//SQL문 작성
-			sql="select * from (select row_number() "
-				+ "over(order by x_code desc) rnum, "
-				+ "b.* from suit b) "
-				+ "where rnum >= ? and rnum <=?";
+			sql = "SELECT * FROM suit WHERE x_code >= ? AND x_code <= ? ORDER BY x_code desc";
 		
 			//PreparedStatement 객체 생성
 			pstmt=conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, startNo);
-			pstmt.setInt(2, endNo);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
 			//SQL문 실행하고 결과행을 ResultSet에 담음
 			rs=pstmt.executeQuery();
+			
+			list = new ArrayList<ProductDetailVO>();
 			
 			while(rs.next()) {
 				ProductDetailVO board = new ProductDetailVO();
 				board.setX_file(rs.getString("x_file"));
 				board.setX_name(rs.getString("x_name"));
 				board.setX_code(rs.getInt("x_code"));
+				board.setX_brand(rs.getString("x_brand"));
+				board.setX_price(rs.getInt("x_price"));
 				
 				list.add(board);
 			}
@@ -252,4 +242,3 @@ public class ProductDAO {
 			}
 }
 }
-
