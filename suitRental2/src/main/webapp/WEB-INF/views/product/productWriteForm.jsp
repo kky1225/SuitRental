@@ -98,8 +98,8 @@ $(document).ready(function() {
 		
 		if($('#content').val().trim()==''){
 			alert('상세정보를 입력하세요!');
-			$('#contents').focus();
-			$('#contents').val('');
+			$('#content').focus();
+			$('#content').val('');
 			return false;
 		}
 		
@@ -113,7 +113,7 @@ $(document).ready(function() {
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<h3>상품 등록 페이지</h3>
-	<form id="productWrite_form" action="productWrite.do" method="post" enctype="multipart.form-data">
+	<form id="productWrite_form" action="productWrite.do" enctype="multipart/form-data" method="post" >
 		<table border="0">
 			<tr>
 				<th>상품명</th>
@@ -143,19 +143,19 @@ $(document).ready(function() {
         <span id="viewMale">
             남성 사이즈: 
             <select class="form-control male" name="size" id="male_size" style="width:200px">
-                <option value="">100</option>
-                <option value="1">105</option>
-                <option value="2">110</option>
-                <option value="3">115</option>
+                <option value="100">100</option>
+                <option value="105">105</option>
+                <option value="110">110</option>
+                <option value="115">115</option>
             </select>
         </span>
         <span id="viewFemale" style="display:none">
             여성 사이즈: 
             <select class="form-control female" name="size" id="female_size" style="width:200px">
-                <option value="">44</option>
-                <option value="1">55</option>
-                <option value="2">66</option>
-                <option value="3">77</option>
+                <option value="44">44</option>
+                <option value="55">55</option>
+                <option value="66">66</option>
+                <option value="77">77</option>
             </select>
         </span>
         	</td>

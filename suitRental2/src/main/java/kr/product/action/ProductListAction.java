@@ -1,5 +1,6 @@
 package kr.product.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,13 +9,17 @@ import javax.servlet.http.HttpServletResponse;
 import kr.controller.Action;
 import kr.product.dao.ProductDAO;
 import kr.product.vo.ProductVO;
+import kr.productdetail.vo.ProductDetailVO;
+import kr.review.dao.ReviewDAO;
+import kr.review.vo.ReviewVO;
+import kr.util.PagingUtil;
 
 public class ProductListAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-			
-		ProductDAO dao = ProductDAO.getInstance();
+		
+		ProductDAO dao=ProductDAO.getInstance();
 		
 		// 페이징 작업
         int rowsize = 6;      // 한 페이지당 보여질 게시물의 수
@@ -58,7 +63,7 @@ public class ProductListAction implements Action{
         }
         
         // 페이지에 해당하는 게시물을 가져오는 메서드 호출
-        List<ProductVO> pageList = dao.getProductList(page, rowsize);
+        List<ProductDetailVO> pageList = dao.getProductList(page, rowsize);
         
         // 지금까지 페이징 처리 시 작업했던 모든 값들을 키로 저장하자.
         request.setAttribute("page", page);

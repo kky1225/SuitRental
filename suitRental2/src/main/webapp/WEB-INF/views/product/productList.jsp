@@ -17,16 +17,16 @@
 			<input type="button" value="상품등록" onclick="location.href='productWriteForm.do'"
 				<c:if test="${empty user_num}">disabled="disabled"</c:if>
 			>
-			<input type="button" value="목록" onclick="location.href='ProductList.do'">
+			<!-- <input type="button" value="목록" onclick="location.href='ProductList.do'"> -->
 			<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">		
 		</div>
 <table width=80% border = "0" cellspacing="0">
 	<c:set var = "list" value ="${List }" />
 	<c:if test="${!empty list }">
-		<c:forEach items="${list }" var="dto">
+		<c:forEach items="${list }" var="board">
 	<tr>
-		<td><a href="productDetail.do?x_code">${dto.getX_file() }</a></td>
-		<td><a href="productDetail.do?">${dto.getX_name() }</a></td>
+		<td><a href="productDetail.do?x_code">${board.getX_file() }</a></td>
+		<td><a href="productDetail.do?">${board.getX_name() }</a></td>
 		</tr>
 	</c:forEach>
 	</c:if>
@@ -38,7 +38,8 @@
 	</tr>
 	</c:if>
 	<div class="align-center">
-	<c:if test="${page > block }">
+		</div>
+ <c:if test="${page > block }">
          <a href="productList_list.do?page=1">[맨처음]</a>
          <a href="productList_list.do?page=${startBlock - 1 }">◀</a>
       </c:if>
@@ -55,7 +56,7 @@
       <c:if test="${endBlock < allPage }">
          <a href="productList_list.do?page=${endBlock + 1 }">▶</a>
          <a href="productList_list.do?page=${allPage }">[마지막]</a>
-      </c:if>
+      </c:if> 
       <div></div>
       <br> <br>     
 </table>

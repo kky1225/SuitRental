@@ -31,7 +31,7 @@ create table suit(
     x_name varchar2(30) not null,
     x_price number(10) not null,  
     x_stock number(10) not null, 
-    x_size varchar2(5) not null, 
+    x_size varchar2(20) not null, 
     x_brand varchar2(30) not null, 
     x_rental_count number(10) default 0 not null, 
     x_gender varchar2(20) not null, 

@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 
 import com.oreilly.servlet.MultipartRequest;
 
-import kr.product.vo.ProductVO;
+
 import kr.productdetail.vo.ProductDetailVO;
 import kr.util.DBUtil;
 
@@ -87,8 +87,8 @@ public class ProductDAO {
 	}
 	
 	//게시물을 보여주는 메서드
-	public List<ProductVO> getProductList(int page,int rowsize) throws Exception {
-		List<ProductVO> list = new ArrayList<ProductVO>();
+	public List<ProductDetailVO> getProductList(int page,int rowsize) throws Exception {
+		List<ProductDetailVO> list = new ArrayList<ProductDetailVO>();
 		
 		//해당 페이지에서의 시작번호
 		int startNo = (page * rowsize) - (rowsize - 1);
@@ -114,12 +114,12 @@ public class ProductDAO {
 			rs=pstmt.executeQuery();
 			
 			while(rs.next()) {
-				ProductVO dto = new ProductVO();
-				dto.setX_file(rs.getString("x_file"));
-				dto.setX_name(rs.getString("x_name"));
-				dto.setX_code(rs.getInt("x_code"));
+				ProductDetailVO board = new ProductDetailVO();
+				board.setX_file(rs.getString("x_file"));
+				board.setX_name(rs.getString("x_name"));
+				board.setX_code(rs.getInt("x_code"));
 				
-				list.add(dto);
+				list.add(board);
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -130,6 +130,7 @@ public class ProductDAO {
 		}
 		return list;
 	}
+	
 	
 	
 	//글 상세
@@ -154,7 +155,7 @@ public class ProductDAO {
 				
 				if(rs.next()) {
 					board=new ProductDetailVO();
-					board.setX_name(rs.getString("s_name"));
+					board.setX_name(rs.getString("x_name"));
 					board.setX_file(rs.getString("x_file"));
 					board.setX_price(rs.getInt("x_price"));
 					board.setX_stock(rs.getInt("x_stock"));
@@ -169,7 +170,6 @@ public class ProductDAO {
 					board.setX_type(rs.getString("x_type"));
 					board.setX_contents(rs.getString("x_contents"));
 					
-				
 				}
 				
 			}catch(Exception e) {
@@ -182,60 +182,46 @@ public class ProductDAO {
 			
 		}
 		
+		
 		//상품 등록 모듈
-		public int registerProduct(MultipartRequest multi) throws SQLException{
-				Connection conn=null;
-				PreparedStatement pstmt=null;
-				String sql=null;
-				
+		public int registerProduct(ProductDetailVO dto) throws Exception {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			String sql = null;		
+			int result=0;
+			
 			try {
-				conn=getConnection();
-				sql="INSERT into suit VALUES(suit_seq.nextval,?,?,?,?,?,?,?)";
-				pstmt=conn.prepareStatement(sql);
-				
-				String x_name=multi.getParameter("x_name");
-				String x_brand=multi.getParameter("x_brand");
-				String x_file=multi.getFilesystemName("x_file");
-				String x_gender=multi.getParameter("x_gender");
-				String x_size=multi.getParameter("x_size");
-				String x_price=multi.getParameter("price");
-				String x_contents=multi.getParameter("x_contents");
-				
-				
-				pstmt.setString(1,x_name);
-				pstmt.setString(2, x_brand);
-				pstmt.setString(3, x_file);
-				pstmt.setString(4, x_gender);
-				pstmt.setString(5, x_size);
-				pstmt.setString(6, x_price);
-				pstmt.setString(7, x_contents);
-				
-				int n=pstmt.executeUpdate();
-				return n;
+					conn=DBUtil.getConnection();
+					
+					sql="INSERT into suit VALUES(suit_seq.nextval,?,?,?,?,?,default,?,default,default,default,default,?,?,?)";
+					
+					pstmt=conn.prepareStatement(sql);
+					
+					
+					pstmt.setString(1, dto.getX_name());
+					pstmt.setInt(2, dto.getX_price());
+					pstmt.setInt(3, dto.getX_stock());
+					pstmt.setString(4, dto.getX_size());
+					pstmt.setString(5, dto.getX_brand());
+					pstmt.setString(6, dto.getX_gender());
+					pstmt.setString(7, dto.getX_type());
+					pstmt.setString(8, dto.getX_contents());
+					pstmt.setString(9, dto.getX_file());
+					
+					result=pstmt.executeUpdate();
+					
+			}catch(SQLException e) {
+				e.printStackTrace();
 				
 			}finally {
-				if(pstmt !=null)pstmt.close();
-				if(conn !=null)conn.close();
+				//자원정리
+				DBUtil.executeClose(rs, pstmt, conn);
 			}
-		}//registerProduct() -메서드 처리 (ProductWrite.jsp에 있음)
-		
-		//Connection pool에서 connection확보
-		private Connection getConnection() {
-			Context ctx=null;
-			DataSource ds=null;
-			Connection conn=null;
-			
-			try {
-				ctx=new InitialContext();
-				ds=(DataSource)ctx.lookup("java:comp/env/jdbc/Oracle11g");
-				conn=ds.getConnection();
-			} catch (Exception e) {
-				e.printStackTrace();
+			return result;
 			}
-			
-			return conn;
-		}
+		//registerProduct() -메서드 처리 (ProductWrite.jsp에 있음)
 		
+	
 		
 		//조회수 증가
 		public void updateReadcount(int x_code)throws Exception{
@@ -266,3 +252,4 @@ public class ProductDAO {
 			}
 }
 }
+

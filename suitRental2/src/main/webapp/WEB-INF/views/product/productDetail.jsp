@@ -20,10 +20,10 @@
 	<ul>
 		<li>상품명 : ${board.x_name}</li>
 		<li>브랜드 : ${board.x_brand}</li>
-		<li>가격 : ${board.x_price}</li>
+		<li>가격 : ${board.x_price}원</li>
 		<li>성별 : ${board.x_gender}</li>
 		<li>사이즈 : ${board.x_size}</li>
-		<li>총 대여수 : ${board.x_rental_count}</li>
+		<%-- <li>총 대여수 : ${board.x_rental_count}</li> --%>
 		<li>조회수 : ${board.x_hit}</li>
 		<li>좋아요수 : ${board.x_like}</li>
 		<li>옷 종류 : ${board.x_type}</li>
@@ -41,6 +41,7 @@
 	<hr size="1" noshade width="100%">
 	<div class="align-right">
 		작성일 : ${board.x_reg_date}
+		<input type="button" value="대여하기" onclick="">
 		<input type="button" value="목록" onclick="location.href='productList.do'">
 	</div>
 </body>
