@@ -98,8 +98,8 @@ $(document).ready(function() {
 		
 		if($('#content').val().trim()==''){
 			alert('상세정보를 입력하세요!');
-			$('#content').focus();
-			$('#content').val('');
+			$('#contents').focus();
+			$('#contents').val('');
 			return false;
 		}
 		
@@ -113,7 +113,7 @@ $(document).ready(function() {
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<h3>상품 등록 페이지</h3>
-	<form id="productWrite_form" action="productWrite.do" enctype="multipart/form-data" method="post" >
+	<form id="productWrite_form" action="productWrite.do" method="post" enctype="multipart/form-data">
 		<table border="0">
 			<tr>
 				<th>상품명</th>

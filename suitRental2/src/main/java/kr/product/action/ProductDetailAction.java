@@ -1,5 +1,7 @@
 package kr.product.action;
 
+import java.text.DecimalFormat;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,22 +14,21 @@ public class ProductDetailAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		try {
-		int x_code = Integer.parseInt(request.getParameter("x_code"));
 		
+		int x_code = Integer.parseInt(request.getParameter("x_code"));
 		ProductDAO.getInstance().updateReadcount(x_code);
 		
-		ProductDetailVO board = ProductDAO.getInstance().getBoard(x_code);
+		ProductDetailVO productDetailVO = ProductDAO.getInstance().getBoard(x_code);
 		
-		board.setX_contents(StringUtil.useBrNoHtml(board.getX_contents()));
+		productDetailVO.setX_name(StringUtil.useBrNoHtml(productDetailVO.getX_name()));
+		productDetailVO.setX_contents(StringUtil.useBrNoHtml(productDetailVO.getX_contents()));
 		
-		request.setAttribute("board", board);
+		DecimalFormat df = new DecimalFormat("###,###");
 		
-		}catch(NumberFormatException e){
-			System.out.println("NumberFormatException발생!");
-			
-		}
-	
+		String price = df.format(productDetailVO.getX_price());
+
+		request.setAttribute("price", price);
+		request.setAttribute("productDetailVO", productDetailVO);
 		
 		return "/WEB-INF/views/product/productDetail.jsp";
 	}
