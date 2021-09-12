@@ -10,13 +10,15 @@
 <body>
 	<div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-		<h2>관리자 페이지</h2>
+		<h2 class="align-center">관리자 페이지</h2>
+		<div class="mypage-div">
 		<h3>대여 금지 회원 지정</h3>
 			<ul>
 				<li>
 					<input type="button" value="권한 수정" onclick="location.href='updateAuthForm.do'">
 				</li>
-			</ul>
+			</ul>	
+		</div>	
 	</div>
 </body>
 </html>

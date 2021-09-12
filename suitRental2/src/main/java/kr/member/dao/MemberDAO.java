@@ -34,7 +34,7 @@ public class MemberDAO {
 				
 			conn.setAutoCommit(false);
 				
-				
+			// mem_num 구함	
 			sql = "select xmember_seq.nextval from dual";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -43,7 +43,7 @@ public class MemberDAO {
 				num = rs.getInt(1);	
 			}
 				
-				
+			// xmember 데이터 입력
 			sql = "insert into xmember (mem_num, id,auth) values (?,?,?)";
 			pstmt2 = conn.prepareStatement(sql);
 			pstmt2.setInt(1, num);	
@@ -51,7 +51,7 @@ public class MemberDAO {
 			pstmt2.setInt(3, member.getAuth());
 			pstmt2.executeUpdate();
 				
-			// zmember_detail  insert
+			// zmember_detail  데이터 입력
 			sql = "insert into xmember_detail(mem_num,name,passwd,phone,email,zipcode,address1,address2,gender) values (?,?,?,?,?,?,?,?,?)";
 			pstmt3 = conn.prepareStatement(sql);
 			pstmt3.setInt(1, num);
@@ -151,7 +151,7 @@ public class MemberDAO {
 			}catch(Exception e) {
 				throw new Exception(e);
 			}finally {
-				// �ڿ�����
+				
 				DBUtil.executeClose(rs, pstmt, conn);
 			}
 			return member;
@@ -229,12 +229,12 @@ public class MemberDAO {
 			conn = DBUtil.getConnection();
 			
 			conn.setAutoCommit(false);
-			
+			// xmember에서 회원등급을 0으로 바꿈
 			sql = "update xmember set auth=0 where mem_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, mem_num);
 			pstmt.executeUpdate();
-			
+			// xmember_detail에서 데이터 삭제
 			sql = "delete from xmember_detail where mem_num=?";
 			pstmt2 = conn.prepareStatement(sql);
 			pstmt2.setInt(1, mem_num);
@@ -250,13 +250,7 @@ public class MemberDAO {
 		}
 	}
 	
-	// 대여 목록
-	
-	// 대여 취소
-	
-	// 대여 변경
-	
-	// auth를 1로 바꿈 대여금지 회원으로
+	// auth를 1(대여금지)또는 2(일반회원)로 바꿈
 	// 0으로 바꾸는건 deleteMember(int mem_num)에서 실행
 	public void updateAuth(int auth,String id) throws Exception{
 		Connection conn = null;
@@ -265,7 +259,7 @@ public class MemberDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			
+			// xmember에서 회원권한을 변경
 			sql = "update xmember set auth = ? where id=?";
 			
 			pstmt = conn.prepareStatement(sql);
