@@ -13,7 +13,7 @@ public class ManagerPageAction implements Action{
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
 		
-		if(user_num == null) {	// �α����� �ȵ� ���
+		if(user_num == null) {	
 			return "redirect:/member/loginForm.do";
 		}
 		

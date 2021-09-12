@@ -13,7 +13,6 @@ public class LoginAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		// 전송된 데이터 인코딩 처리
 		request.setCharacterEncoding("utf-8");
 		
 		String id = request.getParameter("id");
@@ -23,23 +22,22 @@ public class LoginAction implements Action{
 		MemberVO member = dao.checkMember(id);
 		boolean check = false;
 		
-		if(member!=null) {	// member가 존재하면
-			// 비밀번호 일치여부 체크
+		if(member!=null) {	
+			
 			check = member.isCheckedPassword(passwd);
 		}
 		
-		if(check) {	// check가 true이면 인증 성공
-			// 로그인 처리
+		if(check) {	
+			
 			HttpSession session = request.getSession();
 			session.setAttribute("user_num", member.getMem_num());
 			session.setAttribute("user_id", member.getId());
 			session.setAttribute("user_auth", member.getAuth());
 			
-			// 인증 성공했을때 호출
 			return "redirect:/main/main.do";
 		}
 		
-		// 인증 실패시 호출
+		
 		return "/WEB-INF/views/member/login.jsp";
 	}
 

@@ -35,7 +35,7 @@ public class UpdateAuthAction implements Action{
 		
 		boolean check = false;
 		
-		if(manager_id.equals(manager.getId()) && member != null && member.getAuth() > 0) {
+		if(manager_id.equals(manager.getId()) && member != null && 0 < member.getAuth() && member.getAuth() <= 2) {
 			check = manager.isCheckedPassword(passwd);
 		}
 		
