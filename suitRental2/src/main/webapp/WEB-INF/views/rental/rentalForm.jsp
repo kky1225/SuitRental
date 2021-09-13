@@ -18,7 +18,43 @@
 
 		console.log(dateString);
 		
-		
+		$(function() {
+			$('#rental_form').submit(function() {
+				if($('#rental_date').val().trim()==''){
+					alert('대여 날짜를 입력하세요');
+					$('#rental_date').val('').focus();
+					return false;
+				}
+				if($('#return_date').val().trim()==''){
+					alert('반납 날짜를 입력하세요');
+					$('#return_date').val('').focus();
+					return false;
+				}
+				/* 대여 날짜는 현재 날짜를 기준으로 다음날부터 가능 */
+				if($('#rental_date').val() < dateString){
+					alert('대여 날짜는 다음날부터 가능합니다!');
+					$('#rental_date').val('').focus();
+					return false;
+				}
+				/* 반납 날짜는 대여 날짜보다 늦어야 된다*/
+				if($('#rental_date').val() > $('#return_date').val()){
+					alert('반납 날짜가 대여 날짜보다 늦어야 됩니다!');
+					$('#return_date').val('').focus();
+					return false;
+				}
+				
+				if($(':radio[name="rental_type"]:checked').length < 1){
+					alert('대여 방법을 입력하세요!');
+					return false;
+				}
+				
+				if($(':radio[name="return_type"]:checked').length < 1){
+					alert('반납 방법을 입력하세요!');
+					return false;
+				}
+				
+			});
+		});
 		
 		</script>
 	</head>
@@ -46,16 +82,15 @@
 						<label for="return_date">반납 날짜</label>
 						<input type="date" id="return_date" name="return_date">
 					</li><br> 
-					<div>
+					<li>
 						<label for="rental_type">대여 방법</label>
-						<input class="aa" type="radio" name ="rental_type" id ="visit" value = "visit">방문
-						<input class="aa" type="radio" name ="rental_type" id ="delivery" value = "delivery">배송									
-					</div> 
-					
+						<input class="aa" type="radio" name ="rental_type" id ="visit" value = "방문">방문
+						<input class="aa" type="radio" name ="rental_type" id ="delivery" value = "배송">배송									
+					</li><br>
 					<li>
 						<label for="return_type">반납 방법</label>
-						<input type="radio" name="return_type" id="visit" value="visit">방문
-						<input type="radio" name="return_type" id="delivery" value="delivery">배송
+						<input type="radio" name="return_type" id="visit" value="방문">방문
+						<input type="radio" name="return_type" id="delivery" value="배송">배송
 					</li><br>
 					
 				</ul>
