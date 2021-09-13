@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
 .page-main{
-	width:800px;/*넓이*/
-	margin:0 auto;/*중앙 정렬*/
+	width:800px;
+	margin:0 auto;
 }
 .result-display{
 	width:400px;
@@ -20,6 +20,20 @@
 	text-align:right;
 }
 /*목록*/
+form#search_form{
+	border:none;
+}
+ul.search{
+	width:300px;
+	list-style:none;
+	padding:0;
+	margin:0 auto;
+}
+ul.search li{
+	margin:0 0 9px 0;
+	padding:0;
+	display:inline;	
+}
 table{
 	width:100%;
 	border:1px solid #000;

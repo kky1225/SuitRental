@@ -31,9 +31,11 @@ public class ReviewWriteAction implements Action {
 		reviewVO.setIp(request.getRemoteAddr());
 		reviewVO.setFilename(multi.getFilesystemName("filename"));
 		reviewVO.setMem_num(user_num);
+		reviewVO.setX_code(Integer.parseInt(multi.getParameter("x_code")));
 		
 		ReviewDAO.getInstance().reviewInsert(reviewVO);
 			
 		return "/WEB-INF/views/review/reviewWrite.jsp";
 	}
+	
 }

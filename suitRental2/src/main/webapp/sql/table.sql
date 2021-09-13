@@ -31,7 +31,7 @@ create table suit(
     x_name varchar2(30) not null,
     x_price number(10) not null,  
     x_stock number(10) not null, 
-    x_size varchar2(20) not null, 
+    x_size varchar2(5) not null, 
     x_brand varchar2(30) not null, 
     x_rental_count number(10) default 0 not null, 
     x_gender varchar2(20) not null, 
@@ -90,8 +90,22 @@ CREATE TABLE xreview(
 	filename VARCHAR2(150),
 	ip VARCHAR2(30) NOT NULL,
     mem_num NUMBER,
+    x_code NUMBER,
 	
-	CONSTRAINT xreview_mem_num_fk FOREIGN KEY (mem_num) REFERENCES xmember(mem_num)
+	CONSTRAINT xreview_mem_num_fk FOREIGN KEY (mem_num) REFERENCES xmember(mem_num),
+	CONSTRAINT xreview_x_code_fk FOREIGN KEY (x_code) REFERENCES suit(x_code)
 );
 
 CREATE SEQUENCE xreview_seq;
+
+/* 좋아요 테이블 - 경규영 */
+CREATE TABLE xlikey(
+	likey_num NUMBER PRIMARY KEY,
+	x_code NUMBER,
+	mem_num NUMBER,
+	
+	CONSTRAINT xlikey_x_code_fk FOREIGN KEY (x_code) REFERENCES suit(x_code),
+	CONSTRAINT xlikey_mem_num_fk FOREIGN KEY (mem_num) REFERENCES xmember(mem_num)
+);
+
+CREATE SEQUENCE xlikey_seq;

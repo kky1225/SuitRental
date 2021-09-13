@@ -15,21 +15,20 @@ $(document).ready(function() {
     
     //검색하고 나서 결과를 보여줄때 검색 조건을 그대로 노출
     //if("${gender}" == "female"){ //gender 가 female 일 경우 셋팅
-    if("female" == "female"){
     
         //라디오 버튼 값으로 선택
-        $('input:radio[name="gender"][value="${product.female}"]').prop('checked', true);
+        $('input:radio[name="gender"][value="${product.male}"]').prop('checked', true);
         //셀렉트 박스 값으로 선택
-        $("select[name='female']").val("2").attr("selected", "selected");
+        $("select[name='male']").val("2").attr("selected", "selected");
         //남성 카테고리 hide
-        $( "#viewMale" ).hide();
+        $( "#viewFemale" ).hide();
         //여성 카테고리 show
-        $( "#viewFemale" ).show();
-       /*  //여성 일때  비활성화
-        $( "#mdName" ).prop( "disabled", true );
+        $( "#viewMale" ).show();
+       /*//여성 일때  비활성화
+        $( "#viewMale" ).prop( "disabled", true );
         // 입력값 초기화;
-        $( "#mdName" ).val(""); */
-    };
+        $( "#viewMale" ).val(""); */
+
     
     //라디오 버튼 변경시 이벤트
     $("input[name='gender']:radio").change(function () {
@@ -41,16 +40,16 @@ $(document).ready(function() {
                 $( "#viewMale" ).hide();
                 //여성일때 남성 카테고리 show
                 $( "#viewFemale" ).show();
-               /*  //여성일때  비활성화
-                $( "#mdName" ).prop( "disabled", true );
-                $( "#mdName" ).val(""); */
+                //여성일때  비활성화
+                //$( "#viewMale" ).prop( "disabled", true );
+                //$( "#mdName" ).val("");
             }else if(gender == "male"){//남성인 경우
                 //남성일때 남성 카테고리 show
                 $( "#viewMale" ).show();
                 //남성일때 여성 카테고리 hide
                 $( "#viewFemale" ).hide();
-               /*  //남성일때  활성화
-                $( "#mdName" ).prop( "disabled", false ); */
+               //남성일때  활성화
+               //$( "#viewFemale" ).prop( "disabled", false );*/
             }
                             
         });
@@ -89,10 +88,10 @@ $(document).ready(function() {
 			$('#price').val('');
 			return false;
 		}
-		if($('#stoke').val()==''){
+		if($('#stock').val()==''){
 			alert('재고를 입력하세요!');
-			$('#stoke').focus();
-			$('#stoke').val('');
+			$('#stock').focus();
+			$('#stock').val('');
 			return false;
 		}
 		
@@ -136,14 +135,14 @@ $(document).ready(function() {
 			<tr>
 				<th>성별</th>
 				<td>
-					<input type="radio" name="gender" id="male" value="male">남자
+					<input type="radio" name="gender" id="male" value="male" checked>남자
 					<input type="radio" name="gender" id="female" value="female">여자
 					<br>
         			<br>
         <span id="viewMale">
             남성 사이즈: 
-            <select class="form-control male" name="size" id="male_size" style="width:200px">
-                <option value="100">100</option>
+            <select class="form-control male" name="male_size" id="male_size" style="width:200px">
+                <option value="100" selected>100</option>
                 <option value="105">105</option>
                 <option value="110">110</option>
                 <option value="115">115</option>
@@ -151,7 +150,7 @@ $(document).ready(function() {
         </span>
         <span id="viewFemale" style="display:none">
             여성 사이즈: 
-            <select class="form-control female" name="size" id="female_size" style="width:200px">
+            <select class="form-control female" name="female_size" id="female_size" style="width:200px">
                 <option value="44">44</option>
                 <option value="55">55</option>
                 <option value="66">66</option>
@@ -178,7 +177,7 @@ $(document).ready(function() {
 			<tr>
 				<th>재고</th>
 				<td>
-					<input type="number" name="stoke" id="stoke" maxlength="10">
+					<input type="number" name="stock" id="stock" maxlength="10">
 				</td>
 			</tr>
 			<tr>

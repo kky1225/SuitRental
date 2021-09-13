@@ -89,7 +89,7 @@ public class ProductDAO {
 		try {
 			//커넥션풀로부터 커넥션 할당
 			conn=DBUtil.getConnection();
-			sql = "SELECT * FROM suit WHERE x_code >= ? AND x_code <= ? ORDER BY x_code desc";
+			sql = "SELECT * FROM (SELECT a.*, rownum AS rnum FROM (SELECT * FROM suit ORDER BY x_code DESC)a) WHERE rnum >=? AND rnum <= ?";
 		
 			//PreparedStatement 객체 생성
 			pstmt=conn.prepareStatement(sql);
@@ -145,6 +145,7 @@ public class ProductDAO {
 				
 				if(rs.next()) {
 					board=new ProductDetailVO();
+					board.setX_code(rs.getInt("x_code"));
 					board.setX_name(rs.getString("x_name"));
 					board.setX_file(rs.getString("x_file"));
 					board.setX_price(rs.getInt("x_price"));
@@ -153,7 +154,7 @@ public class ProductDAO {
 					board.setX_size(rs.getString("x_size"));
 					board.setX_brand(rs.getString("x_brand"));
 					board.setX_rental_count(rs.getInt("x_rental_count"));
-					board.setX_hit(rs.getInt("x_rental_count"));
+					board.setX_hit(rs.getInt("x_hit"));
 					board.setX_like(rs.getInt("x_like"));
 					board.setX_reg_date(rs.getDate("x_reg_date"));
 					board.setX_purchase(rs.getInt("x_purchase"));
@@ -211,6 +212,57 @@ public class ProductDAO {
 			}
 		//registerProduct() -메서드 처리 (ProductWrite.jsp에 있음)
 		
+	public void updateProduct(ProductDetailVO productDetailVO) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+
+		try {
+			conn=DBUtil.getConnection();
+			
+			if(productDetailVO.getX_file() == null) {
+				sql="UPDATE suit SET x_name = ?, x_price = ?, x_stock = ?, x_size = ?, x_brand = ?, x_gender = ?, x_type = ?, x_contents = ? WHERE x_code = ?";
+				
+				pstmt=conn.prepareStatement(sql);
+
+				pstmt.setString(1, productDetailVO.getX_name());
+				pstmt.setInt(2, productDetailVO.getX_price());
+				pstmt.setInt(3, productDetailVO.getX_stock());
+				pstmt.setString(4, productDetailVO.getX_size());
+				pstmt.setString(5, productDetailVO.getX_brand());
+				pstmt.setString(6, productDetailVO.getX_gender());
+				pstmt.setString(7, productDetailVO.getX_type());
+				pstmt.setString(8, productDetailVO.getX_contents());
+				pstmt.setInt(9, productDetailVO.getX_code());
+						
+				pstmt.executeUpdate();
+			}else {
+				sql="UPDATE suit SET x_name = ?, x_price = ?, x_stock = ?, x_size = ?, x_brand = ?, x_gender = ?, x_type = ?, x_contents = ?, x_file = ? WHERE x_code = ?";
+				
+				pstmt=conn.prepareStatement(sql);
+
+				pstmt.setString(1, productDetailVO.getX_name());
+				pstmt.setInt(2, productDetailVO.getX_price());
+				pstmt.setInt(3, productDetailVO.getX_stock());
+				pstmt.setString(4, productDetailVO.getX_size());
+				pstmt.setString(5, productDetailVO.getX_brand());
+				pstmt.setString(6, productDetailVO.getX_gender());
+				pstmt.setString(7, productDetailVO.getX_type());
+				pstmt.setString(8, productDetailVO.getX_contents());
+				pstmt.setString(9, productDetailVO.getX_file());
+				pstmt.setInt(10, productDetailVO.getX_code());
+						
+				pstmt.executeUpdate();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			//자원정리
+			DBUtil.executeClose(null, pstmt, conn);
+		}			
+
+	}
+		
 	
 		
 		//조회수 증가
@@ -240,5 +292,36 @@ public class ProductDAO {
 				//자원정리
 				DBUtil.executeClose(null, pstmt, null);
 			}
-}
+		}
+		
+	public void deleteProduct(int x_code) throws SQLException{
+		Connection conn = null;
+		PreparedStatement pstmt1 = null;
+		PreparedStatement pstmt2 = null;
+		String sql = null;
+		try {
+			conn= DBUtil.getConnection();
+			conn.setAutoCommit(false);
+			
+			sql = "DELETE FROM xreview WHERE x_code = ?";
+			pstmt1 = conn.prepareStatement(sql);
+			pstmt1.setInt(1, x_code);
+			
+			pstmt1.executeQuery();
+			
+			sql = "DELETE FROM suit WHERE x_code = ?";
+			pstmt2 = conn.prepareStatement(sql);
+			pstmt2.setInt(1, x_code);
+			
+			pstmt2.executeQuery();
+			
+			conn.commit();
+		} catch (Exception e) {
+			conn.rollback();
+			e.printStackTrace();
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+					
+	}
 }

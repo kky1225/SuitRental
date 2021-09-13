@@ -28,7 +28,7 @@ public class ReviewDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "INSERT INTO xreview(review_num, title, content, filename, ip, mem_num) VALUES (xreview_seq.nextval, ?, ?, ?, ?, ?)";
+			sql = "INSERT INTO xreview(review_num, title, content, filename, ip, mem_num, x_code) VALUES (xreview_seq.nextval, ?, ?, ?, ?, ?, ?)";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, reviewVO.getTitle());
@@ -36,6 +36,7 @@ public class ReviewDAO {
 			pstmt.setString(3, reviewVO.getFilename());
 			pstmt.setString(4, reviewVO.getIp());
 			pstmt.setInt(5, reviewVO.getMem_num());
+			pstmt.setInt(6, reviewVO.getX_code());
 			
 			pstmt.executeQuery();
 		}catch(Exception e) {
@@ -45,19 +46,29 @@ public class ReviewDAO {
 		}
 	}
 	
-	public int getReviewCount() {
+	public int getReviewCount(String keyfield, String keyword) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
+		String sub_sql = null;
 		int count = 0;
 		
 		try {
 			conn = DBUtil.getConnection();
-			//sql = "SELECT COUNT(*) FROM xreview r JOIN zmember m ON r.mem_num = m.mem_num";
-			sql = "SELECT COUNT(*) FROM xreview r, xmember m WHERE r.mem_num = m.mem_num";
 			
-			pstmt = conn.prepareStatement(sql);
+			if(keyword == null || keyword.equals("")) {
+				sql = "SELECT COUNT(*) FROM xreview r, xmember m WHERE r.mem_num = m.mem_num";
+				pstmt = conn.prepareStatement(sql);
+			}else {
+				if(keyfield.equals("1")) sub_sql = "r.title LIKE ?";
+				else if(keyfield.equals("2")) sub_sql = "m.id LIKE ?";
+				else if(keyfield.equals("3")) sub_sql = "r.content LIKE ?";
+				
+				sql = "SELECT COUNT(*) FROM xreview r, xmember m WHERE r.mem_num = m.mem_num AND " + sub_sql;
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, "%" + keyword + "%");
+			}
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -72,7 +83,68 @@ public class ReviewDAO {
 		return count;
 	}
 	
-	public List<ReviewVO> getListReview(int start, int end){
+	public List<ReviewVO> getListReview(int start, int end, String keyfield, String keyword){
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		String sub_sql = null;
+		List<ReviewVO> list = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			if(keyword == null || keyword.equals("")) {
+				sql = "SELECT * FROM (SELECT a.*, rownum AS rnum FROM (SELECT * FROM xreview r JOIN xmember m ON r.mem_num = m.mem_num ORDER BY r.review_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
+					
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, start);
+				pstmt.setInt(2, end);
+			}else {
+				if(keyfield.equals("1")) sub_sql = "r.title LIKE ?";
+				else if(keyfield.equals("2")) sub_sql = "m.id LIKE ?";
+				else if(keyfield.equals("3")) sub_sql = "r.content LIKE ?";
+				
+				sql = "SELECT * FROM (SELECT a.*, rownum AS rnum FROM (SELECT * FROM xreview r JOIN xmember m ON r.mem_num = m.mem_num WHERE " + sub_sql + " ORDER BY r.review_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, "%" + keyword + "%");
+	
+				
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			
+			}
+			
+			rs = pstmt.executeQuery();
+			
+			list = new ArrayList<ReviewVO>();
+			
+			while(rs.next()) {
+				ReviewVO reviewVO = new ReviewVO();
+				reviewVO.setReview_num(rs.getInt("review_num"));
+				reviewVO.setTitle(StringUtil.useNoHtml(rs.getString("title")));
+				reviewVO.setContent(rs.getString("content"));
+				reviewVO.setHit(rs.getInt("hit"));
+				reviewVO.setReg_date(rs.getDate("reg_date"));
+				reviewVO.setModify_date(rs.getDate("modify_date"));
+				reviewVO.setFilename(rs.getString("filename"));
+				reviewVO.setIp(rs.getString("ip"));
+				reviewVO.setMem_num(rs.getInt("mem_num"));
+				reviewVO.setId(rs.getString("id"));
+				
+				list.add(reviewVO);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return list;
+	}
+	
+	public List<ReviewVO> getListReview(int start, int end, int x_code){
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -81,11 +153,12 @@ public class ReviewDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT * FROM (SELECT a.*, rownum AS rnum FROM (SELECT * FROM xreview r JOIN xmember m ON r.mem_num = m.mem_num ORDER BY r.review_num DESC)a) WHERE rnum >=? AND rnum <= ?";
+			sql = "SELECT * FROM (SELECT a.*, rownum AS rnum FROM (SELECT * FROM xreview r JOIN xmember m ON r.mem_num = m.mem_num ORDER BY r.review_num DESC)a) WHERE rnum >=? AND rnum <= ? AND x_code = ?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
+			pstmt.setInt(3, x_code);
 			rs = pstmt.executeQuery();
 			
 			list = new ArrayList<ReviewVO>();

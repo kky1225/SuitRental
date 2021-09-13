@@ -21,13 +21,23 @@ public class ReviewListAction implements Action {
 			pageNum = "1";
 		}
 		
-		int count = ReviewDAO.getInstance().getReviewCount();
+		String keyfield = request.getParameter("keyfield");
+		String keyword = request.getParameter("keyword");
+		
+		if(keyfield == null) {
+			keyfield = "";
+		}
+		if(keyword == null) {
+			keyword = "";
+		}
+		
+		int count = ReviewDAO.getInstance().getReviewCount(keyfield, keyword);
 		
 		PagingUtil page = new PagingUtil(Integer.parseInt(pageNum), count, 20, 10, "reviewList.do");
 		
 		List<ReviewVO> reviewList = new ArrayList<ReviewVO>();
 		if(count > 0) {
-			reviewList = ReviewDAO.getInstance().getListReview(page.getStartCount(), page.getEndCount());
+			reviewList = ReviewDAO.getInstance().getListReview(page.getStartCount(), page.getEndCount(), keyfield, keyword);
 		}
 		
 		request.setAttribute("count", count);
