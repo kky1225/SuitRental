@@ -49,6 +49,7 @@
 	<hr size="1" noshade width="100%">
 	<div class="align-right">
 		<c:if test="${user_auth == 2}">
+			<input type="button" value="상품 대여" onclick="location.href='${pageContext.request.contextPath}/rental/rentalForm.do?x_code=${productDetailVO.x_code}'">	
 			<c:if test="${check == true}">
 				<input type="button" value="좋아요" onclick="location.href='likeyUp.do?x_code=${x_code}'"
 				<c:if test="${empty user_num}">disabled="disabled"</c:if>

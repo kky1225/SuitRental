@@ -48,6 +48,35 @@ create table suit(
 
 create sequence suit_seq;
 
+
+/*대여*/
+create table rental(
+	rent_num NUMBER primary key,
+	x_code NUMBER not null,
+	mem_num NUMBER not null ,
+	rental_type VARCHAR2(20) not null,
+	return_type VARCHAR2(20) not null,
+	rental_date VARCHAR2(40)not null,
+	return_date VARCHAR2(40)not null,
+	
+	CONSTRAINT rental_fk FOREIGN KEY (x_code) REFERENCES suit (x_code),
+	CONSTRAINT rental_fk2 FOREIGN KEY (mem_num) REFERENCES xmember (mem_num)
+	);
+	
+create sequence rental_seq;
+
+
+/*대여 상세*/
+create table rental_detail(
+  rentd_num NUMBER NOT NULL, 
+  rent_num NUMBER NOT NULL, 
+  x_code  NUMBER NOT NULL, 
+  CONSTRAINT rental_detail_pk PRIMARY KEY (rentd_num),
+  CONSTRAINT rental_detail_fk FOREIGN KEY (rent_num) REFERENCES rental (rent_num),
+  CONSTRAINT rental_detail_fk2 FOREIGN KEY (x_code) REFERENCES suit (x_code)
+);
+
+
 /* 회원 정보 - 경규영*/
 CREATE TABLE xmember(
 	mem_num NUMBER PRIMARY KEY,
