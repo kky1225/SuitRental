@@ -14,7 +14,7 @@ public class DeleteItemFormAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		request.setCharacterEncoding("utf-8");
-		Integer rent_num = Integer.parseInt(request.getParameter("rent_num"));
+		int rent_num = Integer.parseInt(request.getParameter("rent_num"));
 		// 회원제 서비스
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
@@ -27,14 +27,22 @@ public class DeleteItemFormAction implements Action{
 		OrderDAO dao = OrderDAO.getInstance();
 		OrderVO order = dao.getOrder(rent_num);
 		
-		session.setAttribute("user_rent_num", order.getRent_num());
+		if(user_num != null && user_num.equals(order.getMem_num())) {
+			request.setAttribute("order", order);
+			session.setAttribute("user_rent_num", order.getRent_num());
+			
+			return "/WEB-INF/views/member/deleteItemForm.jsp";
+		}
 		
-		request.setAttribute("order", order);
+		return "redirect:/member/myPage.do";
 		
-		return "/WEB-INF/views/member/deleteItemForm.jsp";
+		//session.setAttribute("user_rent_num", order.getRent_num());
+		
+		
 	}
 
 }
+
 
 
 
