@@ -14,9 +14,11 @@
 			<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 			<h2>상품 게시판 목록</h2>
 			<div class="list-space align-right">
+				<c:if test="${user_auth == 3}">
 				<input type="button" value="글쓰기" onclick="location.href='productWriteForm.do'"
 					<c:if test="${empty user_num}">disabled="disabled"</c:if>
 				>
+				</c:if>
 				<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 			</div>
 			<c:if test="${count == 0}">
@@ -33,13 +35,13 @@
 						<th>가격</th>
 						<th>좋아요</th>
 					</tr>
-					<c:forEach var="productVO" items="${productList}">
+					<c:forEach var="productDetailVO" items="${productList}">
 						<tr>
-							<td><img src="${pageContext.request.contextPath}/upload/${productVO.x_file}" class="detail-img"></td>
-							<td><a href="productDetail.do?x_code=${productVO.x_code}">${productVO.x_name}</a></td>
-							<td>${productVO.x_brand}</td>
-							<td>${productVO.x_price}</td>
-							<td>${productVO.x_like}</td>
+							<td><img src="${pageContext.request.contextPath}/upload/${productDetailVO.x_file}" class="detail-img" border="0" width="100" height="100"></td>
+							<td><a href="productDetail.do?x_code=${productDetailVO.x_code}">${productDetailVO.x_name}</a></td>
+							<td>${productDetailVO.x_brand}</td>
+							<td>${productDetailVO.x_price}</td>
+							<td>${productDetailVO.x_like}</td>
 						</tr>
 					</c:forEach>
 				</table>

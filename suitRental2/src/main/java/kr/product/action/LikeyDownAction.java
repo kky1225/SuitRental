@@ -1,13 +1,13 @@
-package kr.review.action;
+package kr.product.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
-import kr.review.dao.ReviewDAO;
+import kr.likey.dao.LikeyDAO;
 
-public class ReviewDeleteAction implements Action {
+public class LikeyDownAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -18,12 +18,13 @@ public class ReviewDeleteAction implements Action {
 			return "redirect:/member/loginForm.do";
 		}
 		
-		int review_num = Integer.parseInt(request.getParameter("review_num"));
+		int x_code = Integer.parseInt(request.getParameter("x_code"));
 		
-		ReviewDAO.getInstance().reviewDelete(review_num);
-		//FileUtil.removeFile(request, boardVO.getFilename());
+		LikeyDAO.getInstance().likeyDown(x_code, user_num);
 		
-		return "/WEB-INF/views/review/reviewDelete.jsp";
+		request.setAttribute("x_code", x_code);
+		
+		return "/WEB-INF/views/product/likeyDown.jsp";
 	}
 
 }

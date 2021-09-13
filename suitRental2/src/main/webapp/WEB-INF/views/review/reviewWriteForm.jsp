@@ -30,6 +30,7 @@
 			<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 			<h2>리뷰 게시글 작성</h2>
 			<form id="write_form" action="reviewWrite.do" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="x_code" value="${x_code}">
 				<ul>
 					<li>
 						<label for="title">제목</label>

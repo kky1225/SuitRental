@@ -33,7 +33,7 @@
 	<div class="page-main">
 		<div>
 			<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-			<h2>회원 권한 변경</h2>
+			<h2 class="align-center">회원 권한 변경</h2>
 			<form action="updateAuth.do" id="updateAuth_form" method="post">
 				<ul>
 					<li>
@@ -56,7 +56,7 @@
 				</ul>
 				<div class="align-center">
 					<input type="submit" value="수정">
-					<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+					<input type="button" value="관리자 페이지" onclick="location.href='managerPage.do'">
 				</div>
 			</form>
 		</div>

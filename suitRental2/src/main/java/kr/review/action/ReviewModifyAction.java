@@ -32,10 +32,6 @@ public class ReviewModifyAction implements Action {
 		reviewVO.setIp(request.getRemoteAddr());
 		reviewVO.setFilename(multi.getFilesystemName("filename"));
 		reviewVO.setMem_num(user_num);
-		
-		System.out.println();
-		System.out.println("filename : " + multi.getFilesystemName("filename"));
-		System.out.println("file_check2 : " + multi.getParameter("file_check2"));
 
 		if(multi.getFilesystemName("filename") == null && multi.getParameter("file_check2").equals("none")) {
 			ReviewDAO.getInstance().reviewUpdate(reviewVO, 0);

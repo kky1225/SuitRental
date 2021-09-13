@@ -1,13 +1,14 @@
-package kr.review.action;
+package kr.product.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
-import kr.review.dao.ReviewDAO;
+import kr.product.dao.ProductDAO;
+import kr.util.FileUtil;
 
-public class ReviewDeleteAction implements Action {
+public class ProductDeleteAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -17,13 +18,13 @@ public class ReviewDeleteAction implements Action {
 		if(user_num == null) {
 			return "redirect:/member/loginForm.do";
 		}
+
+		int x_code = Integer.parseInt(request.getParameter("x_code"));
 		
-		int review_num = Integer.parseInt(request.getParameter("review_num"));
-		
-		ReviewDAO.getInstance().reviewDelete(review_num);
+		ProductDAO.getInstance().deleteProduct(x_code);
 		//FileUtil.removeFile(request, boardVO.getFilename());
 		
-		return "/WEB-INF/views/review/reviewDelete.jsp";
+		return "/WEB-INF/views/product/productDelete.jsp";
 	}
 
 }

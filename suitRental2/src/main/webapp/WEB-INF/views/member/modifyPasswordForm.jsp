@@ -80,7 +80,7 @@
 			</ul>
 			<div class="align-center">
 				<input type="submit" value="비밀번호 수정">
-				<input type="button" value="My Page" onclick="location.href='myPage.do'">
+				<input type="button" value="MY페이지" onclick="location.href='myPage.do'">
 			</div>
 		</form>
 	</div>

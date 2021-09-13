@@ -205,8 +205,67 @@ public class OrderDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}	
+	/*	
+	// 주문 상세번호 구하기
+	public int getRentdNum(int rent_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int rentd_num = 0;
 		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "select rentd_num from rental_detail d join rental r on d.rent_num = r.rent_num where d.rent_num=?";
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setInt(1,rent_num);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				rentd_num = rs.getInt(1);
+			}
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
 		
+		return rentd_num;
+	}
+	
+	// 주문 상세번호 해당 주문 번호 구하기
+	public int getRentNum(int rentd_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int rent_num = 0;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "select rent_num from rental_detail where rentd_num=?";
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setInt(1,rentd_num);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				rent_num = rs.getInt(1);
+			}
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return rent_num;
+	}
+	*/
 }
 
 

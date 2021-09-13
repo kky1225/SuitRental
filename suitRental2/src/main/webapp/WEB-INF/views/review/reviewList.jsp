@@ -8,15 +8,40 @@
 		<title>리뷰 게시판 목록</title>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('#search_form').submit(function(){
+					if($('#keyword').val().trim('') == ''){
+						alert('검색어를 입력하세요');
+						$('#keyword').val('').focus();
+						return false;
+					}
+				});
+			});
+		</script>
 	</head>
 	<body>
 		<div class="page-main">
 			<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 			<h2>리뷰 게시판 목록</h2>
+			<form id="search_form" action="reviewList.do" method="get">
+				<ul class="search">
+					<li>
+						<select name="keyfield">
+							<option value="1">제목</option>
+							<option value="2">작성자</option>
+							<option value="3">내용</option>
+						</select>
+					</li>
+					<li>
+						<input type="search" size="16" name="keyword" id="keyword">
+					</li>
+					<li>
+						<input type="submit" value="찾기">
+					</li>
+				</ul>
+			</form>
 			<div class="list-space align-right">
-				<input type="button" value="글쓰기" onclick="location.href='reviewWriteForm.do'"
-					<c:if test="${empty user_num}">disabled="disabled"</c:if>
-				>
 				<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 			</div>
 			<c:if test="${count == 0}">

@@ -13,13 +13,14 @@ public class ReviewVO {
 	private String ip;
 	private int mem_num;
 	private String id;
+	private int x_code;
 	
 	public ReviewVO() {
 		
 	}
 
 	public ReviewVO(int review_num, String title, String content, int hit, Date reg_date, Date modify_date,
-			String filename, String ip, int mem_num, String id) {
+			String filename, String ip, int mem_num, String id, int x_code) {
 		this.review_num = review_num;
 		this.title = title;
 		this.content = content;
@@ -30,6 +31,7 @@ public class ReviewVO {
 		this.ip = ip;
 		this.mem_num = mem_num;
 		this.id = id;
+		this.x_code = x_code;
 	}
 
 	public int getReview_num() {
@@ -110,6 +112,14 @@ public class ReviewVO {
 
 	public void setMem_num(int mem_num) {
 		this.mem_num = mem_num;
+	}
+
+	public int getX_code() {
+		return x_code;
+	}
+
+	public void setX_code(int x_code) {
+		this.x_code = x_code;
 	}
 
 	@Override

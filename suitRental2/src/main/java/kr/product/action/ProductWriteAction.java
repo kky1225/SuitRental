@@ -33,13 +33,17 @@ public class ProductWriteAction implements Action{
 		board.setX_size(multi.getParameter("size"));
 		board.setX_type(multi.getParameter("type"));
 		board.setX_gender(multi.getParameter("gender"));
-		board.setX_size(multi.getParameter("size"));
+		if(multi.getParameter("gender").equals("male")) {
+			board.setX_size(multi.getParameter("male_size"));
+		}
+		if(multi.getParameter("gender").equals("female")) {
+			board.setX_size(multi.getParameter("female_size"));
+		}
 		board.setX_contents(multi.getParameter("content"));
+		board.setX_stock(Integer.parseInt(multi.getParameter("stock")));
 		
 		ProductDAO dao = ProductDAO.getInstance();
 		dao.registerProduct(board);
-		
-		System.out.println(multi.getParameter("size"));
 		
 		return "/WEB-INF/views/product/productWrite.jsp";
 	}
