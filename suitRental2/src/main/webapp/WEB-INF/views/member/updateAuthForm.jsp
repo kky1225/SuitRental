@@ -33,31 +33,36 @@
 	<div class="page-main">
 		<div>
 			<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-			<h2 class="align-center">회원 권한 변경</h2>
+			<h6 style="text-align:center; margin-top:50px;">회원 권한 수정</h6>
 			<form action="updateAuth.do" id="updateAuth_form" method="post">
 				<ul>
 					<li>
 						<label for="manager_id">관리자 ID</label>
-						<input type="text" id="manager_id" name="manager_id" maxlength="12">
+						<input type="text" class="form-control form-label mt-4" id="manager_id" name="manager_id" maxlength="12">
 					</li>
 					<li>
 						<label for="passwd">비밀번호</label>
-						<input type="password" id="passwd" name="passwd" maxlength="12">
+						<input type="password" class="form-control form-label mt-4" id="passwd" name="passwd" maxlength="12">
 					</li>
 					<li>
 						<label for="member_id">회원 ID</label>
-						<input type="text" id="member_id" name="member_id" maxlength="12">
+						<input type="text" class="form-control form-label mt-4" id="member_id" name="member_id" maxlength="12">
 					</li> 
 					<li>
 						<label for="auth">회원 등급</label>
 						<input type="radio" name="auth" value="1" checked="checked"> 대여 금지 회원
 						<input type="radio" name="auth" value="2"> 일반 회원
 					</li>
+					<li>
+					<input type="submit" class="btn btn-dark" value="수정" style="width:330px; margin-top:30px;">
+					</li>
+					<li>
+						<h6 style="text-align:center; margin-top:50px; margin-right:110px">or</h6>
+					</li>
+					<li>
+						<input type="button" class="btn btn-dark" value="관리자 페이지" style="width:330px; margin-top:30px;" onclick="location.href='managerPage.do'">
+					</li>
 				</ul>
-				<div class="align-center">
-					<input type="submit" value="수정">
-					<input type="button" value="관리자 페이지" onclick="location.href='managerPage.do'">
-				</div>
 			</form>
 		</div>
 	</div>
