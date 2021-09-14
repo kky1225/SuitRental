@@ -65,7 +65,7 @@
 				<tr>
 					<td>
 						<c:if test="${member.auth > 0}">
-						<a href="detailUserForm.do?mem_num=${member.mem_num}">${member.id}</a>	
+						${member.id}	
 						</c:if>
 						<c:if test="${member.auth == 0}">
 						${member.id}
