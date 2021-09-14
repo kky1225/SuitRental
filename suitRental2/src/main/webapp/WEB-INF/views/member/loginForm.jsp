@@ -27,23 +27,28 @@
 <body>
 	<div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-		<h2 class="align-center">로그인</h2>
-		<form id="login_form" action="login.do" method="post">
-			<ul>
-				<li>
-					<label for="id">ID</label>
-					<input type="text" name="id" id="id" maxlength="12">
-				</li>
-				<li>
-					<label for="passwd">비밀번호</label>
-					<input type="password" name="passwd" id="passwd" maxlength="12">
-				</li>
-			</ul>
-			<div class="align-center">
-				<input type="submit" value="로그인">
-				<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
-			</div>
-		</form>
+		<h6 style="text-align:center; margin-top:50px;">로그인</h6>
+			<form id="login_form" action="login.do" method="post">
+				<ul>
+					<li>
+      					<label for="id">아이디</label>
+        				<input type="text" class="form-control form-label mt-4" name="id" id="id" maxlength="12" autocomplete="off">
+      				</li>
+      				<li>
+						<label for="passwd">비밀번호</label>
+      					<input type="password" class="form-control form-label mt-4" name="passwd" id="passwd" maxlength="12">
+      				</li>
+      				<li>
+      					<input type="submit" class="btn btn-dark" value="로그인" style="width:330px; margin-top:30px;">
+      				</li>
+      				<li>
+      					<h6 style="text-align:center; margin-top:50px; margin-right:110px">or</h6>
+      				</li>
+      				<li>
+      					<input type="button" class="btn btn-dark" value="회원가입" style="width:330px; margin-top:30px;" onclick="location.href='registerUserForm.do'">
+      				</li>
+				</ul>
+			</form>
 	</div>
 </body>
 </html>
