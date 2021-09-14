@@ -164,7 +164,7 @@
 					<span id="message_passwd"></span>
 				</li>
 				<li>
-					<label for="name">아이디</label>
+					<label for="name">이름</label>
         			<input type="text" class="form-control form-label mt-4" name="name" id="name" maxlength="10">
 				</li>
 				<li>
