@@ -6,6 +6,7 @@
 		<meta charset="UTF-8">
 		<title>대여폼 작성</title>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" type="text/css">
 		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 		<script type="text/javascript">
 		var today = new Date();
@@ -71,17 +72,17 @@
 				
 					 <li>
 						<label for="name">제품명</label>
-						<input type="text" value="${dto.x_name}" name="name" readonly>
+						<input type="text" value="${dto.x_name}" class="form-control form-label mt-4"  name="name" readonly>
 					</li>
 					<br>
 					<li>
 						<label for="rental_date">대여 날짜</label>
-						<input type="date" id="rental_date" name="rental_date">
+						<input type="date" id="rental_date" class="form-control form-label mt-4"  name="rental_date">
 					</li><br>
 					<li>
 						<label for="return_date">반납 날짜</label>
-						<input type="date" id="return_date" name="return_date">
-					</li><br> 
+						<input type="date" id="return_date" class="form-control form-label mt-4" name="return_date">
+					</li><br><br> 
 					<li>
 						<label for="rental_type">대여 방법</label>
 						<input class="aa" type="radio" name ="rental_type" id ="visit" value = "방문">방문
@@ -91,12 +92,11 @@
 						<label for="return_type">반납 방법</label>
 						<input type="radio" name="return_type" id="visit" value="방문">방문
 						<input type="radio" name="return_type" id="delivery" value="배송">배송
-					</li><br>
-					
+					</li>
 				</ul>
 				<div class="align-center">
-					<input type="submit" value="대여하기">
-					<input type="button" value="상품목록" onclick="location.href='${pageContext.request.contextPath}/product/productList.do'">
+					<input type="submit" class="btn btn-dark" style="width:330px; margin-top:30px;" value="대여하기">
+					<input type="button" class="btn btn-dark" style="width:330px; margin-top:30px;" value="상품목록" onclick="location.href='${pageContext.request.contextPath}/product/productList.do'">
 				</div>
 			</form>
 		</div>
