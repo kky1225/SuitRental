@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 import kr.product.dao.ProductDAO;
+import kr.productdetail.vo.ProductDetailVO;
 import kr.util.FileUtil;
 
 public class ProductDeleteAction implements Action {
@@ -21,8 +22,10 @@ public class ProductDeleteAction implements Action {
 
 		int x_code = Integer.parseInt(request.getParameter("x_code"));
 		
+		ProductDetailVO productDetailVO = ProductDAO.getInstance().getBoard(x_code);
+		
 		ProductDAO.getInstance().deleteProduct(x_code);
-		//FileUtil.removeFile(request, boardVO.getFilename());
+		FileUtil.removeFile(request, productDetailVO.getX_file());
 		
 		return "/WEB-INF/views/product/productDelete.jsp";
 	}

@@ -2,32 +2,33 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>로그인</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-	$(function() {
-		$('#login_form').submit(function() {
-			if($('#id').val().trim()==''){
-				alert('ID를 입력하세요!');
-				$('#id').val('').focus();
-				return false;
-			}
-			if($('#passwd').val().trim()==''){
-				alert('비밀번호를 입력하세요!');
-				$('#passwd').val('').focus();
-				return false;
-			}
-		});
-	});
+	<head>
+		<meta charset="UTF-8">
+		<title>로그인</title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('#login_form').submit(function(){
+					if($('#id').val().trim()==''){
+						alert('아이디를 입력하세요');
+						$('#id').val('').focus();
+						return false;
+					}
+					if($('#passwd').val().trim()==''){
+						alert('비밀번호를 입력하세요');
+						$('#passwd').val('').focus();
+						return false;
+					}
+				});
+			});
 </script>
-</head>
-<body>
-	<div class="page-main">
-		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-		<h6 style="text-align:center; margin-top:50px;">로그인</h6>
+	</head>
+	<body>
+		<div class="page-main">
+			<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+			<h5 style="text-align:center; margin-top:50px; margin-right:20px;"><b>로그인</b></h5>
 			<form id="login_form" action="login.do" method="post">
 				<ul>
 					<li>
@@ -42,13 +43,13 @@
       					<input type="submit" class="btn btn-dark" value="로그인" style="width:330px; margin-top:30px;">
       				</li>
       				<li>
-      					<h6 style="text-align:center; margin-top:50px; margin-right:110px">or</h6>
+      					<h6 style="text-align:center; margin-top:30px; margin-right:110px">or</h6>
       				</li>
       				<li>
       					<input type="button" class="btn btn-dark" value="회원가입" style="width:330px; margin-top:30px;" onclick="location.href='registerUserForm.do'">
       				</li>
 				</ul>
 			</form>
-	</div>
-</body>
+		</div>
+	</body>
 </html>
