@@ -43,7 +43,7 @@
 					<a class="nav-link" href="${pageContext.request.contextPath}/donation/list.do">기부</a>
 				</li>
 				<li class="nav-q&a">
-					<a class="nav-link" href="#">Q&A</a>
+					<a class="nav-link" href="${pageContext.request.contextPath}/board/listQna.do">Q&A</a>
 				</li>
 				<li class="nav-notice">
 					<a class="nav-link" href="${pageContext.request.contextPath}/notice/noticeList.do">공지사항</a>
