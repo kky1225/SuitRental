@@ -138,3 +138,74 @@ CREATE TABLE xlikey(
 );
 
 CREATE SEQUENCE xlikey_seq;
+
+/* 기부 게시판 */
+create table xdonation(
+	donation_num number not null,
+	title varchar2(150) not null,
+	content clob not null,
+	hit number default 0 not null,
+	reg_date date default sysdate not null,
+	modify_date date default sysdate not null,
+	filename varchar2(150),
+	ip varchar2(40) not null,
+	mem_num number not null,
+	
+	constraint xdonation_pk primary key (donation_num),
+	constraint xdonation_fk foreign key (mem_num) references xmember (mem_num)
+);
+
+create sequence xdonation_seq;
+
+
+/* 기부 게시판 댓글 */
+create table xdonation_reply(
+re_num number not null,
+re_content varchar2(900) not null,
+re_date date default sysdate not null,
+re_modifydate date default sysdate not null,
+re_ip varchar2(40) not null,
+donation_num number not null,
+mem_num number not null,
+
+constraint donation_reply_pk primary key (re_num),
+constraint donation_reply_fk foreign key (donation_num) references xdonation (donation_num),
+constraint donation_reply_fk2 foreign key (mem_num) references xmember (mem_num)
+);
+
+create sequence donation_reply_seq;
+
+/* 공지사항 게시판 */
+create table xnotice(
+	notice_num number not null,
+	title varchar2(150) not null,
+	content clob not null,
+	hit number default 0 not null,
+	reg_date date default sysdate not null,
+	modify_date date default sysdate not null,
+	filename varchar2(150),
+	ip varchar2(40) not null,
+	mem_num number not null,
+	
+	constraint xnotice_pk primary key (notice_num),
+	constraint xnotice_fk foreign key (mem_num) references xmember (mem_num)
+);
+
+create sequence xnotice_seq;
+
+/* 공지사항 댓글 */
+create table xnotice_reply(
+re_num number not null,
+re_content varchar2(900) not null,
+re_date date default sysdate not null,
+re_modifydate date default sysdate not null,
+re_ip varchar2(40) not null,
+notice_num number not null,
+mem_num number not null,
+
+constraint notice_reply_pk primary key (re_num),
+constraint notice_reply_fk foreign key (notice_num) references xnotice (notice_num),
+constraint notice_reply_fk2 foreign key (mem_num) references xmember (mem_num)
+);
+
+create sequence notice_reply_seq;
