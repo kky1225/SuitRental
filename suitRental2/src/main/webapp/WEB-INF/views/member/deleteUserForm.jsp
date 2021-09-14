@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>회원탈퇴</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function() {
@@ -53,27 +54,32 @@
 <body>
 	<div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-		<h2 class="align-center">회원탈퇴</h2>
+		<h6 style="text-align:center; margin-top:50px;">회원탈퇴</h6>
 		<form action="deleteUser.do" method="post" id="delete_form">
 			<ul>
 				<li>
 					<label for="id">ID</label>
-					<input type="text" name="id" id="id" maxlength="12">
+					<input type="text" class="form-control form-label mt-4" name="id" id="id" maxlength="12">
 				</li>
 				<li>
 					<label for="passwd">비밀번호</label>
-					<input type="password" name="passwd" id="passwd" maxlength="12">
+					<input type="password" class="form-control form-label mt-4" name="passwd" id="passwd" maxlength="12">
 				</li>
 				<li>
 					<label for="cpasswd">비밀번호 확인</label>
-					<input type="password" name="cpasswd" id="cpasswd" maxlength="12">
+					<input type="password"  class="form-control form-label mt-4" name="cpasswd" id="cpasswd" maxlength="12">
 					<span id="message_id"></span>
 				</li>
+				<li>
+				<input type="submit" class="btn btn-dark" value="회원탈퇴" style="width:330px; margin-top:30px;">
+				</li>
+				<li>
+				<h6 style="text-align:center; margin-top:50px; margin-right:110px">or</h6>
+				</li>
+				<li>
+				<input type="button" value="MY페이지" class="btn btn-dark" style="width:330px; margin-top:30px;" onclick="location.href='myPage.do'">
+				</li>
 			</ul>
-			<div class="align-center">
-				<input type="submit" value="회원탈퇴">
-				<input type="button" value="MY페이지" onclick="location.href='myPage.do'">
-			</div>
 		</form>
 	</div>
 </body>

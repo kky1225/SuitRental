@@ -7,47 +7,29 @@
 <meta charset="UTF-8">
 <title>MY페이지</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" type="text/css">
 </head>
 <body>
 	<div class="page-main">
 		<div> 
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-		<h2 class="align-center">회원정보</h2>
-			<h3>회원탈퇴</h3>
-			<ul>
-				<li>
-					<input type="button" value="회원탈퇴" onclick="location.href='deleteUserForm.do'">
-				</li>
-			</ul>
+		<h4 style="text-align:center; margin-top:50px;">회원정보</h4>
+		<br><br>
+		<div class="d-grid gap-2">
+  			<button class="btn btn-lg btn-dark" type="button" onclick="location.href='deleteUserForm.do'">회원탈퇴</button>
+  			<button class="btn btn-lg btn-dark" type="button" onclick="location.href='modifyUserForm.do'">개인정보 수정</button>
+  			<button class="btn btn-lg btn-dark" type="button" onclick="location.href='modifyPasswordForm.do'">비밀번호 수정</button>
 		</div>
-		<div class="mypage-div">
-			<h3>개인정보</h3>
-			<ul>
-				<li>이름 : ${member.name}</li>
-				<li>전화번호 : ${member.phone}</li>
-				<li>이메일 : ${member.email}</li>
-				<li>우편번호 : ${member.zipcode}</li>
-				<li>주소 : ${member.address1} ${member.address2}</li>
-				<li>가입일 : ${member.reg_date}</li>
-				<li>최근 정보 수정일 : ${member.modify_date}</li>
-				<li><input type="button" value="개인정보 수정" onclick="location.href='modifyUserForm.do'"></li>
-			</ul>
-			<h3>비밀번호 수정</h3>
-			<ul>
-				<li>
-					<input type="button" value="비밀번호 수정" onclick="location.href='modifyPasswordForm.do'">
-				</li>
-			</ul>
-		</div>
-		<c:if test="${member.auth == 2}">
-		<div class="mypage-div">
-			<h3>주문 목록</h3>
+			<br><br>
+			<c:if test="${member.auth == 2}">
 			<c:if test="${count == 0}">
 				<div class="result-display">
 				주문 내역이 없습니다.
 				</div>
 			</c:if>
 			<c:if test="${count > 0}">
+			<h6 class="align-center">주문 목록</h6>
+			<br>
 			<table>
 				<tr>
 					<th>주문번호</th>
@@ -63,14 +45,14 @@
 				<c:forEach var="order" items="${list}">
 				<tr>
 					<td>${order.rent_num}</td>
-					<td><a href="detail.do?order_num=${order.rent_num}">${order.x_code}</a></td>
+					<td>${order.x_code}</td>
 					<td>${order.x_name}</td>
 					<td>${order.rental_date}</td>
 					<td>${order.return_date}</td>
 					<td>${order.rental_type}</td>
 					<td>${order.return_type}</td>
-					<td><input type="button" value="주문 수정" onclick="location.href='modifyItemForm.do?rent_num=${order.rent_num}'"></td>
-					<td><input type="button" value="주문 취소" onclick="location.href='deleteItemForm.do?rent_num=${order.rent_num}'"></td>
+					<td><input type="button"class="btn btn-dark" value="주문 수정" onclick="location.href='modifyItemForm.do?rent_num=${order.rent_num}'"></td>
+					<td><input type="button"class="btn btn-dark" value="주문 취소" onclick="location.href='deleteItemForm.do?rent_num=${order.rent_num}'"></td>
 				</tr>	
 				</c:forEach>
 			</table>
@@ -78,8 +60,8 @@
 				${pagingHtml}
 			</div>
 			</c:if>
-		</div>
 		</c:if>
+		</div>
 	</div>
 </body>
 </html>

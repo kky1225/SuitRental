@@ -47,39 +47,44 @@
 <body>
 <div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-		<h2 class="align-center">회원정보 수정</h2>
+		<h6 style="text-align:center; margin-top:50px;">회원정보 수정</h6>
 		<form id="modify_form" action="modifyUser.do" method="post">
 			<!-- 세션에 회원번호가 있기 때문에 hidden으로 처리할 필요가 없다 -->
 			<ul>
 				<li>
 					<label for="name">이름</label>
-					<input type="text" name="name" id="name" value="${member.name}" maxlength="10">
+					<input type="text" class="form-control form-label mt-4" name="name" id="name" value="${member.name}" maxlength="10">
 				</li>
 				<li>
 					<label for="phone">전화번호</label>
-					<input type="text" name="phone" id="phone" value="${member.phone}" maxlength="15">
+					<input type="text" class="form-control form-label mt-4" name="phone" id="phone" value="${member.phone}" maxlength="15">
 				</li>
 				<li>
 					<label for="email">이메일</label>
-					<input type="email" name="email" id="email" value="${member.email}" maxlength="50">
+					<input type="email" class="form-control form-label mt-4" name="email" id="email" value="${member.email}" maxlength="50">
 				</li>
 				<li>
 					<label for="zipcode">우편번호</label>
-					<input type="text" name="zipcode" id="zipcode" value="${member.zipcode}" maxlength="5">
+					<input type="text" class="form-control form-label mt-4" name="zipcode" id="zipcode" value="${member.zipcode}" maxlength="5">
 				</li>
 				<li>
 					<label for="address1">주소</label>
-					<input type="text" name="address1" id="address1" value="${member.address1}" maxlength="30">
+					<input type="text" class="form-control form-label mt-4" name="address1" id="address1" value="${member.address1}" maxlength="30">
 				</li>
 				<li>
 					<label for="address2">나머지 주소</label>
-					<input type="text" name="address2" id="address2" value="${member.address2}" maxlength="30">
+					<input type="text" class="form-control form-label mt-4" name="address2" id="address2" value="${member.address2}" maxlength="30">
+				</li>
+				<li>
+					<input type="submit" class="btn btn-dark" value="수정" style="width:330px; margin-top:30px;">
+				</li>
+				<li>
+					<h6 style="text-align:center; margin-top:50px; margin-right:110px">or</h6>
+				</li>
+				<li>
+					<input type="button" class="btn btn-dark" value="MY페이지" style="width:330px; margin-top:30px;" onclick="location.href='myPage.do'">
 				</li>
 			</ul>
-			<div class="align-center">
-				<input type="submit" value="수정">
-				<input type="button" value="MY페이지" onclick="location.href='myPage.do'">
-			</div>
 		</form>
 	</div>
 </body>

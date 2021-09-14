@@ -3,6 +3,8 @@ package kr.member.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import kr.member.vo.MemberVO;
 import kr.util.DBUtil;
@@ -275,6 +277,117 @@ public class MemberDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
+	// 전체 글 개수, 검색 글 개수
+			public int getMemberCountByAdmin(String keyfield, String keyword) throws Exception{
+				Connection conn = null;
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+				String sql = null;
+				String sub_sql = null;
+				int count = 0;
+				
+				try {
+					// 커넥션풀로부터 커넥션 할당
+					conn = DBUtil.getConnection();
+					if(keyword==null || "".equals(keyword)) {
+						// 전체글 개수
+						sql = "select count(*) from xmember m left outer join xmember_detail d using (mem_num)";
+						pstmt = conn.prepareStatement(sql);
+					}else {
+						// 검색글 개수
+						if(keyfield.equals("1")) sub_sql = "id like ?";
+						else if(keyfield.equals("2")) sub_sql = "name like ?";
+						else if(keyfield.equals("3")) sub_sql = "email like ?";
+						
+						sql = "select count(*) from xmember m left outer join xmember_detail d using (mem_num) where " + sub_sql;
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setString(1,"%"+keyword+"%");
+					}
+					
+					rs = pstmt.executeQuery();
+					if(rs.next()) {
+						count = rs.getInt(1);
+					}
+					
+				}catch(Exception e) {
+					throw new Exception(e);
+				}finally {
+					// 자원 정리
+					DBUtil.executeClose(rs, pstmt, conn);
+				}
+				return count;
+			}
+			
+			// 목록, 검색 글 목록
+			public List<MemberVO> getListMemberByAdmin(int start, int end, String keyfield, String keyword) throws Exception{
+				Connection conn = null;
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+				List<MemberVO> list = null;
+				String sql = null;
+				String sub_sql = null;
+				
+				try {
+					// 커넥션풀로부터 커넥션 할당
+					conn = DBUtil.getConnection();
+					if(keyword==null || "".equals(keyword)) {
+						// 전체 글 보기
+						sql = "select * from (select a.*, rownum rnum from "
+							+ "(select * from xmember m left outer join xmember_detail d "
+							+ "using (mem_num) order by reg_date desc nulls last)a) "
+							+ "where rnum >= ? and rnum <= ?";
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setInt(1,start);
+						pstmt.setInt(2,end);
+					}else {
+						// 검색 글 보기
+						if(keyfield.equals("1")) sub_sql = "id like ?";
+						else if(keyfield.equals("2")) sub_sql = "name like ?";
+						else if(keyfield.equals("3")) sub_sql = "email like ?";
+						sql = "select * from (select a.*, rownum rnum from "
+							+ "(select * from xmember m left outer join xmember_detail d "
+							+ "using (mem_num) where "+ sub_sql
+							+ " order by reg_date desc nulls last)a) "
+							+ "where rnum >= ? and rnum <= ?";
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setString(1,"%"+keyword+"%");
+						pstmt.setInt(2,start);
+						pstmt.setInt(3,end);
+					}
+					
+					rs = pstmt.executeQuery();
+					list = new ArrayList<MemberVO>();
+					while(rs.next()) {
+						MemberVO member = new MemberVO();
+						member.setMem_num(rs.getInt("mem_num"));
+						member.setId(rs.getString("id"));
+						member.setAuth(rs.getInt("auth"));
+						member.setName(rs.getString("name"));
+						member.setPasswd(rs.getString("passwd"));
+						member.setPhone(rs.getString("phone"));
+						member.setEmail(rs.getString("email"));
+						member.setZipcode(rs.getString("zipcode"));
+						member.setAddress1(rs.getString("address1"));
+						member.setAddress2(rs.getString("address2"));
+						member.setGender(rs.getString("gender"));
+						member.setRental_total(rs.getInt("rental_total"));
+						member.setRental_now(rs.getInt("rental_now"));
+						member.setNon_return(rs.getInt("non_return"));
+						member.setReg_date(rs.getDate("reg_date"));
+						member.setModify_date(rs.getDate("modify_date"));
+						
+						list.add(member);
+					}
+					
+				}catch(Exception e) {
+					throw new Exception(e);
+				}finally {
+					// 자원 정리
+					DBUtil.executeClose(rs, pstmt, conn);
+				}
+				return list;
+			}
 }
 
 

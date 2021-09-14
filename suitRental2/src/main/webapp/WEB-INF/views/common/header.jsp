@@ -55,7 +55,7 @@
 					<a class="nav-link" href="${pageContext.request.contextPath}/member/myPage.do">마이페이지</a>
 					</c:if>
 					<c:if test="${!empty user_num && user_auth == 3}">
-					<a class="nav-link" href="${pageContext.request.contextPath}/member/myPage.do">관리자페이지</a>
+					<a class="nav-link" href="${pageContext.request.contextPath}/member/managerPage.do">관리자페이지</a>
 					</c:if>
 				</li>
 				<c:if test="${empty user_num}">
