@@ -11,7 +11,7 @@ import kr.util.DBUtil;
 import kr.util.StringUtil;
 
 public class BoardQnaDAO {
-	// ½Ì±ÛÅÏ ÆÐÅÏ
+	// ï¿½Ì±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	private static BoardQnaDAO instance = new BoardQnaDAO();
 	
 	public static BoardQnaDAO getInstance() {
@@ -20,38 +20,38 @@ public class BoardQnaDAO {
 	
 	private BoardQnaDAO() {}
 	
-	// ±Û µî·Ï
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½
 	public void insertBoardQna(BoardQnaVO boardQna) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
 		
 		try {
-			// Ä¿³Ø¼ÇÇ®·ÎºÎÅÍ Ä¿³Ø¼Ç ÇÒ´ç
+			// Ä¿ï¿½Ø¼ï¿½Ç®ï¿½Îºï¿½ï¿½ï¿½ Ä¿ï¿½Ø¼ï¿½ ï¿½Ò´ï¿½
 			conn = DBUtil.getConnection();
 			
-			// Áú¹® ÀÛ¼º
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½
 			sql = "INSERT INTO xboard_qna (qna_num, title, q_content, filename, ip, mem_num) VALUES (xboard_qna_seq.nextval, ?,?,?,?,?)";
-			// PreparedStatement°´Ã¼ »ý¼º
+			// PreparedStatementï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			pstmt = conn.prepareStatement(sql);
-			// ?¿¡ µ¥ÀÌÅÍ ¹ÙÀÎµù
+			// ?ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½
 			pstmt.setString(1, boardQna.getTitle());
 			pstmt.setString(2, boardQna.getQ_content());
 			pstmt.setString(3, boardQna.getFilename());
 			pstmt.setString(4, boardQna.getIp());
 			pstmt.setInt(5, boardQna.getMem_num());
 			
-			// SQL¹® ½ÇÇà
+			// SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			pstmt.executeUpdate();
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
-			// ÀÚ¿øÁ¤¸®
+			// ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½ï¿½
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
 	
-	// ´äº¯ ±Û µî·Ï
+	// ï¿½äº¯ ï¿½ï¿½ ï¿½ï¿½ï¿½
 	public void answerBoardQna(BoardQnaVO boardQna) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -60,7 +60,7 @@ public class BoardQnaDAO {
 		try {
 			conn = DBUtil.getConnection();
 			
-			//UPDATE Å×ÀÌºí¸í SET a_content=? WHERE board_num=? 
+			//UPDATE ï¿½ï¿½ï¿½Ìºï¿½ï¿½ SET a_content=? WHERE board_num=? 
 			sql = "UPDATE xboard_qna SET a_content=? WHERE qna_num=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, boardQna.getA_content());
@@ -74,7 +74,7 @@ public class BoardQnaDAO {
 		}
 	}
 	
-	// ÃÑ ·¹ÄÚµå ¼ö 
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ 
 	public int getBoardQnaCount(String keyfield, String keyword) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -87,18 +87,18 @@ public class BoardQnaDAO {
 			conn = DBUtil.getConnection();
 			
 			if(keyword == null || "".equals(keyword)) {
-				// ÀüÃ¼±Û °¹¼ö
+				// ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				sql = "SELECT COUNT(*) FROM xboard_qna b JOIN xmember m ON b.mem_num = m.mem_num";
 				pstmt = conn.prepareStatement(sql);
 			}else {
-				// °Ë»ö±Û °¹¼ö
+				// ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				if(keyfield.equals("1")) sub_sql = "b.title LIKE ?";
 				else if(keyfield.equals("2")) sub_sql = "m.id = ?";
 				else if(keyfield.equals("3")) sub_sql = "b.q_content LIKE ?";
 				
 				sql = "SELECT COUNT(*) FROM xboard_qna b JOIN xmember m ON b.mem_num = m.mem_num WHERE " + sub_sql;
 				pstmt = conn.prepareStatement(sql);
-				if(keyfield.equals("2")) {			// Á¶°Ç ¸í½Ã
+				if(keyfield.equals("2")) {			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 					pstmt.setString(1, keyword);
 				}else {					
 					pstmt.setString(1, "%"+keyword+"%");
@@ -113,14 +113,14 @@ public class BoardQnaDAO {
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
-			// ÀÚ¿øÁ¤¸®
+			// ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½ï¿½
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		
 		return count;
 	}
 	
-	// ±Û ¸ñ·Ï
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½
 	public List<BoardQnaVO> getListBoardQna(int start, int end, String keyfield, String keyword) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -133,7 +133,7 @@ public class BoardQnaDAO {
 			conn = DBUtil.getConnection();
 			
 			if(keyword == null || "".equals(keyword)) {
-				// ÀüÃ¼±Û º¸±â
+				// ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM "
 						+ "(SELECT * FROM xboard_qna b JOIN xmember m ON b.mem_num = m.mem_num "
 						+ "ORDER BY b.qna_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
@@ -142,7 +142,7 @@ public class BoardQnaDAO {
 				pstmt.setInt(1, start);
 				pstmt.setInt(2, end);
 			}else {
-				// °Ë»ö±Û º¸±â
+				// ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				if(keyfield.equals("1")) sub_sql = "b.title LIKE ?";
 				else if(keyfield.equals("2")) sub_sql = "m.id =?";
 				else if(keyfield.equals("3")) sub_sql = "b.q_content LIKE ?";
@@ -152,7 +152,7 @@ public class BoardQnaDAO {
 						+ " ORDER BY b.qna_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
 				
 				pstmt = conn.prepareStatement(sql);
-				if(keyfield.equals("2")) {			// Á¶°Ç ¸í½Ã
+				if(keyfield.equals("2")) {			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 					pstmt.setString(1, keyword);
 				}else {
 					pstmt.setString(1, "%"+keyword+"%");
@@ -183,14 +183,14 @@ public class BoardQnaDAO {
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
-			// ÀÚ¿øÁ¤¸®
+			// ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½ï¿½
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		
 		return list;
 	}
 	
-	// ±Û »ó¼¼
+	// ï¿½ï¿½ ï¿½ï¿½
 	public BoardQnaVO getBoardQna(int qna_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -229,7 +229,7 @@ public class BoardQnaDAO {
 		return boardQna;
 	}
 
-	// ´äº¯±Û »ó¼¼
+	// ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½
 	public BoardQnaVO getAnswerBoard(int qna_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -268,7 +268,7 @@ public class BoardQnaDAO {
 		return answerBoard;
 	}
 	
-	// Á¶È¸¼ö Áõ°¡
+	// ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public void updateReadcount(int qna_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -290,7 +290,7 @@ public class BoardQnaDAO {
 		}
 	}
 	
-	// ±Û ¼öÁ¤
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public void updateBoard(BoardQnaVO boardQna) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -300,7 +300,7 @@ public class BoardQnaDAO {
 			conn = DBUtil.getConnection();
 			
 			if(boardQna.getFilename() != null) {
-				// »õ·Î ¾÷·ÎµåµÇ´Â ÆÄÀÏÀÌ ÀÖÀ» ¶§
+				// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 				sql = "UPDATE xboard_qna SET title=?, q_content=?, a_content=?, filename=?, ip=? WHERE qna_num=?";
 				
 				pstmt = conn.prepareStatement(sql);
@@ -311,7 +311,7 @@ public class BoardQnaDAO {
 				pstmt.setString(5, boardQna.getIp());
 				pstmt.setInt(6, boardQna.getQna_num());
 			}else {
-				// ¾÷·ÎµåµÇ´Â ÆÄÀÏÀÌ ¾øÀ» ¶§
+				// ï¿½ï¿½ï¿½Îµï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 				sql = "UPDATE xboard_qna SET title=?, q_content=?, a_content=?, ip=? WHERE qna_num=?";
 				
 				pstmt = conn.prepareStatement(sql);
@@ -322,7 +322,7 @@ public class BoardQnaDAO {
 				pstmt.setInt(5, boardQna.getQna_num());
 			}
 			
-			// SQL¹® ½ÇÇà
+			// SQLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			pstmt.executeUpdate();
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -331,7 +331,7 @@ public class BoardQnaDAO {
 		}
 	}
 	
-	// ±Û »èÁ¦
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public void deleteBoardQna(int qna_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -351,7 +351,7 @@ public class BoardQnaDAO {
 		}
 	}
 	
-	// ´äº¯±Û »èÁ¦
+	// ï¿½äº¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public void deleteAnswerBoard(int qna_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
