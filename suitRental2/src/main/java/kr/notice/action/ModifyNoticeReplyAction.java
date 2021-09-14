@@ -17,9 +17,9 @@ public class ModifyNoticeReplyAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		//Àü¼ÛµÈ µ¥ÀÌÅÍ ÀÎÄÚµù Ã³¸®
+		//ì „ì†¡ëœ ë°ì´í„° ì¸ì½”ë”© ì²˜ë¦¬
 				request.setCharacterEncoding("utf-8");
-				//ÀÛ¼ºÀÚ È¸¿ø¹øÈ£
+				//ì‘ì„±ì íšŒì›ë²ˆí˜¸
 				int writer_num = Integer.parseInt(request.getParameter("mem_num"));
 				
 				
@@ -27,9 +27,9 @@ public class ModifyNoticeReplyAction implements Action{
 				
 				HttpSession session = request.getSession();
 				Integer user_num = (Integer)session.getAttribute("user_num");
-				if(user_num==null) {	//·Î±×ÀÎ ¾ÈµÊ
+				if(user_num==null) {	//ë¡œê·¸ì¸ ì•ˆë¨
 					mapAjax.put("result", "logout");
-				}else if(user_num!=null && user_num == writer_num) {		//·Î±×ÀÎÀÌ µÇ¾îÀÖ°í ·Î±×ÀÎÇÑ È¸¿ø¹øÈ£¿Í ÀÛ¼ºÀÚ È¸¿ø¹øÈ£ ÀÏÄ¡
+				}else if(user_num!=null && user_num == writer_num) {		//ë¡œê·¸ì¸ì´ ë˜ì–´ìˆê³  ë¡œê·¸ì¸í•œ íšŒì›ë²ˆí˜¸ì™€ ì‘ì„±ì íšŒì›ë²ˆí˜¸ ì¼ì¹˜
 					NoticeReplyVO reply = new NoticeReplyVO();
 					reply.setRe_num(Integer.parseInt(request.getParameter("re_num")));
 					reply.setRe_content(request.getParameter("re_content"));
@@ -40,11 +40,11 @@ public class ModifyNoticeReplyAction implements Action{
 					
 					mapAjax.put("result", "success");
 					
-				}else {			//·Î±×ÀÎÀÌ µÇ¾îÀÖ°í ·Î±×ÀÎÇÑ È¸¿ø¹øÈ£¿Í ÀÛ¼ºÀÚ È¸¿ø¹øÈ£ ºÒÀÏÄ¡
+				}else {			//ë¡œê·¸ì¸ì´ ë˜ì–´ìˆê³  ë¡œê·¸ì¸í•œ íšŒì›ë²ˆí˜¸ì™€ ì‘ì„±ì íšŒì›ë²ˆí˜¸ ë¶ˆì¼ì¹˜
 					mapAjax.put("result", "wrongAccess");
 				}
 				
-				//json µ¥ÀÌÅÍ·Î º¯È¯
+				//json ë°ì´í„°ë¡œ ë³€í™˜
 				ObjectMapper mapper = new ObjectMapper();
 				String ajaxData = mapper.writeValueAsString(mapAjax);
 				

@@ -12,28 +12,28 @@ import kr.util.FileUtil;
 public class DeleteDonationAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//·Î±×ÀÎ È®ÀÎ
+		//ë¡œê·¸ì¸ í™•ì¸
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		if(user_num==null) {//·Î±×ÀÎ ¾ÈµÊ.
+		if(user_num==null) {//ë¡œê·¸ì¸ ì•ˆë¨.
 			return "redirect:/member/loginForm.do";
 		}
 		
-		//·Î±×ÀÎ µÊ.
-		//Àü¼ÛµÈ µ¥ÀÌÅÍ ÀÎÄÚµù Ã³¸®
+		//ë¡œê·¸ì¸ ë¨.
+		//ì „ì†¡ëœ ë°ì´í„° ì¸ì½”ë”© ì²˜ë¦¬
 		
 		int donation_num = Integer.parseInt(request.getParameter("donation_num"));
 		
 		DonationDAO donationDAO = DonationDAO.getInstance();
 		DonationVO donation = donationDAO.getDonation(donation_num);
 		if(user_num !=donation.getMem_num()) {
-			//·Î±×ÀÎÇÑ È¸¿ø¹øÈ£¿Í ÀÛ¼ºÀÚ È¸¿ø¹øÈ£°¡ ºÒÀÏÄ¡
+			//ë¡œê·¸ì¸í•œ íšŒì›ë²ˆí˜¸ì™€ ì‘ì„±ì íšŒì›ë²ˆí˜¸ê°€ ë¶ˆì¼ì¹˜
 			return "/WEB-INF/views/common/notice.jsp";
 		}
 		
-		//·Î±×ÀÎÇÑ È¸¿ø¹øÈ£¿Í ÀÛ¼ºÀÚ È¸¿ø¹øÈ£°¡ ÀÏÄ¡
+		//ë¡œê·¸ì¸í•œ íšŒì›ë²ˆí˜¸ì™€ ì‘ì„±ì íšŒì›ë²ˆí˜¸ê°€ ì¼ì¹˜
 		donationDAO.deleteDonation(donation_num);					
-		//ÆÄÀÏ»èÁ¦
+		//íŒŒì¼ì‚­ì œ
 		FileUtil.removeFile(request, donation.getFilename());
 		
 		

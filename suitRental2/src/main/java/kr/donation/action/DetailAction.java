@@ -13,17 +13,17 @@ public class DetailAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	
-		//±Û ¹øÈ£ ¹İÈ¯
+		//ê¸€ ë²ˆí˜¸ ë°˜í™˜
 		int donation_num = Integer.parseInt(request.getParameter("donation_num"));
 		DonationDAO dao = DonationDAO.getInstance();
-		//Á¶È¸¼ö Áõ°¡
+		//ì¡°íšŒìˆ˜ ì¦ê°€
 		dao.updateReadCount(donation_num);
-		//±Û »ó¼¼ÆäÀÌÁö
+		//ê¸€ ìƒì„¸í˜ì´ì§€
 		DonationVO donation = dao.getDonation(donation_num);
 		
-		//Á¦¸ñ¿¡ HTMLÀ» Çã¿ëÇÏÁö ¾ÊÀ½
+		//ì œëª©ì— HTMLì„ í—ˆìš©í•˜ì§€ ì•ŠìŒ
 		donation.setTitle(StringUtil.useNoHtml(donation.getTitle()));
-		//³»¿ë¿¡ HTMLÀ» Çã¿ëÇÏÁö ¾ÊÀ¸¸é¼­ ÁÙ¹Ù²Ş Ã³¸®
+		//ë‚´ìš©ì— HTMLì„ í—ˆìš©í•˜ì§€ ì•Šìœ¼ë©´ì„œ ì¤„ë°”ê¿ˆ ì²˜ë¦¬
 		donation.setContent(StringUtil.useBrNoHtml(donation.getContent()));
 		
 		request.setAttribute("donation", donation);

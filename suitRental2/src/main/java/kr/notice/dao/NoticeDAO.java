@@ -18,7 +18,7 @@ public class NoticeDAO {
 	}
 	private NoticeDAO() {};
 	
-	//±€ µÓ∑œ
+	//Í∏Ä Îì±Î°ù
 	public void insertNotice(NoticeVO notice)throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -42,7 +42,7 @@ public class NoticeDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	//±€ ∏Ò∑œ
+	//Í∏Ä Î™©Î°ù
 	public List<NoticeVO> getNoticeList(int start, int end, String keyfield, String keyword)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -54,13 +54,13 @@ public class NoticeDAO {
 		try {
 			conn=DBUtil.getConnection();
 			if(keyword==null || "".equals(keyword)) {
-				//¿¸√º ±€ ∫∏±‚
+				//Ï†ÑÏ≤¥ Í∏Ä Î≥¥Í∏∞
 				sql = "SELECT * FROM(SELECT a.*, rownum rnum FROM (SELECT * FROM xnotice n JOIN xmember m ON n.mem_num=m.mem_num ORDER BY n.notice_num DESC)a) WHERE rnum>=? AND rnum<=?";
 				pstmt=conn.prepareStatement(sql);
 				pstmt.setInt(1, start);
 				pstmt.setInt(2, end);
 			}else {
-				//∞Àªˆ ±€ ∫∏±‚
+				//Í≤ÄÏÉâ Í∏Ä Î≥¥Í∏∞
 				if(keyfield.equals("1")) {
 					sub_sql="n.title LIKE ?";
 				}else if(keyfield.equals("2")) {
@@ -106,7 +106,7 @@ public class NoticeDAO {
 		}
 		return list;
 	}
-	//√— ∑πƒ⁄µÂ ºˆ
+	//Ï¥ù Î†àÏΩîÎìú Ïàò
 	public int getNoticeCount(String keyfield, String keyword)throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -118,11 +118,11 @@ public class NoticeDAO {
 		try {
 			conn=DBUtil.getConnection();
 			if(keyword == null || "".equals(keyword)) {
-				//¿¸√º ±€ ∞πºˆ
+				//Ï†ÑÏ≤¥ Í∏Ä Í∞ØÏàò
 				sql = "SELECT count(*) FROM xnotice n JOIN xmember m ON n.mem_num = m.mem_num";		
 				pstmt = conn.prepareStatement(sql);
 			}else {
-				//∞Àªˆ ±€ ∞πºˆ
+				//Í≤ÄÏÉâ Í∏Ä Í∞ØÏàò
 				if(keyfield.equals("1")) {
 					sub_sql = "n.title LIKE ?";
 				}else if(keyfield.equals("2")) {
@@ -151,7 +151,7 @@ public class NoticeDAO {
 		
 		return count;
 	}
-	//¡∂»∏ºˆ ¡ı∞°
+	//Ï°∞ÌöåÏàò Ï¶ùÍ∞Ä
 	public void	updateReadCount(int notice_num)throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -171,7 +171,7 @@ public class NoticeDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	//±€ ªÛºº∆‰¿Ã¡ˆ
+	//Í∏Ä ÏÉÅÏÑ∏ÌéòÏù¥ÏßÄ
 	public NoticeVO getNotice(int notice_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -208,7 +208,7 @@ public class NoticeDAO {
 		
 		return notice;
 	}
-	//±€ ºˆ¡§
+	//Í∏Ä ÏàòÏ†ï
 	public void updateNotice(NoticeVO notice, int check)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -251,7 +251,7 @@ public class NoticeDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	//±€ ªË¡¶
+	//Í∏Ä ÏÇ≠Ï†ú
 	public void deleteNotice(int notice_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -260,7 +260,7 @@ public class NoticeDAO {
 		
 		try {
 			conn=DBUtil.getConnection();
-			//auto commit «ÿ¡¶
+			//auto commit Ìï¥Ï†ú
 			conn.setAutoCommit(false);
 			
 			sql="DELETE FROM xnotice_reply WHERE notice_num=?";
@@ -273,11 +273,11 @@ public class NoticeDAO {
 			pstmt2.setInt(1, notice_num);
 			pstmt2.executeUpdate();
 			
-			//∏µÁ sqlπÆ¿« Ω««‡¿Ã º∫∞¯
+			//Î™®Îì† sqlÎ¨∏Ïùò Ïã§ÌñâÏù¥ ÏÑ±Í≥µ
 			conn.commit();
 			
 		}catch(Exception e) {
-			//sqlπÆ¿Ã «œ≥™∂Ûµµ Ω«∆–«œ∏È ∑—πÈ
+			//sqlÎ¨∏Ïù¥ ÌïòÎÇòÎùºÎèÑ Ïã§Ìå®ÌïòÎ©¥ Î°§Î∞±
 			conn.rollback();
 			throw new Exception(e);
 		}finally {
@@ -285,7 +285,7 @@ public class NoticeDAO {
 			DBUtil.executeClose(null, pstmt2, conn);
 		}
 	}
-	//¥Ò±€ µÓ∑œ
+	//ÎåìÍ∏Ä Îì±Î°ù
 	public void insertNoticeReply(NoticeReplyVO notice)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -309,7 +309,7 @@ public class NoticeDAO {
 		}
 	}
 	
-	//¥Ò±€ ºˆ
+	//ÎåìÍ∏Ä Ïàò
 	public int getReplyCount(int notice_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -336,7 +336,7 @@ public class NoticeDAO {
 		return count;
 	}
 	
-	//¥Ò±€ ∏Ò∑œ
+	//ÎåìÍ∏Ä Î™©Î°ù
 	public List<NoticeReplyVO> getNoticeReplyList(int start, int end, int notice_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -376,7 +376,7 @@ public class NoticeDAO {
 		
 	}
 	
-	//¥Ò±€ ºˆ¡§
+	//ÎåìÍ∏Ä ÏàòÏ†ï
 	public void updateNoticeReply(NoticeReplyVO reply)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -399,7 +399,7 @@ public class NoticeDAO {
 		}
 	}
 	
-	//¥Ò±€ ªË¡¶
+	//ÎåìÍ∏Ä ÏÇ≠Ï†ú
 	public void deleteNoticeReply(int re_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;

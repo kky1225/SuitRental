@@ -16,13 +16,13 @@ public class ModifyNoticeAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		
-		//·Î±×ÀÎ È®ÀÎ
+		//ë¡œê·¸ì¸ í™•ì¸
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		if(user_num==null) {//·Î±×ÀÎ ¾ÈµÊ.
+		if(user_num==null) {//ë¡œê·¸ì¸ ì•ˆë¨.
 			return "redirect:/member/loginForm.do";
 		}
-		//·Î±×ÀÎ µÊ.
+		//ë¡œê·¸ì¸ ë¨.
 		
 				MultipartRequest multi = FileUtil.createFile(request);
 				int notice_num = Integer.parseInt(multi.getParameter("notice_num"));
@@ -30,12 +30,12 @@ public class ModifyNoticeAction implements Action{
 				NoticeDAO dao = NoticeDAO.getInstance();
 				
 				NoticeVO dbnotice = dao.getNotice(notice_num);
-				if(user_num !=dbnotice.getMem_num()) {		//·Î±×ÀÎ È¸¿ø¹øÈ£¿Í ÀÛ¼ºÀÚ È¸¿ø¹øÈ£°¡ ºÒÀÏÄ¡
-					FileUtil.removeFile(request, filename);		//¾÷·ÎµåµÈ ÆÄÀÏÀÌ ÀÖÀ¸¸é ÆÄÀÏ »èÁ¦
+				if(user_num !=dbnotice.getMem_num()) {		//ë¡œê·¸ì¸ íšŒì›ë²ˆí˜¸ì™€ ì‘ì„±ì íšŒì›ë²ˆí˜¸ê°€ ë¶ˆì¼ì¹˜
+					FileUtil.removeFile(request, filename);		//ì—…ë¡œë“œëœ íŒŒì¼ì´ ìˆìœ¼ë©´ íŒŒì¼ ì‚­ì œ
 					return "/WEB-INF/views/common/notice.jsp";
 				}
 				
-				//·Î±×ÀÎ È¸¿ø¹øÈ£¿Í ÀÛ¼ºÀÚ È¸¿ø¹øÈ£°¡ ÀÏÄ¡
+				//ë¡œê·¸ì¸ íšŒì›ë²ˆí˜¸ì™€ ì‘ì„±ì íšŒì›ë²ˆí˜¸ê°€ ì¼ì¹˜
 				NoticeVO notice = new NoticeVO();
 				notice.setNotice_num(notice_num);
 				notice.setTitle(multi.getParameter("title"));

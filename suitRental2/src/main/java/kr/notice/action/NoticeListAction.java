@@ -27,12 +27,12 @@ public class NoticeListAction implements Action{
 		if(keyword == null) {
 			keyword="";
 		}
-		//count ±¸ÇÏ±â
+		//count êµ¬í•˜ê¸°
 		NoticeDAO dao = NoticeDAO.getInstance();
 		int count = dao.getNoticeCount(keyfield,keyword);
-		//pageÃ³¸®
+		//pageì²˜ë¦¬
 		PagingUtil page = new PagingUtil(keyfield,keyword,Integer.parseInt(pageNum), count, 10, 10, "noticeList.do");
-		//list±¸ÇÏ±â
+		//listêµ¬í•˜ê¸°
 		List<NoticeVO> list = null;
 		if(count>0) {
 			list = dao.getNoticeList(page.getStartCount(), page.getEndCount(),keyfield,keyword);

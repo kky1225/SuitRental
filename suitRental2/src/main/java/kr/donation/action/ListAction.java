@@ -30,17 +30,17 @@ public class ListAction implements Action{
 		if(keyword == null) {
 			keyword="";
 		}
-		//±Û¼ö
+		//ê¸€ìˆ˜
 		DonationDAO dao = DonationDAO.getInstance();
 		int count = dao.getCount(keyfield,keyword);
-		//ÆäÀÌÁöÃ³¸®
+		//í˜ì´ì§€ì²˜ë¦¬
 		PagingUtil page = new PagingUtil(keyfield,keyword, Integer.parseInt(pageNum), count, 10, 10, "list.do");
-		//list·Î ±Û¸ñ·Ï °¡Á®¿À±â
+		//listë¡œ ê¸€ëª©ë¡ ê°€ì ¸ì˜¤ê¸°
 		List<DonationVO> list = null; 
 		if(count>0) {
 			list = dao.getList(page.getStartCount(), page.getEndCount(),keyfield,keyword);
 		}
-		//¼­¹ö¿¡ ±Û¼ö, list, paginghtml ³Ö±â
+		//ì„œë²„ì— ê¸€ìˆ˜, list, paginghtml ë„£ê¸°
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
 		request.setAttribute("pagingHtml", page.getPagingHtml());

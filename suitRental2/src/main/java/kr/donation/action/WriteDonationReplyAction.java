@@ -22,7 +22,7 @@ public class WriteDonationReplyAction implements Action{
 		
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		if(user_num==null) {		//·Î±×ÀÎ ¾ÈµÊ
+		if(user_num==null) {		//ë¡œê·¸ì¸ ì•ˆë¨
 			mapAjax.put("result","logout");
 		}else {
 			DonationReplyVO reply = new DonationReplyVO();

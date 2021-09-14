@@ -14,22 +14,22 @@ public class ModifyDonationFormAction implements Action{
 		
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		if(user_num==null) {	//·Î±×ÀÎ ¾ÈµÊ
+		if(user_num==null) {	//ë¡œê·¸ì¸ ì•ˆë¨
 			return "redirect:/member/loginForm.do";
 		}
-		//·Î±×ÀÎ µÊ.
+		//ë¡œê·¸ì¸ ë¨.
 		
 		int donation_num = Integer.parseInt(request.getParameter("donation_num"));
 		
 		DonationDAO dao = DonationDAO.getInstance();
 		DonationVO donation = dao.getDonation(donation_num);
 		
-		if(user_num !=donation.getMem_num()) {			//ÀÛ¼ºÀÚ È¸¿ø¹øÈ£¿Í ·Î±×ÀÎÇÑ È¸¿ø¹øÈ£°¡ ºÒÀÏÄ¡
+		if(user_num !=donation.getMem_num()) {			//ì‘ì„±ì íšŒì›ë²ˆí˜¸ì™€ ë¡œê·¸ì¸í•œ íšŒì›ë²ˆí˜¸ê°€ ë¶ˆì¼ì¹˜
 			return "/WEB-INF/views/common/notice.jsp";
 		}
 		
-		//·Î±×ÀÎÀÌ µÇ¾îÀÖ°í ·Î±×ÀÎÇÑ È¸¿ø¹øÈ£¿Í ÀÛ¼ºÀÚ È¸¿ø¹øÈ£ ÀÏÄ¡
-		//request¿¡ µ¥ÀÌÅÍ ÀúÀå
+		//ë¡œê·¸ì¸ì´ ë˜ì–´ìˆê³  ë¡œê·¸ì¸í•œ íšŒì›ë²ˆí˜¸ì™€ ì‘ì„±ì íšŒì›ë²ˆí˜¸ ì¼ì¹˜
+		//requestì— ë°ì´í„° ì €ì¥
 		request.setAttribute("donation", donation);
 				
 		

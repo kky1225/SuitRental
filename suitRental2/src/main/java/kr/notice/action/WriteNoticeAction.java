@@ -17,11 +17,11 @@ public class WriteNoticeAction implements Action{
 		
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		if(user_num == null) {	//·Î±×ÀÎ ¾ÈµÊ
+		if(user_num == null) {	//ë¡œê·¸ì¸ ì•ˆë¨
 			return "redirect:/member/loginForm.do";
 		}
 		
-		//·Î±×ÀÎ µÊ.
+		//ë¡œê·¸ì¸ ë¨.
 		MultipartRequest multi = FileUtil.createFile(request);
 		NoticeVO notice = new NoticeVO();
 		notice.setTitle(multi.getParameter("title"));

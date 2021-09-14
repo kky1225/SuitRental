@@ -18,10 +18,10 @@ public class WriteNoticeReplyAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		Map<String, String> mapAjax = new HashMap<String, String>();
-		//·Î±×ÀÎ È®ÀÎ
+		//ë¡œê·¸ì¸ í™•ì¸
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		if(user_num==null) {		//·Î±×ÀÎ ¾ÈµÊ
+		if(user_num==null) {		//ë¡œê·¸ì¸ ì•ˆë¨
 			mapAjax.put("result","logout");
 		}else {
 			NoticeReplyVO reply = new NoticeReplyVO();

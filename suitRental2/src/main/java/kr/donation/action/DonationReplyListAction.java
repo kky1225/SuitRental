@@ -18,7 +18,7 @@ import kr.util.PagingUtil;
 public class DonationReplyListAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//Àü¼ÛµÈ µ¥ÀÌÅÍ ÀÎÄÚµù
+		//ì „ì†¡ëœ ë°ì´í„° ì¸ì½”ë”©
 		request.setCharacterEncoding("utf-8");
 		
 		String pageNum = request.getParameter("pageNum");
@@ -29,12 +29,12 @@ public class DonationReplyListAction implements Action{
 		
 		int rowCount=10;
 		
-		//count¼ö ±¸ÇÏ±â
+		//countìˆ˜ êµ¬í•˜ê¸°
 		DonationDAO dao = DonationDAO.getInstance();
 		int count = dao.getDonationReplyCount(donation_num);
-		//pageÀÛ¾÷
+		//pageì‘ì—…
 		PagingUtil page = new PagingUtil(Integer.parseInt(pageNum),count,rowCount,1,null);
-		//list±¸ÇÏ±â
+		//listêµ¬í•˜ê¸°
 		List<DonationReplyVO> list = null;
 		if(count>0) {
 		 list = dao.getDonationReply(page.getStartCount(), page.getEndCount(), donation_num);

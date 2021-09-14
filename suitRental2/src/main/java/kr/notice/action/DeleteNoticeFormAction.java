@@ -10,13 +10,13 @@ public class DeleteNoticeFormAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		//·Î±×ÀÎ È®ÀÎ
+		//ë¡œê·¸ì¸ í™•ì¸
 		HttpSession session=request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		if(user_num==null) {//·Î±×ÀÎ ¾ÈµÊ.
+		if(user_num==null) {//ë¡œê·¸ì¸ ì•ˆë¨.
 			return "redirect:/member/loginForm.do";
 		}
-		//·Î±×ÀÎ µÊ.
+		//ë¡œê·¸ì¸ ë¨.
 		int notice_num = Integer.parseInt(request.getParameter("notice_num"));
 		
 		request.setAttribute("notice_num", notice_num);

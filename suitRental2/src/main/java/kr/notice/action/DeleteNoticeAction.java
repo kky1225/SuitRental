@@ -13,13 +13,13 @@ public class DeleteNoticeAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		//·Î±×ÀÎÈ®ÀÎ
+		//ë¡œê·¸ì¸í™•ì¸
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		if(user_num==null) {//·Î±×ÀÎ ¾ÈµÊ.
+		if(user_num==null) {//ë¡œê·¸ì¸ ì•ˆë¨.
 			return "redirect:/member/loginForm.do";
 		}
-		//·Î±×ÀÎ µÊ.
+		//ë¡œê·¸ì¸ ë¨.
 		
 		int notice_num = Integer.parseInt(request.getParameter("notice_num"));
 		
@@ -27,13 +27,13 @@ public class DeleteNoticeAction implements Action{
 		
 		NoticeVO notice = noticeDao.getNotice(notice_num);
 		if(user_num !=notice.getMem_num()) {
-			//·Î±×ÀÎÇÑ È¸¿ø¹øÈ£¿Í ÀÛ¼ºÀÚ È¸¿ø¹øÈ£°¡ ºÒÀÏÄ¡
+			//ë¡œê·¸ì¸í•œ íšŒì›ë²ˆí˜¸ì™€ ì‘ì„±ì íšŒì›ë²ˆí˜¸ê°€ ë¶ˆì¼ì¹˜
 			return "/WEB-INF/views/common/notice.jsp";
 		}
 		
-		//·Î±×ÀÎÇÑ È¸¿ø¹øÈ£¿Í ÀÛ¼ºÀÚ È¸¿ø¹øÈ£°¡ ÀÏÄ¡
+		//ë¡œê·¸ì¸í•œ íšŒì›ë²ˆí˜¸ì™€ ì‘ì„±ì íšŒì›ë²ˆí˜¸ê°€ ì¼ì¹˜
 		noticeDao.deleteNotice(notice_num);					
-		//ÆÄÀÏ»èÁ¦
+		//íŒŒì¼ì‚­ì œ
 		FileUtil.removeFile(request, notice.getFilename());
 		
 		

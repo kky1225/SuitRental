@@ -21,7 +21,7 @@ public class DonationDAO {
 	
 	private DonationDAO() {};
 	
-	//±Û µî·Ï
+	//ê¸€ ë“±ë¡
 	public void insertDonation(DonationVO donation)throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -45,7 +45,7 @@ public class DonationDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	//ÃÑ ·¹ÄÚµå ¼ö
+	//ì´ ë ˆì½”ë“œ ìˆ˜
 	public int getCount(String keyfield, String keyword)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -57,11 +57,11 @@ public class DonationDAO {
 		try {
 			conn = DBUtil.getConnection();
 			if(keyword == null || "".equals(keyword)) {
-				//ÀüÃ¼ ±Û °¹¼ö
+				//ì „ì²´ ê¸€ ê°¯ìˆ˜
 				sql = "SELECT count(*) FROM xdonation d JOIN xmember m ON d.mem_num = m.mem_num";		
 				pstmt = conn.prepareStatement(sql);
 			}else {
-				//°Ë»ö ±Û °¹¼ö
+				//ê²€ìƒ‰ ê¸€ ê°¯ìˆ˜
 				if(keyfield.equals("1")) {
 					sub_sql = "d.title LIKE ?";
 				}else if(keyfield.equals("2")) {
@@ -90,7 +90,7 @@ public class DonationDAO {
 		
 		return count;
 	}
-	//±Û ¸ñ·Ï
+	//ê¸€ ëª©ë¡
 	public List<DonationVO> getList(int start, int end, String keyfield, String keyword)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -102,13 +102,13 @@ public class DonationDAO {
 		try {
 			conn = DBUtil.getConnection();
 			if(keyword==null || "".equals(keyword)) {
-				//ÀüÃ¼ ±Û º¸±â
+				//ì „ì²´ ê¸€ ë³´ê¸°
 				sql = "SELECT * FROM(SELECT a.*, rownum rnum FROM (SELECT * FROM xdonation d JOIN xmember m ON d.mem_num=m.mem_num ORDER BY d.donation_num DESC)a) WHERE rnum>=? AND rnum<=?";
 				pstmt=conn.prepareStatement(sql);
 				pstmt.setInt(1, start);
 				pstmt.setInt(2, end);
 			}else {
-				//°Ë»ö ±Û º¸±â
+				//ê²€ìƒ‰ ê¸€ ë³´ê¸°
 				if(keyfield.equals("1")) {
 					sub_sql="d.title LIKE ?";
 				}else if(keyfield.equals("2")) {
@@ -156,7 +156,7 @@ public class DonationDAO {
 		
 		return list;
 	}
-	//»ó¼¼ ÆäÀÌÁö
+	//ìƒì„¸ í˜ì´ì§€
 	public DonationVO getDonation(int donation_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -195,7 +195,7 @@ public class DonationDAO {
 		
 		return donation;
 	}
-	//Á¶È¸¼ö Áõ°¡
+	//ì¡°íšŒìˆ˜ ì¦ê°€
 	public void updateReadCount(int donation_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -216,7 +216,7 @@ public class DonationDAO {
 		}
 		
 	}
-	//±Û ¼öÁ¤
+	//ê¸€ ìˆ˜ì •
 	public void updateDonation(DonationVO donation, int check)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -257,7 +257,7 @@ public class DonationDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	//±Û »èÁ¦
+	//ê¸€ ì‚­ì œ
 	public void deleteDonation(int donation_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -266,7 +266,7 @@ public class DonationDAO {
 		
 		try {
 			conn=DBUtil.getConnection();
-			//auto commit ÇØÁ¦
+			//auto commit í•´ì œ
 			conn.setAutoCommit(false);
 			
 			sql="DELETE FROM xdonation_reply  WHERE donation_num=?";
@@ -279,11 +279,11 @@ public class DonationDAO {
 			pstmt2.setInt(1, donation_num);
 			pstmt2.executeUpdate();
 			
-			//¸ğµç sql¹®ÀÇ ½ÇÇàÀÌ ¼º°ø
+			//ëª¨ë“  sqlë¬¸ì˜ ì‹¤í–‰ì´ ì„±ê³µ
 			conn.commit();
 			
 		}catch(Exception e) {
-			//sql¹®ÀÌ ÇÏ³ª¶óµµ ½ÇÆĞÇÏ¸é ·Ñ¹é
+			//sqlë¬¸ì´ í•˜ë‚˜ë¼ë„ ì‹¤íŒ¨í•˜ë©´ ë¡¤ë°±
 			conn.rollback();
 		 throw new Exception(e);	
 		}finally {
@@ -292,7 +292,7 @@ public class DonationDAO {
 		}
 	}
 	
-	//´ñ±Û µî·Ï
+	//ëŒ“ê¸€ ë“±ë¡
 	public void insertDonationReply(DonationReplyVO donationReplyVo)throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -315,7 +315,7 @@ public class DonationDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	//´ñ±Û ¼ö
+	//ëŒ“ê¸€ ìˆ˜
 	public int getDonationReplyCount(int donation_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -342,7 +342,7 @@ public class DonationDAO {
 		
 		return count;
 	}
-	//´ñ±Û ¸ñ·Ï
+	//ëŒ“ê¸€ ëª©ë¡
 	public List<DonationReplyVO> getDonationReply(int start, int end, int donation_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -382,7 +382,7 @@ public class DonationDAO {
 		return list;
 		
 	}
-	//´ñ±Û ¼öÁ¤
+	//ëŒ“ê¸€ ìˆ˜ì •
 	public void updateDonationReply(DonationReplyVO reply)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -404,7 +404,7 @@ public class DonationDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
-	//´ñ±Û »èÁ¦
+	//ëŒ“ê¸€ ì‚­ì œ
 	public void deleteDonationReply(int re_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;

@@ -16,27 +16,27 @@ public class DeleteDonationReplyAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		//Àü¼Û¹ŞÀº µ¥ÀÌÅÍ
+		//ì „ì†¡ë°›ì€ ë°ì´í„°
 		request.setCharacterEncoding("utf-8");
 		int re_num=Integer.parseInt(request.getParameter("re_num"));
 		int writer_num = Integer.parseInt(request.getParameter("mem_num"));
 		
 		Map<String,String> mapAjax = new HashMap<String,String>();
-		//·Î±×ÀÎ È®ÀÎ
+		//ë¡œê·¸ì¸ í™•ì¸
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		if(user_num==null) {		//·Î±×ÀÎ ¾ÈµÊ
+		if(user_num==null) {		//ë¡œê·¸ì¸ ì•ˆë¨
 			mapAjax.put("result", "logout");
-		}else if(user_num!=null && user_num==writer_num){	//·Î±×ÀÎ µÇ¾îÀÖ°í ·Î±×ÀÎÇÑ »ç¿ëÀÚÀÇ ¹øÈ£°¡ ÀÛ¼ºÀÚ ¹øÈ£¿Í °°À½
+		}else if(user_num!=null && user_num==writer_num){	//ë¡œê·¸ì¸ ë˜ì–´ìˆê³  ë¡œê·¸ì¸í•œ ì‚¬ìš©ìì˜ ë²ˆí˜¸ê°€ ì‘ì„±ì ë²ˆí˜¸ì™€ ê°™ìŒ
 			DonationDAO dao = DonationDAO.getInstance();
 			dao.deleteDonationReply(re_num);
 			
 			mapAjax.put("result", "success");
-		}else {		//·Î±×ÀÎ µÇ¾îÀÖÀ¸³ª ·Î±×ÀÎÇÑ »ç¿ëÀÚÀÇ ¹øÈ£°¡ ÀÛ¼ºÀÚ ¹øÈ£¿Í ´Ù¸§.
+		}else {		//ë¡œê·¸ì¸ ë˜ì–´ìˆìœ¼ë‚˜ ë¡œê·¸ì¸í•œ ì‚¬ìš©ìì˜ ë²ˆí˜¸ê°€ ì‘ì„±ì ë²ˆí˜¸ì™€ ë‹¤ë¦„.
 			mapAjax.put("result", "wrongAccess");
 		}
 		
-		// json¹®ÀÚ¿­ ÀúÀå
+		// jsonë¬¸ìì—´ ì €ì¥
 		ObjectMapper mapper = new ObjectMapper();
 		String ajaxData = mapper.writeValueAsString(mapAjax);
 		

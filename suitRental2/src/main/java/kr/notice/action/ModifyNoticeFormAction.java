@@ -11,24 +11,24 @@ import kr.notice.vo.NoticeVO;
 public class ModifyNoticeFormAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//·Î±×ÀÎ È®ÀÎ
+		//ë¡œê·¸ì¸ í™•ì¸
 		HttpSession session = request.getSession();
 		Integer user_num = (Integer)session.getAttribute("user_num");
-		if(user_num==null) {	//·Î±×ÀÎ ¾ÈµÊ
+		if(user_num==null) {	//ë¡œê·¸ì¸ ì•ˆë¨
 			return "redirect:/member/loginForm.do";
 		}
-		//·Î±×ÀÎ µÊ.
+		//ë¡œê·¸ì¸ ë¨.
 		
 		int notice_num = Integer.parseInt(request.getParameter("notice_num"));
 		NoticeDAO dao = NoticeDAO.getInstance();
 		NoticeVO notice = dao.getNotice(notice_num);
 		
-		//ÀÛ¼ºÀÚ¿Í ·Î±×ÀÎÇÑ »ç¿ëÀÚ°¡ °°ÀºÁö Ã¼Å©
-		if(user_num!=notice.getMem_num()) {//´Ù¸¥°æ¿ì
+		//ì‘ì„±ìì™€ ë¡œê·¸ì¸í•œ ì‚¬ìš©ìê°€ ê°™ì€ì§€ ì²´í¬
+		if(user_num!=notice.getMem_num()) {//ë‹¤ë¥¸ê²½ìš°
 			return "/WEB-INF/views/common/notice.jsp";
 		}
-		//·Î±×ÀÎÀÌ µÇ¾îÀÖ°í ·Î±×ÀÎÇÑ È¸¿ø¹øÈ£¿Í ÀÛ¼ºÀÚ È¸¿ø¹øÈ£ ÀÏÄ¡
-		//request¿¡ µ¥ÀÌÅÍ ÀúÀå
+		//ë¡œê·¸ì¸ì´ ë˜ì–´ìˆê³  ë¡œê·¸ì¸í•œ íšŒì›ë²ˆí˜¸ì™€ ì‘ì„±ì íšŒì›ë²ˆí˜¸ ì¼ì¹˜
+		//requestì— ë°ì´í„° ì €ì¥
 		request.setAttribute("notice", notice);
 		
 		

@@ -13,14 +13,14 @@ public class NoticeDetailAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int notice_num = Integer.parseInt(request.getParameter("notice_num"));
 		
-		//Á¶È¸¼ö
+		//ì¡°íšŒìˆ˜
 		NoticeDAO dao = NoticeDAO.getInstance();
 		dao.updateReadCount(notice_num);
-		//»ó¼¼Á¤º¸ °¡Á®¿À±â
+		//ìƒì„¸ì •ë³´ ê°€ì ¸ì˜¤ê¸°
 		NoticeVO notice = dao.getNotice(notice_num);
-		//º»¹®¿¡ ÁÙ¹Ù²Ş Àû¿ë html ¹ÌÀû¿ë
+		//ë³¸ë¬¸ì— ì¤„ë°”ê¿ˆ ì ìš© html ë¯¸ì ìš©
 		notice.setContent(StringUtil.useBrNoHtml(notice.getContent()));
-		//Á¦¸ñ¿¡ html¹ÌÀû¿ë
+		//ì œëª©ì— htmlë¯¸ì ìš©
 		notice.setTitle(StringUtil.useNoHtml(notice.getTitle()));
 		
 		request.setAttribute("notice", notice);
