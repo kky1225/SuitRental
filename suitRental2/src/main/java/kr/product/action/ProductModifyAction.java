@@ -39,14 +39,22 @@ public class ProductModifyAction implements Action {
 		if(multi.getParameter("gender").equals("female")) {
 			productDetailVO.setX_size(multi.getParameter("female_size"));
 		}
-		
-		productDetailVO.setX_file(multi.getFilesystemName("filename"));
 		productDetailVO.setX_type(multi.getParameter("type"));
 		productDetailVO.setX_price(Integer.parseInt(multi.getParameter("price")));
 		productDetailVO.setX_stock(Integer.parseInt(multi.getParameter("stock")));
 		productDetailVO.setX_contents(multi.getParameter("content"));
 		
-		ProductDAO.getInstance().updateProduct(productDetailVO);
+		//String file_check2 = multi.getParameter("file_check2");
+		int check = 0;
+		
+		if(multi.getFilesystemName("filename") == null) {
+			//productDetailVO.setX_file(file_check2);
+			check = 1;
+		}else {
+			productDetailVO.setX_file(multi.getFilesystemName("filename"));
+		}
+		
+		ProductDAO.getInstance().updateProduct(productDetailVO, check);
 		
 		return "/WEB-INF/views/product/productModify.jsp";
 	}

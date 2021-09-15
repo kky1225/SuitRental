@@ -290,7 +290,7 @@ public class ProductDAO {
 			}
 		//registerProduct() -메서드 처리 (ProductWrite.jsp에 있음)
 		
-	public void updateProduct(ProductDetailVO productDetailVO) {
+	public void updateProduct(ProductDetailVO productDetailVO, int check) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
@@ -298,8 +298,8 @@ public class ProductDAO {
 		try {
 			conn=DBUtil.getConnection();
 			
-			if(productDetailVO.getX_file() == null) {
-				sql="UPDATE suit SET x_name = ?, x_price = ?, x_stock = ?, x_size = ?, x_brand = ?, x_gender = ?, x_type = ?, x_contents = ?, x_file = ? WHERE x_code = ?";
+			if(check == 1) {
+				sql="UPDATE suit SET x_name = ?, x_price = ?, x_stock = ?, x_size = ?, x_brand = ?, x_gender = ?, x_type = ?, x_contents = ? WHERE x_code = ?";
 				
 				pstmt=conn.prepareStatement(sql);
 
@@ -311,11 +311,10 @@ public class ProductDAO {
 				pstmt.setString(6, productDetailVO.getX_gender());
 				pstmt.setString(7, productDetailVO.getX_type());
 				pstmt.setString(8, productDetailVO.getX_contents());
-				pstmt.setString(9, productDetailVO.getX_file());
-				pstmt.setInt(10, productDetailVO.getX_code());
+				pstmt.setInt(9, productDetailVO.getX_code());
 						
 				pstmt.executeUpdate();
-			}else {
+			}else{
 				sql="UPDATE suit SET x_name = ?, x_price = ?, x_stock = ?, x_size = ?, x_brand = ?, x_gender = ?, x_type = ?, x_contents = ?, x_file = ? WHERE x_code = ?";
 				
 				pstmt=conn.prepareStatement(sql);

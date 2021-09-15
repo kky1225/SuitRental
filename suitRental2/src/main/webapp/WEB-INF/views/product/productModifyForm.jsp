@@ -130,6 +130,7 @@ $(document).ready(function() {
 					<input type="file" name="filename" id="filename">
 					<c:if test="${!empty productDetailVO.x_file}">
 						<p id="file_check1">${productDetailVO.x_file}</p>
+						<input type="hidden" name="file_check2" id="file_check2" value="${reviewVO.filename}">
 					</c:if>
 				</td>
 			</tr>
