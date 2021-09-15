@@ -299,7 +299,7 @@ public class ProductDAO {
 			conn=DBUtil.getConnection();
 			
 			if(productDetailVO.getX_file() == null) {
-				sql="UPDATE suit SET x_name = ?, x_price = ?, x_stock = ?, x_size = ?, x_brand = ?, x_gender = ?, x_type = ?, x_contents = ? WHERE x_code = ?";
+				sql="UPDATE suit SET x_name = ?, x_price = ?, x_stock = ?, x_size = ?, x_brand = ?, x_gender = ?, x_type = ?, x_contents = ?, x_file = ? WHERE x_code = ?";
 				
 				pstmt=conn.prepareStatement(sql);
 
@@ -311,7 +311,8 @@ public class ProductDAO {
 				pstmt.setString(6, productDetailVO.getX_gender());
 				pstmt.setString(7, productDetailVO.getX_type());
 				pstmt.setString(8, productDetailVO.getX_contents());
-				pstmt.setInt(9, productDetailVO.getX_code());
+				pstmt.setString(9, productDetailVO.getX_file());
+				pstmt.setInt(10, productDetailVO.getX_code());
 						
 				pstmt.executeUpdate();
 			}else {

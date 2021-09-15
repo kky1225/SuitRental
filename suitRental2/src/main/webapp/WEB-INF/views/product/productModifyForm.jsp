@@ -40,16 +40,9 @@ $(document).ready(function() {
             }
                             
         });
-    
-	if($('#file_delete').click(function(){
-		$('#filename').val('');
-		$('#file_check1').text('');
-		$('#file_check2').attr('value', 'none');
-	}));
 	
 	if($('#filename').change(function(){
 		$('#file_check1').text('');
-		$('#file_check2').attr('value', 'none');
 	}));
     
     $('#productWrite_form').submit(function(){
@@ -137,8 +130,6 @@ $(document).ready(function() {
 					<input type="file" name="filename" id="filename">
 					<c:if test="${!empty productDetailVO.x_file}">
 						<p id="file_check1">${productDetailVO.x_file}</p>
-						<input type="hidden" name="file_check2" id="file_check2" value="${productDetailVO.x_file}">
-						<input type="button" name="file_delete" id="file_delete" value="파일 삭제">
 					</c:if>
 				</td>
 			</tr>

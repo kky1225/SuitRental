@@ -40,14 +40,11 @@ public class ProductModifyAction implements Action {
 			productDetailVO.setX_size(multi.getParameter("female_size"));
 		}
 		
+		productDetailVO.setX_file(multi.getFilesystemName("filename"));
 		productDetailVO.setX_type(multi.getParameter("type"));
 		productDetailVO.setX_price(Integer.parseInt(multi.getParameter("price")));
 		productDetailVO.setX_stock(Integer.parseInt(multi.getParameter("stock")));
 		productDetailVO.setX_contents(multi.getParameter("content"));
-		
-		if(multi.getFilesystemName("x_file") != null) {
-			productDetailVO.setX_file(multi.getFilesystemName("x_file"));
-		}
 		
 		ProductDAO.getInstance().updateProduct(productDetailVO);
 		
