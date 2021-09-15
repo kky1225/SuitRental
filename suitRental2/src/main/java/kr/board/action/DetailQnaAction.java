@@ -20,8 +20,8 @@ public class DetailQnaAction implements Action{
 		
 		BoardQnaVO boardQna = dao.getBoardQna(qna_num);
 		
-		boardQna.setTitle(StringUtil.useNoHtml(boardQna.getTitle()));	// HTML Çã¿ëÇÏÁö ¾ÊÀ½
-		boardQna.setQ_content(StringUtil.useNoHtml(boardQna.getQ_content()));	// HTML Çã¿ëÇÏÁö ¾ÊÀ¸¸é¼­ ÁÙ¹Ù²Þ Ã³¸®		
+		boardQna.setTitle(StringUtil.useBrNoHtml(boardQna.getTitle()));	// HTML ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		boardQna.setQ_content(StringUtil.useBrNoHtml(boardQna.getQ_content()));	// HTML ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½é¼­ ï¿½Ù¹Ù²ï¿½ Ã³ï¿½ï¿½		
 		
 		request.setAttribute("boardQna", boardQna);
 		

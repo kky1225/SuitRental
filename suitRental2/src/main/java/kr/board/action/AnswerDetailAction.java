@@ -20,9 +20,9 @@ public class AnswerDetailAction implements Action{
 		
 		BoardQnaVO answerBoard = dao.getAnswerBoard(qna_num);
 		
-		answerBoard.setTitle(StringUtil.useNoHtml(answerBoard.getTitle()));	// HTML Çã¿ëÇÏÁö ¾ÊÀ½
-		answerBoard.setQ_content(StringUtil.useNoHtml(answerBoard.getQ_content()));	// HTML Çã¿ëÇÏÁö ¾ÊÀ¸¸é¼­ ÁÙ¹Ù²Þ Ã³¸®		
-		answerBoard.setA_content(StringUtil.useNoHtml(answerBoard.getA_content()));	// HTML Çã¿ëÇÏÁö ¾ÊÀ¸¸é¼­ ÁÙ¹Ù²Þ Ã³¸®		
+		answerBoard.setTitle(StringUtil.useBrNoHtml(answerBoard.getTitle()));	// HTML ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		answerBoard.setQ_content(StringUtil.useBrNoHtml(answerBoard.getQ_content()));	// HTML ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½é¼­ ï¿½Ù¹Ù²ï¿½ Ã³ï¿½ï¿½		
+		answerBoard.setA_content(StringUtil.useBrNoHtml(answerBoard.getA_content()));	// HTML ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½é¼­ ï¿½Ù¹Ù²ï¿½ Ã³ï¿½ï¿½		
 		
 		request.setAttribute("answerBoard", answerBoard);
 		
