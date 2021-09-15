@@ -40,10 +40,10 @@
       					<input type="password" class="form-control form-label mt-4" name="passwd" id="passwd" maxlength="12">
       				</li>
       				<li>
-      					<input type="submit" class="btn btn-dark" value="로그인" style="width:330px; margin-top:30px;">
+      					<input type="submit" class="btn btn-dark" value="로그인" style="width:330px; margin-top:50px;">
       				</li>
       				<li>
-      					<input type="button" class="btn btn-dark" value="회원가입" style="width:330px; margin-top:30px;" onclick="location.href='registerUserForm.do'">
+      					<input type="button" class="btn btn-dark" value="회원가입" style="width:330px; margin-top:40px;" onclick="location.href='registerUserForm.do'">
       				</li>
 				</ul>
 			</form>

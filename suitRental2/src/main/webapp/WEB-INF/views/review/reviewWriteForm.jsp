@@ -11,18 +11,22 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
 				$('#write_form').submit(function(){
-					if($('#title').val().trim == ''){
+					if($('#title').val().trim() == ''){
 						alert('제목을 입력하세요');
 						$('#title').val('').focus();
 						return false;
 					}
 					
-					if($('#content').val().trim == ''){
+					if($('#content').val().trim() == ''){
 						alert('내용을 입력하세요');
 						$('#content').val('').focus();
 						return false;
 					}
 				});
+				
+				if($('#filename').change(function(){
+					$('#filename_text').val($(this)[0].files[0].name);
+				}));
 			});
 		</script>
 	</head>
@@ -36,21 +40,28 @@
 						<h5 style="text-align:center; margin-top:50px;"><b>리뷰 작성</b></h5>
 					</li>
 					<li>
-						<label for="title">제목</label>
-						<input type="text" class="form-control form-label mt-4" name="title" id="title" maxlength="50">
+						<label for="title" class="form-label mt-4">제목</label>
+						<input type="text" class="form-control" name="title" id="title" maxlength="50" style="width:420px;">
 					</li>
 					<li>
-						<label for="content">내용</label>
+						<label for="content" class="form-label mt-4">내용</label>
 						<textarea cols="30" class="form-control" rows="5" name="content" id="content"></textarea>
 					</li>
 					<li>
-						<label for="filename" class="form-label mt-4">파일</label>
-						<input type="file" class="form-control" name="filename" id="filename">
+						<div class="row">
+						<div class="col-auto" style="margin-left:-14px;">
+							<input id="filename_text" class="form-control mt-4" value="파일선택" style="width:200px; margin-left:14px;" readonly>
+						</div>
+						<div class="col-auto" style="margin-top:26px;">
+							<label for="filename" class="btn btn-dark" style="width:60px;">파일</label>
+						</div>
+						<input type="file" id="filename" name="filename" style="display:none;">
+						</div>
 					</li>
 				</ul>
 				<div class="align-center">
-					<input type="submit" class="btn btn-dark" value="등록" style="width:100px; margin-left:40px; margin-top:30px;">
-					<input type="button"  class="btn btn-dark" value="목록" onclick="location.href='writeList.do'" style="width:100px; margin-left:20px; margin-top:30px;">
+					<input type="submit" class="btn btn-dark" value="작성" style="width:100px; margin-left:40px; margin-top:30px;">
+					<input type="button"  class="btn btn-dark" value="목록" onclick="location.href='reviewList.do'" style="width:100px; margin-left:20px; margin-top:30px;">
 				</div>
 			</form>
 		</div>
