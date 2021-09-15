@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>제품 상세</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 
@@ -49,24 +50,24 @@
 	<hr size="1" noshade width="100%">
 	<div class="align-right">
 		<c:if test="${user_auth == 2}">
-			<input type="button" value="상품 대여" onclick="location.href='${pageContext.request.contextPath}/rental/rentalForm.do?x_code=${productDetailVO.x_code}'">	
+			<input type="button" class="btn btn-dark"  value="상품 대여" onclick="location.href='${pageContext.request.contextPath}/rental/rentalForm.do?x_code=${productDetailVO.x_code}'">	
 			<c:if test="${check == true}">
-				<input type="button" value="좋아요" onclick="location.href='likeyUp.do?x_code=${x_code}'"
+				<input type="button" class="btn btn-dark"  value="좋아요" onclick="location.href='likeyUp.do?x_code=${x_code}'"
 				<c:if test="${empty user_num}">disabled="disabled"</c:if>
 				>
 			</c:if>
 			<c:if test="${check == false}">
-				<input type="button" value="좋아요 취소" onclick="location.href='likeyDown.do?x_code=${x_code}'"
+				<input type="button" class="btn btn-dark"  value="좋아요 취소" onclick="location.href='likeyDown.do?x_code=${x_code}'"
 				<c:if test="${empty user_num}">disabled="disabled"</c:if>
 				>
 			</c:if>
-			<input type="button" value="후기 작성" onclick="location.href='../review/reviewWriteForm.do?x_code=${x_code}'"
+			<input type="button" class="btn btn-dark"  value="후기 작성" onclick="location.href='../review/reviewWriteForm.do?x_code=${x_code}'"
 			<c:if test="${empty user_num}">disabled="disabled"</c:if>
 			>
 		</c:if>
 		<c:if test="${user_auth == 3}">
-		<input type="button" value="수정" id="modify_btn" onclick="location.href='productModifyForm.do?x_code=${x_code}'">
-		<input type="button" value="삭제" id="delete_btn">
+		<input type="button" class="btn btn-dark"  value="수정" id="modify_btn" onclick="location.href='productModifyForm.do?x_code=${x_code}'">
+		<input type="button" class="btn btn-dark"  value="삭제" id="delete_btn">
 					<script type="text/javascript">
 						var delete_btn = document.getElementById('delete_btn');
 						delete_btn.onclick = function(){
@@ -77,7 +78,7 @@
 						};
 		</script>
 		</c:if>
-		<input type="button" value="목록" onclick="location.href='productList.do'">
+		<input type="button" class="btn btn-dark"  value="목록" onclick="location.href='productList.do'">
 	</div>
 	<div class="page-main">
 			<h2>상품 후기</h2>

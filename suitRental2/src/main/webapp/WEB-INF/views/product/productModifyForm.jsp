@@ -8,7 +8,8 @@
 <meta charset="UTF-8">
 <title>상품 등록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" type="text/css">
+		
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -111,7 +112,7 @@ $(document).ready(function() {
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<h3>상품 등록 페이지</h3>
+	<h3>상품 수정 페이지</h3>
 	<form id="productWrite_form" action="productModify.do" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="x_code" value="${productDetailVO.x_code}">
 	<input type="hidden" name="x_rental_count" value="${productDetailVO.x_rental_count}">
