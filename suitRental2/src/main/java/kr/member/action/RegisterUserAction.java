@@ -17,7 +17,6 @@ public class RegisterUserAction implements Action{
 				request.setCharacterEncoding("utf-8");
 				
 				MemberVO member = new MemberVO();
-				member.setAuth(Integer.parseInt(request.getParameter("auth")));
 				member.setId(request.getParameter("id"));
 				member.setName(request.getParameter("name"));
 				member.setPasswd(request.getParameter("passwd"));

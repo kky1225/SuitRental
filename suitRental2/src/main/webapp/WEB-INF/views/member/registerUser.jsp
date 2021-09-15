@@ -15,7 +15,9 @@
 				<div class="align-center">
 					회원가입이 완료되었습니다!!
 					<p>
-					<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+					<p>
+					<input type="button" class="btn btn-dark" value="로그인" style="width:330px; margin-top:30px;" onclick="location.href='${pageContext.request.contextPath}/member/loginForm.do'">
+					<input type="button" class="btn btn-dark" value="홈으로" style="width:330px; margin-top:30px;" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 				</div>
 			</div>
 		</div>

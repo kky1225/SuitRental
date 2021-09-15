@@ -46,11 +46,10 @@ public class MemberDAO {
 			}
 				
 			// xmember 데이터 입력
-			sql = "insert into xmember (mem_num, id,auth) values (?,?,?)";
+			sql = "insert into xmember (mem_num, id) values (?,?)";
 			pstmt2 = conn.prepareStatement(sql);
 			pstmt2.setInt(1, num);	
 			pstmt2.setString(2,member.getId());
-			pstmt2.setInt(3, member.getAuth());
 			pstmt2.executeUpdate();
 				
 			// zmember_detail  데이터 입력
