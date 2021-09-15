@@ -7,21 +7,20 @@
 		<meta charset="UTF-8">
 		<title>상품 게시판 목록</title>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" type="text/css">
 		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-		</head>
+	</head>
 	<body>
 		<div class="page-main">
 			<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 			<h2>상품 게시판 목록</h2>
 			<div class="list-space align-right">
 				<c:if test="${user_auth == 3}">
-				<input type="button" class="btn btn-dark" value="상품 등록" onclick="location.href='productWriteForm.do'"
+				<input type="button" value="글쓰기" onclick="location.href='productWriteForm.do'"
 					<c:if test="${empty user_num}">disabled="disabled"</c:if>
 				>
 				</c:if>
-				<%-- <input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">--%>
-				</div>
+				<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
+			</div>
 			<c:if test="${count == 0}">
 				<div class="result-display">
 					등록된 게시물이 없습니다.
@@ -51,5 +50,6 @@
 				</div>
 			</c:if>
 		</div>
+		<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	</body>
 </html>

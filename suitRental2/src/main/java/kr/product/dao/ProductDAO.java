@@ -89,7 +89,85 @@ public class ProductDAO {
 		try {
 			//커넥션풀로부터 커넥션 할당
 			conn=DBUtil.getConnection();
-			sql = "SELECT * FROM (SELECT a.*, rownum AS rnum FROM (SELECT * FROM suit ORDER BY x_code DESC)a) WHERE rnum >=? AND rnum <= ?";
+			sql = "SELECT * FROM (SELECT a.*, rownum AS rnum FROM (SELECT * FROM suit ORDER BY x_like DESC)a) WHERE rnum >=? AND rnum <= ?";
+		
+			//PreparedStatement 객체 생성
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			//SQL문 실행하고 결과행을 ResultSet에 담음
+			rs=pstmt.executeQuery();
+			
+			list = new ArrayList<ProductDetailVO>();
+			
+			while(rs.next()) {
+				ProductDetailVO board = new ProductDetailVO();
+				board.setX_file(rs.getString("x_file"));
+				board.setX_name(rs.getString("x_name"));
+				board.setX_code(rs.getInt("x_code"));
+				board.setX_brand(rs.getString("x_brand"));
+				board.setX_price(rs.getInt("x_price"));
+				board.setX_like(rs.getInt("x_like"));
+				
+				list.add(board);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+			
+		}finally {
+			//자원정리
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
+	public ProductDetailVO getBestProduct() throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		ProductDetailVO productDetailVO = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn=DBUtil.getConnection();
+			sql = "SELECT * FROM (SELECT a.*, rownum AS rnum FROM (SELECT * FROM suit ORDER BY x_like DESC)a) WHERE rnum = 1";
+		
+			//PreparedStatement 객체 생성
+			pstmt=conn.prepareStatement(sql);
+			//SQL문 실행하고 결과행을 ResultSet에 담음
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				productDetailVO = new ProductDetailVO();
+				productDetailVO.setX_file(rs.getString("x_file"));
+				productDetailVO.setX_name(rs.getString("x_name"));
+				productDetailVO.setX_code(rs.getInt("x_code"));
+				productDetailVO.setX_brand(rs.getString("x_brand"));
+				productDetailVO.setX_price(rs.getInt("x_price"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+			
+		}finally {
+			//자원정리
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return productDetailVO;
+	}
+	
+	public List<ProductDetailVO> getBestList(int start, int end) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		List<ProductDetailVO> list = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn=DBUtil.getConnection();
+			sql = "SELECT * FROM (SELECT a.*, rownum AS rnum FROM (SELECT * FROM suit ORDER BY x_like DESC)a) WHERE rnum >=? AND rnum <= ?";
 		
 			//PreparedStatement 객체 생성
 			pstmt=conn.prepareStatement(sql);
@@ -298,6 +376,7 @@ public class ProductDAO {
 		Connection conn = null;
 		PreparedStatement pstmt1 = null;
 		PreparedStatement pstmt2 = null;
+		PreparedStatement pstmt3 = null;
 		String sql = null;
 		try {
 			conn= DBUtil.getConnection();
@@ -309,11 +388,17 @@ public class ProductDAO {
 			
 			pstmt1.executeQuery();
 			
-			sql = "DELETE FROM suit WHERE x_code = ?";
+			sql = "DELETE FROM xlikey WHERE x_code = ?";
 			pstmt2 = conn.prepareStatement(sql);
 			pstmt2.setInt(1, x_code);
 			
 			pstmt2.executeQuery();
+			
+			sql = "DELETE FROM suit WHERE x_code = ?";
+			pstmt3 = conn.prepareStatement(sql);
+			pstmt3.setInt(1, x_code);
+			
+			pstmt3.executeQuery();
 			
 			conn.commit();
 		} catch (Exception e) {
