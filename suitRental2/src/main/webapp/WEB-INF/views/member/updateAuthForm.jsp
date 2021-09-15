@@ -57,9 +57,6 @@
 					<input type="submit" class="btn btn-dark" value="수정" style="width:330px; margin-top:30px;">
 					</li>
 					<li>
-						<h6 style="text-align:center; margin-top:50px; margin-right:110px">or</h6>
-					</li>
-					<li>
 						<input type="button" class="btn btn-dark" value="관리자 페이지" style="width:330px; margin-top:30px;" onclick="location.href='managerPage.do'">
 					</li>
 				</ul>

@@ -43,9 +43,6 @@
       					<input type="submit" class="btn btn-dark" value="로그인" style="width:330px; margin-top:30px;">
       				</li>
       				<li>
-      					<h6 style="text-align:center; margin-top:30px; margin-right:110px">or</h6>
-      				</li>
-      				<li>
       					<input type="button" class="btn btn-dark" value="회원가입" style="width:330px; margin-top:30px;" onclick="location.href='registerUserForm.do'">
       				</li>
 				</ul>
