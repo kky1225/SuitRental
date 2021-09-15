@@ -11,10 +11,11 @@
 <body>
 
 	<div class="page-main">
-		<jsp:include page="/WEB-INF/views/common/header.jsp" />
-		<h2>QnA 상세</h2>
-		
+		<jsp:include page="/WEB-INF/views/common/header.jsp" />		
 		<ul>
+			<li>
+				<h5 style="text-align:center; margin-top:50px;"><b>Q&amp;A</b></h5>
+			</li>
 			<li>글번호 : ${boardQna.qna_num}</li>
 			<li>글제목 : ${boardQna.title}</li>
 			<li>작성자 : ${boardQna.id}</li>
@@ -36,11 +37,11 @@
 			
 			<%-- 로그인한 회원번호와 작성자 회원번호가 일치해야 수정 가능 --%>
 			<c:if test="${user_num == boardQna.mem_num}">
-				<input type="button" value="수정" onclick="location.href='modifyQnaForm.do?qna_num=${boardQna.qna_num}'">
+				<input type="button" class="btn btn-dark" value="수정" onclick="location.href='modifyQnaForm.do?qna_num=${boardQna.qna_num}'">
 			</c:if>
 			<%-- 로그인한 회원번호와 작성자 회원번호가 일치하거나 관리자일 경우 삭제 가능 --%>
 			<c:if test="${user_num == boardQna.mem_num || user_auth ==  3}">
-				<input type="button" value="삭제" id="delete_btn">
+				<input type="button" class="btn btn-dark" value="삭제" id="delete_btn">
 				
 				<script type="text/javascript">
 					var delete_btn = document.getElementById('delete_btn');
@@ -57,10 +58,10 @@
 			
 			<%-- 관리자 답글 기능 --%>
 			<c:if test="${!empty user_num && user_auth ==  3}">
-				<input type="button" value="답변" onclick="location.href='answerQnaForm.do?qna_num=${boardQna.qna_num}'">
+				<input type="button" class="btn btn-dark" value="답변" onclick="location.href='answerQnaForm.do?qna_num=${boardQna.qna_num}'">
 			</c:if>
 			
-			<input type="button" value="목록" onclick="location.href='listQna.do'">
+			<input type="button" class="btn btn-dark" value="목록" onclick="location.href='listQna.do'">
 		</div>
 	</div>
 

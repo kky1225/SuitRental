@@ -28,25 +28,27 @@
 
 	<div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
-		<h2>QnA 작성</h2>
 		<form action="writeQna.do" id="writeQna_form" method="post" enctype="multipart/form-data">
 			<ul>
 				<li>
+					<h5 style="text-align:center; margin-top:50px;"><b>QnA 작성</b></h5>
+				</li>
+				<li>
 					<label for="title">제목</label>
-					<input type="text" id="title" name="title" maxlength="50">
+					<input type="text" class="form-control form-label mt-4" id="title" name="title" maxlength="50">
 				</li>
 				<li>
 					<label for="q_content">내용</label>
-					<textarea rows="5" cols="30" name="q_content" id="q_content"></textarea>
+					<textarea cols="30" class="form-control" rows="5" name="q_content" id="q_content"></textarea>
 				</li>
 				<li>
-					<label for="filename">파일</label>
-					<input type="file" name="filename" id="filename" accept="image/gif, image/png, image/jpeg">
+					<label for="filename" class="form-label mt-4">파일</label>
+					<input type="file" class="form-control" name="filename" id="filename" accept="image/gif, image/png, image/jpeg">
 				</li>
 			</ul>
 			<div class="align-center">
-				<input type="submit" value="등록">
-				<input type="button" value="목록" onclick="location.href='listQna.do'">
+				<input type="submit" class="btn btn-dark" value="등록">
+				<input type="button" class="btn btn-dark" value="목록" onclick="location.href='listQna.do'">
 			</div>
 		</form>
 	</div>

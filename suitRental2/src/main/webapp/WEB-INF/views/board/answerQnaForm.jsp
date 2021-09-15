@@ -24,26 +24,29 @@
 
 	<div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
-		<h2>QnA 답변 등록</h2>
 		<form action="answerQna.do" id="answerQna_form" method="post">
 			<input type="hidden" name="qna_num" value="${boardQna.qna_num}">
 			<ul>
 				<li>
+					<h5 style="text-align:center; margin-top:50px;"><b>QnA 답변</b></h5>
+				</li>
+				<li>
 					<label for="title">질문 제목</label>
-					${boardQna.title}
+					<input type="text" class="form-control form-label mt-4" id="title" name="title" value="${boardQna.title}" maxlength="50" readonly>					
 				</li>
 				<li>
 					<label>질문 내용</label>
-					${boardQna.q_content}
+					<textarea cols="30" class="form-control" rows="3" name="a_content" id="a_content" readonly>${boardQna.q_content}</textarea>
 				</li>
+				<br>
 				<li>
 					<label for="a_content">답변</label>
-					<textarea rows="5" cols="30" name="a_content" id="a_content"></textarea>
+					<textarea cols="30" class="form-control" rows="5" name="a_content" id="a_content"></textarea>
 				</li>
 			</ul>
 			<div class="align-center">
-				<input type="submit" value="등록">
-				<input type="button" value="목록" onclick="location.href='listQna.do'">
+				<input type="submit" class="btn btn-dark" value="등록">
+				<input type="button" class="btn btn-dark" value="목록" onclick="location.href='listQna.do'">
 			</div>
 		</form>
 	</div>
