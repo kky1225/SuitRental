@@ -12,9 +12,10 @@
 
 	<div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
-		<h2>QnA 답변 상세</h2>
-		
 		<ul>
+			<li>
+				<h5 style="text-align:center; margin-top:50px;"><b>QnA 답변</b></h5>
+			</li>
 			<li>글제목 : [답변] ${answerBoard.title}</li>
 			<li>작성자 : 관리자</li>
 		</ul>
@@ -35,7 +36,7 @@
 		</p>
 		<hr size="1" noshade width="100%">
 		<div class="align-right">
-			<input type="button" value="목록" onclick="location.href='listQna.do'">
+			<input type="button" class="btn btn-dark" value="목록" onclick="location.href='listQna.do'">
 		</div>
 	</div>
 
