@@ -36,6 +36,10 @@
 				<a class="navbar-brand" href="${pageContext.request.contextPath}/product/productList.do?list=1" style="color:black; font-size:20px;">좋아요 순</a>
 				<a class="navbar-brand"></a>
 				<a class="navbar-brand" href="${pageContext.request.contextPath}/product/productList.do?list=2" style="color:black; font-size:20px;">판매 순</a>
+				<a class="navbar-brand"></a>
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/product/productList.do?list=3" style="color:black; font-size:20px;">남자 정장</a>
+				<a class="navbar-brand"></a>
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/product/productList.do?list=4" style="color:black; font-size:20px;">여자 정장</a>
 			</div>
 			<c:if test="${count == 0 && list == 1}">
 				<div class="result-display">
@@ -71,7 +75,7 @@
 				</div>
 			</c:if>
 			<c:if test="${count > 0 && list == 2}">
-				<table class="table table-hover">
+				<table id="pd-list" class="table table-hover">
 					<tr>
 						<th>사진</th>
 						<th>이름</th>
@@ -93,7 +97,63 @@
 					${pagingHtml}
 				</div>
 			</c:if>
-			<form id="search_form" action="productList.do" method="get">
+			<c:if test="${count == 0 && list == 3}">
+				<div class="result-display">
+					등록된 게시물이 없습니다.
+				</div>
+			</c:if>
+			<c:if test="${count > 0 && list == 3}">
+				<table id="pd-list" class="table table-hover">
+					<tr>
+						<th>사진</th>
+						<th>이름</th>
+						<th>브랜드</th>
+						<th>가격</th>
+						<th>판매수</th>
+					</tr>
+					<c:forEach var="productDetailVO" items="${productList3}">
+						<tr class="table-light">
+							<td><img src="${pageContext.request.contextPath}/upload/${productDetailVO.x_file}" class="detail-img" border="0" width="100" height="100"></td>
+							<td><a href="productDetail.do?x_code=${productDetailVO.x_code}">${productDetailVO.x_name}</a></td>
+							<td>${productDetailVO.x_brand}</td>
+							<td>${productDetailVO.x_price}</td>
+							<td>${productDetailVO.x_purchase}</td>
+						</tr>
+					</c:forEach>
+				</table>
+				<div class="align-center">
+					${pagingHtml}
+				</div>
+			</c:if>
+			<c:if test="${count == 0 && list == 4}">
+				<div class="result-display">
+					등록된 게시물이 없습니다.
+				</div>
+			</c:if>
+			<c:if test="${count > 0 && list == 4}">
+				<table id="pd-list" class="table table-hover">
+					<tr>
+						<th>사진</th>
+						<th>이름</th>
+						<th>브랜드</th>
+						<th>가격</th>
+						<th>판매수</th>
+					</tr>
+					<c:forEach var="productDetailVO" items="${productList4}">
+						<tr class="table-light">
+							<td><img src="${pageContext.request.contextPath}/upload/${productDetailVO.x_file}" class="detail-img" border="0" width="100" height="100"></td>
+							<td><a href="productDetail.do?x_code=${productDetailVO.x_code}">${productDetailVO.x_name}</a></td>
+							<td>${productDetailVO.x_brand}</td>
+							<td>${productDetailVO.x_price}</td>
+							<td>${productDetailVO.x_purchase}</td>
+						</tr>
+					</c:forEach>
+				</table>
+				<div class="align-center">
+					${pagingHtml}
+				</div>
+			</c:if>
+			<form id="search_form" action="productList.do?list=${list}" method="get">
 				<ul class="search">
 					<li>
 						<select name="keyfield">
@@ -111,10 +171,6 @@
 			</form>
 			
 		</div>
-		
-		<!-- 푸터 -->
-		<div id="footer">
-			<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
-		</div>
+		<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	</body>
 </html>
