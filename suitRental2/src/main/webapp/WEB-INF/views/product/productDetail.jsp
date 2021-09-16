@@ -51,12 +51,12 @@
 	<div class="align-right">
 		<c:if test="${user_auth == 2}">
 			<input type="button" class="btn btn-dark"  value="상품 대여" onclick="location.href='${pageContext.request.contextPath}/rental/rentalForm.do?x_code=${productDetailVO.x_code}'">	
-			<c:if test="${check == true}">
+			<c:if test="${likey == true}">
 				<input type="button" class="btn btn-dark"  value="좋아요" onclick="location.href='likeyUp.do?x_code=${x_code}'"
 				<c:if test="${empty user_num}">disabled="disabled"</c:if>
 				>
 			</c:if>
-			<c:if test="${check == false}">
+			<c:if test="${likey == false}">
 				<input type="button" class="btn btn-dark"  value="좋아요 취소" onclick="location.href='likeyDown.do?x_code=${x_code}'"
 				<c:if test="${empty user_num}">disabled="disabled"</c:if>
 				>
