@@ -6,7 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>상세페이지</title>
+<style>
+.text_list{
+	display:inline;
+	padding-left:30px;
+}
+</style>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -72,14 +79,14 @@
 					rowCount=param.rowCount;
 					$(param.list).each(function(index,item){
 						var output = '<div class="item">';
-						output+='<h4>' + item.id + '</h4>';
+						output+='<h5>' + item.id + '</h5>';
 						output+='<div class="sub-item">';
-						output+='<p>'+item.re_content+'</p>'
-						output+=item.re_date;
+						output+='<p>'+item.re_content+'</p>';
+						output+='<span style="font-size:14px; color:gray;">'+item.re_date+'</span>';
 						//로그인한 회원번호와 작성자의 회원번호 일치 여부 체크
 						if($('#user_num').val()==item.mem_num){
-							output+='<input type="button" value="수정" class="modify-btn" data-renum="'+item.re_num+'" data-memnum="'+item.mem_num+'">'
-							output+='<input type="button" value="삭제" class="delete-btn" data-renum="'+item.re_num+'" data-memnum="'+item.mem_num+'">'
+							output+=' <input type="button" value="수정" class="modify-btn btn-dark" data-renum="'+item.re_num+'" data-memnum="'+item.mem_num+'">';
+							output+=' <input type="button" value="삭제" class="delete-btn btn-dark" data-renum="'+item.re_num+'" data-memnum="'+item.mem_num+'">';
 						}
 						output+='<hr side="1" noshade width="100%">';
 					    output+='</div>';
@@ -140,11 +147,11 @@
 			var modifyUi ='<form id="mre_form">';
 				modifyUi+=' <input type="hidden" name="re_num" id="mre_num" value="'+re_num+'">';
 				modifyUi+=' <input type="hidden" name="mem_num" id="muser_num" value="'+num+'">';
-				modifyUi+=' <textarea rows="3" cols="50" name="re_content" id="mre_content" class="rep-content">'+content+'</textarea>';
+				modifyUi+=' <textarea rows="3" cols="50" name="re_content" id="mre_content" class="rep-content form-control">'+content+'</textarea>';
 				modifyUi+='	<div id="mre_first"><span class="letter-count">300/300</span></div>';
-				modifyUi+='	<div id="mre_second" class="align-right">';
-				modifyUi+='		<input type="submit" value="수정">';
-				modifyUi+='		<input type="button" value="취소" class="re-reset">';
+				modifyUi+='	<div id="mre_second" class="align-right" style="margin-bottom:60px;margin-right:30px;">';
+				modifyUi+='		<input type="submit" value="수정" class="btn btn-dark" >';
+				modifyUi+='		<input type="button" value="취소" class="re-reset btn btn-dark">';
 				modifyUi+='	</div>';
 				modifyUi+='	<hr size="1" noshade width="96%">';
 				modifyUi+='</form>';
@@ -253,12 +260,12 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<h2>상세페이지</h2>
+	<h4>상세페이지</h4>
 	<ul>
-		<li>글번호 : ${notice.notice_num }</li>
-		<li>제목 : ${notice.title }</li>
-		<li>작성자 : ${notice.mem_id }</li>
-		<li>조회수 : ${notice.hit }</li>
+		<li class="text_list">글번호 : ${notice.notice_num }</li>
+		<li class="text_list">제목 : ${notice.title }</li>
+		<li class="text_list">작성자 : ${notice.mem_id }</li>
+		<li class="text_list">조회수 : ${notice.hit }</li>
 	</ul>
 	<hr size="1" noshade width="100%">
 	<c:if test="${!empty notice.filename }">
@@ -274,8 +281,8 @@
 		작성일 : ${notice.reg_date }
 		수정일 : ${notice.modify_date }
 		<c:if test="${user_num == notice.mem_num }">
-			<input type="button" value="수정" onclick="location.href='modifyNoticeForm.do?notice_num=${notice.notice_num}'">
-			<input type="button" value="삭제" id="delete_btn">
+			<input type="button" value="수정" class="btn btn-dark" onclick="location.href='modifyNoticeForm.do?notice_num=${notice.notice_num}'">
+			<input type="button" value="삭제" id="delete_btn" class="btn btn-dark">
 			<script type="text/javascript">
 				var delete_btn = document.getElementById('delete_btn');
 				delete_btn.onclick=function(){
@@ -286,24 +293,24 @@
 				}
 			</script>
 		</c:if>
-		<input type="button" value="목록" onclick="location.href='noticeList.do'">
+		<input type="button" value="목록" class="btn btn-dark" onclick="location.href='noticeList.do'">
 	</div>
 	
 	
 	<!-- 댓글 시작 -->
 	<div id="reply_div">
-		<span class="re-title">댓글쓰기</span>
+		<span class="re-title">댓글</span>
 			<form id="reply_form">
 				<input type="hidden" id="notice_num" name="notice_num" value="${notice.notice_num}">
 				<input type="hidden" id="user_num" name="user_num" value="${user_num}">
-				<textarea rows="3" cols="50" id="re_content" name="re_content" class="rep-content" 
+				<textarea rows="3" cols="50" id="re_content" name="re_content" class="rep-content form-control" 
 			<c:if test="${empty user_num }">disabled="disabled"</c:if>><c:if test="${empty user_num }">로그인 해야 작성할 수 있습니다.</c:if></textarea>
 			<c:if test="${!empty user_num }">
 				<div id="re_first">
 					<span class="letter-count">300/300</span>
 				</div>
 				<div id="re_second" class="align-right">
-					<input type="submit" value="전송">
+					<input type="submit" value="전송" class="btn btn-dark">
 				</div>
 			</c:if>
 			
@@ -312,7 +319,7 @@
 	<!-- 댓글 목록 -->
 	<div id="output"></div>
 	<div class="paging-button" style="display:none;">
-		<input type="button" value="댓글 더보기" >
+		<input type="button" value="댓글 더보기" class="btn btn-dark" >
 	</div>
 	<div id="loading" style="display:none;">
 		<img src="${pageContext.request.contextPath}/images/ajax-loader.gif">

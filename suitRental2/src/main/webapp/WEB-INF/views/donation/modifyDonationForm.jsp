@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>기부 수정 폼</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	
@@ -40,33 +41,33 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<h2>기부 수정 폼</h2>
+	<h5 class="align-center" style="margin-bottom:10px;">기부 수정</h5>
 	<form action="modifyDonation.do" method="post" id="modify_form" enctype="multipart/form-data">
 		<input type="hidden" name="donation_num" value="${donation.donation_num}" >
 	<ul>
 			<li>
-				<label for="title">제목</label>
-				<input type="text" id="title" name="title" value="${donation.title }" maxlength="50">
+				<label for="title" class="form-label">제목</label>
+				<input type="text" class="form-control mt-4" style="width:285px;" id="title" name="title" value="${donation.title }" maxlength="50">
 			</li>
 			<li>
-				<label for="content">내용</label>
-				<textarea rows="5" cols="40" name="content" id="content">${donation.content }</textarea>
+				<label for="content" class="form-label">내용</label>
+				<textarea rows="5" cols="40" class="form-control" name="content" id="content">${donation.content }</textarea>
 				<br>
-				<span>*물품의 종류, 갯수, 사이즈 등 설명을 입력하세요.*</span>
+				<span style="font-size:11pt;color:#999;padding-left:45px;">*물품의 종류, 갯수, 사이즈 등 설명을 입력하세요.*</span>
 			</li>
 			<li>
-				<label for="filename">파일</label>
-				<input type="file" id="filename" name="filename" accept="image/gif,image/png,image/jpeg">
+				<label for="filename" class="form-label">파일</label>
+				<input type="file" id="filename" name="filename" class="form-control" accept="image/gif,image/png,image/jpeg">
 				<c:if test="${!empty donation.filename}">
-						<p id="file_check1">${donation.filename}</p>
+						<p id="file_check1" style="font-size:11pt;color:#999;padding-left:10px;">${donation.filename}</p>
 						<input type="hidden" name="file_check2" id="file_check2" value="${donation.filename}">
-						<input type="button" name="file_delete" id="file_delete" value="파일 삭제">
+						<input type="button" name="file_delete" id="file_delete" value="파일 삭제" class="btn btn-outline-dark" style="width:70px; margin-top:-12px; margin-bottom:11px;font-size:11px;">
 				</c:if>
 			</li>
 	</ul>
 	<div class="align-center">
-		<input type="submit" value="수정">
-		<input type="button" value="목록" onclick="location.href='list.do'">
+		<input type="submit" value="수정" class="btn btn-dark" style="width:120px; margin-top:10px;">
+		<input type="button" value="목록" onclick="location.href='list.do'" class="btn btn-dark" style="width:120px; margin-top:10px;">
 	</div>
 	</form>
 </div>
