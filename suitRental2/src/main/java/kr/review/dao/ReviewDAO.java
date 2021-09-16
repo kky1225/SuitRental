@@ -124,7 +124,7 @@ public class ReviewDAO {
 				ReviewVO reviewVO = new ReviewVO();
 				reviewVO.setReview_num(rs.getInt("review_num"));
 				reviewVO.setTitle(StringUtil.useNoHtml(rs.getString("title")));
-				reviewVO.setContent(rs.getString("content"));
+				reviewVO.setContent(StringUtil.useBrNoHtml(rs.getString("content")));
 				reviewVO.setHit(rs.getInt("hit"));
 				reviewVO.setReg_date(rs.getDate("reg_date"));
 				reviewVO.setModify_date(rs.getDate("modify_date"));
@@ -167,7 +167,7 @@ public class ReviewDAO {
 				ReviewVO reviewVO = new ReviewVO();
 				reviewVO.setReview_num(rs.getInt("review_num"));
 				reviewVO.setTitle(StringUtil.useNoHtml(rs.getString("title")));
-				reviewVO.setContent(rs.getString("content"));
+				reviewVO.setContent(StringUtil.useBrNoHtml(rs.getString("content")));
 				reviewVO.setHit(rs.getInt("hit"));
 				reviewVO.setReg_date(rs.getDate("reg_date"));
 				reviewVO.setModify_date(rs.getDate("modify_date"));

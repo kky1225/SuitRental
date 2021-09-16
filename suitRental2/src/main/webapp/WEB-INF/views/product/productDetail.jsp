@@ -17,7 +17,7 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<h2>제품 상세</h2>
+	<h3 style="text-align:center; margin-top:50px;"><b>제품 상세</b></h3>
 	<ul>
 		<li>상품코드 : ${x_code}</li>
 		<li>상품명 : ${productDetailVO.x_name}</li>
@@ -50,7 +50,6 @@
 	<hr size="1" noshade width="100%">
 	<div class="align-right">
 		<c:if test="${user_auth == 2}">
-			<input type="button" class="btn btn-dark"  value="상품 대여" onclick="location.href='${pageContext.request.contextPath}/rental/rentalForm.do?x_code=${productDetailVO.x_code}'">	
 			<c:if test="${likey == true}">
 				<input type="button" class="btn btn-dark"  value="좋아요" onclick="location.href='likeyUp.do?x_code=${x_code}'"
 				<c:if test="${empty user_num}">disabled="disabled"</c:if>
@@ -61,9 +60,7 @@
 				<c:if test="${empty user_num}">disabled="disabled"</c:if>
 				>
 			</c:if>
-			<input type="button" class="btn btn-dark"  value="후기 작성" onclick="location.href='../review/reviewWriteForm.do?x_code=${x_code}'"
-			<c:if test="${empty user_num}">disabled="disabled"</c:if>
-			>
+			<input type="button" class="btn btn-dark"  value="상품 대여" onclick="location.href='${pageContext.request.contextPath}/rental/rentalForm.do?x_code=${productDetailVO.x_code}'">	
 		</c:if>
 		<c:if test="${user_auth == 3}">
 		<input type="button" class="btn btn-dark"  value="수정" id="modify_btn" onclick="location.href='productModifyForm.do?x_code=${x_code}'">
@@ -81,7 +78,20 @@
 		<input type="button" class="btn btn-dark"  value="목록" onclick="location.href='productList.do?list=1'">
 	</div>
 	<div class="page-main">
-			<h2>상품 후기</h2>
+			<h3 style="text-align:center; margin-top:50px;"><b>제품 후기</b></h3>
+			<c:if test="${review == true}">
+				<div class="align-right">
+				<input type="button" class="btn btn-dark"  value="후기 작성" onclick="location.href='../review/reviewWriteForm.do?x_code=${x_code}'"
+				<c:if test="${empty user_num}">disabled="disabled"</c:if>
+				>
+			</div>
+			</c:if>
+			<c:if test="${review == false}">
+				<div class="align-right">
+				<input type="button" class="btn btn-dark"  value="후기 작성" onclick="location.href='../review/reviewWriteForm.do?x_code=${x_code}'"
+				disabled="disabled">
+				</div>
+			</c:if>
 			<c:if test="${count == 0}">
 				<div class="result-display">
 					등록된 후기가 없습니다.
@@ -89,21 +99,13 @@
 			</c:if>
 			<c:if test="${count > 0}">
 				<table>
-					<tr>
-						<th>사진</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>작성일</th>
-						<th>조회</th>
-					</tr>
 					<c:forEach var="reviewVO" items="${reviewList}">
-						<tr>
-							<td><c:if test="${!empty reviewVO.filename}"><img src="${pageContext.request.contextPath}/upload/${reviewVO.filename}" class="detail-img" border="0" width="100" height="100"></c:if>
-							<c:if test="${empty reviewVO.filename}">등록된 사진이 없음</c:if></td>
-							<td><a href="../review/reviewDetail.do?review_num=${reviewVO.review_num}">${reviewVO.title}</a></td>
-							<td>${reviewVO.id}</td>
-							<td>${reviewVO.reg_date}</td>
-							<td>${reviewVO.hit}</td>
+						<tr onclick="location.href='../review/reviewDetail.do?review_num=${reviewVO.review_num}'">
+							<td><c:if test="${!empty reviewVO.filename}"><a href="../review/reviewDetail.do?review_num=${reviewVO.review_num}"><img src="${pageContext.request.contextPath}/upload/${reviewVO.filename}" class="detail-img" border="0" width="100" height="100"></a></c:if>
+							<c:if test="${empty reviewVO.filename}"><a style="color:black;">사진 없음</a></c:if></td>
+							<td colspan="2" width="200">${reviewVO.content}</td>
+							<td>작성자 : ${reviewVO.id}<br>
+								작성일 : ${reviewVO.reg_date}</td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -111,11 +113,6 @@
 					${pagingHtml}
 				</div>
 			</c:if>
-		</div>
-		
-		<!-- 푸터 -->
-		<div id="footer">
-			<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 		</div>
 </body>
 </html>
