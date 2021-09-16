@@ -46,7 +46,7 @@ public class ReviewDAO {
 		}
 	}
 	
-	public int getReviewCount(String keyfield, String keyword) {
+	public int getReviewCount(String keyfield, String keyword, int x_code) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -57,17 +57,34 @@ public class ReviewDAO {
 		try {
 			conn = DBUtil.getConnection();
 			
-			if(keyword == null || keyword.equals("")) {
+			if(x_code == 0) {
 				sql = "SELECT COUNT(*) FROM xreview r, xmember m WHERE r.mem_num = m.mem_num";
 				pstmt = conn.prepareStatement(sql);
+				if(keyword == null || keyword.equals("")) {
+					
+				}else {
+					if(keyfield.equals("1")) sub_sql = "r.title LIKE ?";
+					else if(keyfield.equals("2")) sub_sql = "m.id LIKE ?";
+					else if(keyfield.equals("3")) sub_sql = "r.content LIKE ?";
+					
+					sql = "SELECT COUNT(*) FROM xreview r, xmember m WHERE r.mem_num = m.mem_num AND " + sub_sql;
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, "%" + keyword + "%");
+				}
 			}else {
-				if(keyfield.equals("1")) sub_sql = "r.title LIKE ?";
-				else if(keyfield.equals("2")) sub_sql = "m.id LIKE ?";
-				else if(keyfield.equals("3")) sub_sql = "r.content LIKE ?";
-				
-				sql = "SELECT COUNT(*) FROM xreview r, xmember m WHERE r.mem_num = m.mem_num AND " + sub_sql;
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, "%" + keyword + "%");
+				if(keyword == null || keyword.equals("")) {
+					sql = "SELECT COUNT(*) FROM xreview r, xmember m WHERE r.mem_num = m.mem_num AND x_code = ?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, x_code);
+				}else {
+					if(keyfield.equals("1")) sub_sql = "r.title LIKE ?";
+					else if(keyfield.equals("2")) sub_sql = "m.id LIKE ?";
+					else if(keyfield.equals("3")) sub_sql = "r.content LIKE ?";
+					
+					sql = "SELECT COUNT(*) FROM xreview r, xmember m WHERE r.mem_num = m.mem_num AND " + sub_sql;
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, "%" + keyword + "%");
+				}
 			}
 			rs = pstmt.executeQuery();
 			

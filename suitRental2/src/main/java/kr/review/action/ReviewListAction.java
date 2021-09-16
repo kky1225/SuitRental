@@ -31,7 +31,7 @@ public class ReviewListAction implements Action {
 			keyword = "";
 		}
 		
-		int count = ReviewDAO.getInstance().getReviewCount(keyfield, keyword);
+		int count = ReviewDAO.getInstance().getReviewCount(keyfield, keyword, 0);
 		
 		PagingUtil page = new PagingUtil(Integer.parseInt(pageNum), count, 20, 10, "reviewList.do");
 		

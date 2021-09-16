@@ -46,7 +46,7 @@ public class ProductDetailAction implements Action{
 			pageNum = "1";
 		}
 		
-		int count = ReviewDAO.getInstance().getReviewCount("", "");
+		int count = ReviewDAO.getInstance().getReviewCount("", "", x_code);
 		
 		PagingUtil page = new PagingUtil(Integer.parseInt(pageNum), count, 20, 10, "reviewList.do");
 		
