@@ -26,37 +26,41 @@
 </script>
 </head>
 <body>
-<div class="page-main">
-	<jsp:include page="/WEB-INF/views/common/header.jsp" />
-	<form action="modifyQna.do" id="modifyQna_form" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="qna_num" value="${boardQna.qna_num}">
-		<ul>
-			<li>
-				<h5 style="text-align:center; margin-top:50px;"><b>QnA 수정</b></h5>
-			</li>
-			<li>
-				<label for="title">제목</label>
-				<input type="text" class="form-control form-label mt-4" name="title" id="title" value="${boardQna.title}" maxlength="50">
-			</li>
-			<li>
-				<label for="q_content">내용</label>
-				<textarea cols="30" class="form-control" rows="5" name="q_content" id="q_content"></textarea>
-			</li>
-			<li>
-				<label for="filename">파일</label>
-				<input type="file" name="filename" id="filename" accept="image/gif, image/png, image/jpeg">
-				<c:if test="${!empty boardQna.filename}">
-					<br>
-					<span>(${boardQna.filename})파일이 등록되어 있습니다.<br>수정 시 기존파일은 삭제됩니다.</span>
-				</c:if>
-			</li>
-		</ul>
-		<div class="align-center">
-			<input type="submit" class="btn btn-dark" value="수정">
-			<input type="button" class="btn btn-dark" value="목록" onclick="location.href='listQna.do'">
-		</div>
-	</form>
-</div>
+	<div class="page-main">
+		<jsp:include page="/WEB-INF/views/common/header.jsp" />
+		<form action="modifyQna.do" id="modifyQna_form" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="qna_num" value="${boardQna.qna_num}">
+			<ul>
+				<li>
+					<h5 style="text-align:center; margin-top:50px;"><b>QnA 수정</b></h5>
+				</li>
+				<li>
+					<label for="title">제목</label>
+					<input type="text" class="form-control form-label mt-4" name="title" id="title" value="${boardQna.title}" maxlength="50">
+				</li>
+				<li>
+					<label for="q_content">내용</label>
+					<textarea cols="30" class="form-control" rows="5" name="q_content" id="q_content"></textarea>
+				</li>
+				<li>
+					<label for="filename">파일</label>
+					<input type="file" name="filename" id="filename" accept="image/gif, image/png, image/jpeg">
+					<c:if test="${!empty boardQna.filename}">
+						<br>
+						<span>(${boardQna.filename})파일이 등록되어 있습니다.<br>수정 시 기존파일은 삭제됩니다.</span>
+					</c:if>
+				</li>
+			</ul>
+			<div class="align-center">
+				<input type="submit" class="btn btn-dark" value="수정">
+				<input type="button" class="btn btn-dark" value="목록" onclick="location.href='listQna.do'">
+			</div>
+		</form>
+	</div>
+
+	<div id="footer">
+		<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+	</div>
 
 </body>
 </html>

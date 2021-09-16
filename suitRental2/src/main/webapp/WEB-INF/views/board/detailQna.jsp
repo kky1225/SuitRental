@@ -64,6 +64,10 @@
 			<input type="button" class="btn btn-dark" value="목록" onclick="location.href='listQna.do'">
 		</div>
 	</div>
+	
+	<div id="footer">
+		<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+	</div>
 
 </body>
 </html>

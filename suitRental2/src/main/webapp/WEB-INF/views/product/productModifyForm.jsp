@@ -395,6 +395,10 @@ $(document).ready(function() {
 		</table>
 	</form>
 </div>
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+
+<div id="footer">
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+</div>
+
 </body>
 </html>

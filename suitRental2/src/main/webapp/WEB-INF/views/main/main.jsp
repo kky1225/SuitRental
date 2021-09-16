@@ -56,7 +56,11 @@
 			</div>
 		</div>
 		</c:if>
-		<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+		
+		<div id="footer">
+			<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+		</div>
+
 		<script src="../js/jquery-3.6.0.min.js"></script>
 		<script src="../js/bootstrap.bundle.min.js"></script>
 	</body>

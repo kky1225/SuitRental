@@ -38,8 +38,8 @@
 					<label>질문 내용</label>
 					<textarea cols="30" class="form-control" rows="3" name="a_content" id="a_content" readonly>${boardQna.q_content}</textarea>
 				</li>
-				<br>
 				<li>
+					<br>
 					<label for="a_content">답변</label>
 					<textarea cols="30" class="form-control" rows="5" name="a_content" id="a_content"></textarea>
 				</li>
@@ -49,6 +49,10 @@
 				<input type="button" class="btn btn-dark" value="목록" onclick="location.href='listQna.do'">
 			</div>
 		</form>
+	</div>
+	
+	<div id="footer">
+		<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	</div>
 
 </body>

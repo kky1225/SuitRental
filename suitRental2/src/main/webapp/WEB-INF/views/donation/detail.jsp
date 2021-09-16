@@ -322,6 +322,10 @@
 	<!-- 댓글 목록 출력 끝 -->
 	<!-- 댓글 끝 -->
 </div>
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+
+	<div id="footer">
+		<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+	</div>
+
 </body>
 </html>
