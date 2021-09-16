@@ -6,12 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>상세페이지</title>
-<style>
-.text_list{
-	display:inline;
-	padding-left:30px;
-}
-</style>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
@@ -260,12 +254,12 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<h4>상세페이지</h4>
+	<h5 style="text-align:center; margin-top:50px;"><b>공지사항</b></h5>
 	<ul>
-		<li class="text_list">글번호 : ${notice.notice_num }</li>
-		<li class="text_list">제목 : ${notice.title }</li>
-		<li class="text_list">작성자 : ${notice.mem_id }</li>
-		<li class="text_list">조회수 : ${notice.hit }</li>
+		<li>글번호 : ${notice.notice_num }</li>
+		<li>제목 : ${notice.title }</li>
+		<li>작성자 : ${notice.mem_id }</li>
+		<li>조회수 : ${notice.hit }</li>
 	</ul>
 	<hr size="1" noshade width="100%">
 	<c:if test="${!empty notice.filename }">
@@ -318,7 +312,7 @@
 	</div>
 	<!-- 댓글 목록 -->
 	<div id="output"></div>
-	<div class="paging-button" style="display:none;">
+	<div class="paging-button align-right" style="display:none;">
 		<input type="button" value="댓글 더보기" class="btn btn-dark" >
 	</div>
 	<div id="loading" style="display:none;">
@@ -327,5 +321,6 @@
 	
 	<!-- 댓글 끝 -->
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

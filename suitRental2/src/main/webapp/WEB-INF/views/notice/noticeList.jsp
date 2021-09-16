@@ -10,12 +10,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-<style type="text/css">
 
-tr{
-	border-bottom: 1px solid gray;
-}
-</style>
 <script type="text/javascript">
 $(document).ready(function(){
 	$('#search_form').submit(function(){
@@ -31,14 +26,13 @@ $(document).ready(function(){
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<h4 style="margin-bottom:10px;">공지사항</h4>
+	<h3 style="text-align:center; margin-top:50px;"><b>공지사항</b></h3>
 	
-	<div class="align-right">
+	<div class="list-space align-right">
 		<input type="button" value="글쓰기" onclick="location.href='writeNoticeForm.do'"
 			<c:if test="${empty user_num}">disabled="disabled"</c:if>
 		 class="btn btn-dark">
 		<input type="button" value="목록" class="btn btn-dark" onclick="location.href='noticeList.do'">
-		<input type="button" value="홈으로" class="btn btn-dark" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 	</div>
 	<c:if test="${count==0 }">
 		<div class="result-display">
@@ -46,8 +40,8 @@ $(document).ready(function(){
 		</div>
 	</c:if>
 	<c:if test="${count!=0 }">
-		<table class="table table-borderless" style="text-align:center;">
-		 	<thead class="thead-dark">
+		<table class="table table-hover">
+		 	<thead>
 		 	<tr>
 		 		<th>글번호</th>
 				<th>제목</th>
@@ -56,8 +50,9 @@ $(document).ready(function(){
 				<th>조회수</th>
 		 	</tr>
 		 	</thead>
+		 	<tbody>
 		 	<c:forEach var="notice" items="${list}">
-		 		<tr>
+		 		<tr class="table-light">
 		 			<td>${notice.notice_num }</td>
 		 			<td><a href='noticeDetail.do?notice_num=${notice.notice_num }'>${notice.title }</a></td>
 		 			<td>${notice.mem_id }</td>
@@ -65,6 +60,7 @@ $(document).ready(function(){
 		 			<td>${notice.hit }</td>
 		 		</tr>
 		 	</c:forEach>
+		 	</tbody>
 		</table>
 		<div class="align-center">
 			${pagingHtml }
@@ -83,11 +79,12 @@ $(document).ready(function(){
 				<input type="search" size="16" name="keyword" id="keyword">
 			</li>
 			<li>
-				<input type="submit" value="찾기" class="btn btn-outline-dark" style="font-size:14px;">
+				<input type="submit" value="찾기">
 			</li>
 		</ul>
 	</form>
 	
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

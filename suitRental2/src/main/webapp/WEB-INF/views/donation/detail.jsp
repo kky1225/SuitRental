@@ -6,12 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>기부 상세 페이지</title>
-<style>
-.text_list{
-	display:inline;
-	padding-left:30px;
-}
-</style>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
@@ -259,13 +253,13 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<h4>기부 상세 페이지</h4>
+	<h5 style="text-align:center; margin-top:50px;"><b>기부 게시판</b></h5>
 	
 	<ul>
-		<li class="text_list">글번호 : ${donation.donation_num } </li>
-		<li class="text_list">제목 : ${donation.title } </li>
-		<li class="text_list">작성자 : ${donation.mem_id } </li>
-		<li class="text_list">조회수 : ${donation.hit } </li>
+		<li>글번호 : ${donation.donation_num } </li>
+		<li>제목 : ${donation.title } </li>
+		<li>작성자 : ${donation.mem_id } </li>
+		<li>조회수 : ${donation.hit } </li>
 	</ul>
 	<hr size="1" noshade width="100%">
 	<c:if test="${!empty donation.filename}">
@@ -328,5 +322,6 @@
 	<!-- 댓글 목록 출력 끝 -->
 	<!-- 댓글 끝 -->
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>
