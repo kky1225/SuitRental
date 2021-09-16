@@ -43,7 +43,7 @@
 				</div>
 			</c:if>
 			<c:if test="${count > 0 && list == 1}">
-				<table class="table table-hover">
+				<table id="pd-list" class="table table-hover">
 					<tr>
 						<th>사진</th>
 						<th>이름</th>

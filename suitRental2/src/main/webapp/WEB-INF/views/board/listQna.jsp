@@ -29,7 +29,6 @@
 			<input type="button"  class="btn btn-dark"  value="글쓰기" onclick="location.href='writeQnaForm.do'"
 				<c:if test="${empty user_num}"> disabled = "disabled" </c:if>
 			>	<!-- 로그인 안되어있을 시 글쓰기 비활성화 -->
-			<input type="button"  class="btn btn-dark"  value="목록" onclick="location.href='listQna.do'">
 		</div>
 		<c:if test="${count == 0}">
 			<div class="result-display">
@@ -98,6 +97,10 @@
 				</li>
 			</ul>
 		</form>
+	</div>
+	
+	<div id="footer">
+		<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	</div>
 
 </body>

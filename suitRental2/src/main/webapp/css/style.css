@@ -57,6 +57,11 @@ table#pd-write td,table th{
 	padding:5px;
 }
 
+/* 상품 리스트 */
+#pd-list td{
+    vertical-align: middle;
+}
+
 /*등록, 수정폼*/
 form{
 	width:500px;
@@ -94,6 +99,13 @@ input[id="title"]{
 	border-radius:50%;
 }
 
-
+/* footer */
+#footer{
+	width:100%;
+	height:100px;
+	position:absolute;
+	bottom:0;
+	text-align: center;
+}
 
 
