@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 <script>
 	alert('게시글 작성에 성공하였습니다');
-	location.href='productList.do';
+	location.href='productList.do?list=1';
 </script>

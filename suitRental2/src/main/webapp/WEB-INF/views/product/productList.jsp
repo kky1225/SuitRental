@@ -41,7 +41,7 @@
 						<th>좋아요</th>
 					</tr>
 					<c:forEach var="productDetailVO" items="${productList}">
-						<tr>
+						<tr class="table-light">
 							<td><img src="${pageContext.request.contextPath}/upload/${productDetailVO.x_file}" class="detail-img" border="0" width="100" height="100"></td>
 							<td><a href="productDetail.do?x_code=${productDetailVO.x_code}">${productDetailVO.x_name}</a></td>
 							<td>${productDetailVO.x_brand}</td>
