@@ -34,37 +34,41 @@
 		</div>
 		</c:if>
 		<c:if test="${count>0}">
-			<table>
-				<tr>
-					<th>ID</th>
-					<th>이름</th>
-					<th>이메일</th>
-					<th>전화번호</th>
-					<th>가입일</th>
-					<th>등급</th>
-				</tr>
-				<c:forEach var="member" items="${list}">
-				<tr>
-					<td>
-						<c:if test="${member.auth > 0}">
-						${member.id}	
-						</c:if>
-						<c:if test="${member.auth == 0}">
-						${member.id}
-						</c:if>
-					</td>
-					<td>${member.name}</td>
-					<td>${member.email}</td>
-					<td>${member.phone}</td>
-					<td>${member.reg_date}</td>
-					<td>
-					<c:if test="${member.auth == 0}">탈퇴</c:if>
-					<c:if test="${member.auth == 1}">대여금지</c:if>
-					<c:if test="${member.auth == 2}">일반</c:if>
-					<c:if test="${member.auth == 3}">관리</c:if>
-					</td>
-				</tr>	
-				</c:forEach>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th scope="row">ID</th>
+						<th scope="row">이름</th>
+						<th scope="row">이메일</th>
+						<th scope="row">전화번호</th>
+						<th scope="row">가입일</th>
+						<th scope="row">등급</th>
+					</tr>
+				</thead>	
+				<tbody>	
+					<c:forEach var="member" items="${list}">
+					<tr class="table-light">
+						<td>
+							<c:if test="${member.auth > 0}">
+							${member.id}	
+							</c:if>
+							<c:if test="${member.auth == 0}">
+							${member.id}
+							</c:if>
+						</td>
+						<td>${member.name}</td>
+						<td>${member.email}</td>
+						<td>${member.phone}</td>
+						<td>${member.reg_date}</td>
+						<td>
+						<c:if test="${member.auth == 0}">탈퇴</c:if>
+						<c:if test="${member.auth == 1}">대여금지</c:if>
+						<c:if test="${member.auth == 2}">일반</c:if>
+						<c:if test="${member.auth == 3}">관리</c:if>
+						</td>
+					</tr>	
+					</c:forEach>
+				</tbody>	
 			</table>
 			<div class="align-center">
 				${pagingHtml}

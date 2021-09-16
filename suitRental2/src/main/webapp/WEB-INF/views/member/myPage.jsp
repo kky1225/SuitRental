@@ -15,7 +15,7 @@
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<h3 style="text-align:center; margin-top:50px;"><b>회원정보</b></h3>
 		<br><br>
-		<div class="d-grid gap-2">
+		<div class="d-grid gap-2 align-center">
   			<button class="btn btn-lg btn-dark" type="button" onclick="location.href='deleteUserForm.do'">회원탈퇴</button>
   			<button class="btn btn-lg btn-dark" type="button" onclick="location.href='modifyUserForm.do'">개인정보 수정</button>
   			<button class="btn btn-lg btn-dark" type="button" onclick="location.href='modifyPasswordForm.do'">비밀번호 수정</button>
@@ -30,31 +30,35 @@
 			<c:if test="${count > 0}">
 			<h5 style="text-align:center; margin-top:50px;"><b>주문 목록</b></h5>
 			<br>
-			<table>
-				<tr>
-					<th>주문번호</th>
-					<th>제품코드</th>
-					<th>제품명</th>
-					<th>대여일</th>
-					<th>반납일</th>
-					<th>대여방법</th>
-					<th>반납방법</th>
-					<th>주문 수정</th>
-					<th>주문 취소</th>
-				</tr>
-				<c:forEach var="order" items="${list}">
-				<tr>
-					<td>${order.rent_num}</td>
-					<td>${order.x_code}</td>
-					<td>${order.x_name}</td>
-					<td>${order.rental_date}</td>
-					<td>${order.return_date}</td>
-					<td>${order.rental_type}</td>
-					<td>${order.return_type}</td>
-					<td><input type="button"class="btn btn-dark" value="주문 수정" onclick="location.href='modifyItemForm.do?rent_num=${order.rent_num}'"></td>
-					<td><input type="button"class="btn btn-dark" value="주문 취소" onclick="location.href='deleteItemForm.do?rent_num=${order.rent_num}'"></td>
-				</tr>	
-				</c:forEach>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th scope="row">주문번호</th>
+						<th scope="row">제품코드</th>
+						<th scope="row">제품명</th>
+						<th scope="row">대여일</th>
+						<th scope="row">반납일</th>
+						<th scope="row">대여</th>
+						<th scope="row">반납</th>
+						<th scope="row">수정</th>
+						<th scope="row">취소</th>
+					</tr>
+				</thead>
+				<tbody>	
+					<c:forEach var="order" items="${list}">
+					<tr class="table-light">
+						<td>${order.rent_num}</td>
+						<td>${order.x_code}</td>
+						<td>${order.x_name}</td>
+						<td>${order.rental_date}</td>
+						<td>${order.return_date}</td>
+						<td>${order.rental_type}</td>
+						<td>${order.return_type}</td>
+						<td><input type="button"class="btn btn-dark" value="수정" onclick="location.href='modifyItemForm.do?rent_num=${order.rent_num}'"></td>
+						<td><input type="button"class="btn btn-dark" value="취소" onclick="location.href='deleteItemForm.do?rent_num=${order.rent_num}'"></td>
+					</tr>	
+					</c:forEach>
+				<tbody>
 			</table>
 			<div class="align-center">
 				${pagingHtml}
