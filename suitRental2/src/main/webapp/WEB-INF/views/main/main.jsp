@@ -1,68 +1,77 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<title>메인</title>
-		<link rel="stylesheet" href="../css/bootstrap.min.css">
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
-	</head>
-	<body>
-		<div class="page-main">
-			<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-		</div>
-		<c:if test="${empty productDetailVO}">
-			<div class="result-display">
-				등록된 상품이 없습니다.
-			</div>
-		</c:if>
-		<c:if test="${!empty productDetailVO}">
-		<div class="container">
-			<div id="carouselIndicators" class="carousel slide" data-ride="carousel">
-				<ol class="carousel-indicators">
-					<li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
-					<li data-target="#carouselIndicators" data-slide-to="1"></li>
-					<li data-target="#carouselIndicators" data-slide-to="2"></li>
-				</ol>
-				<div class="carousel-inner">
-					<div class="carousel-item active">
-						<img src="${pageContext.request.contextPath}/upload/${productDetailVO.x_file}" class="d-block w-100" width="100%" height="600">
-						<div class="carousel-caption d-md-block">
-							<h5 align="left" style="color:black">${productDetailVO.x_name}</h5>
-							<h5 align="left" style="color:black">${productDetailVO.x_brand}</h5>
-						</div>
-					</div>
-					<c:forEach var="productList" items="${productList}">
-					<div class="carousel-item">
-						<img src="${pageContext.request.contextPath}/upload/${productList.x_file}" class="d-block w-100" width="100%" height="600">
-						<div class="carousel-caption d-md-block">
-							<h5 align="left" style="color:black">${productList.x_name}</h5>
-							<h5 align="left" style="color:black">${productList.x_brand}</h5>
-						</div>
+<head>
+<meta charset="UTF-8">
+<title>메인</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>		<!-- Link Swiper -->
+<!-- Link Swiper's CSS -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+</head>
+<body>
+	<div class="page-main">
+		<!-- header 시작 -->
+		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+		<!-- header 끝 -->
+		
+		<p>
+		
+		<!-- 슬라이드 배너 -->
+		<!-- Swiper -->
+	    <div class="swiper mySwiper">
+	      <div class="swiper-wrapper">
+	        <div class="swiper-slide"><img src="${pageContext.request.contextPath}/images/main01.jpg" alt="메인이미지"></div>
+	        <div class="swiper-slide"><img src="${pageContext.request.contextPath}/images/main02.jpg" alt="메인이미지"></div>
+	      </div>
+	      <div class="swiper-pagination"></div>
+	    </div>
+	
+	    <!-- Swiper JS -->
+	    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+	
+	    <!-- Initialize Swiper -->
+	    <script>
+	      var swiper = new Swiper(".mySwiper", {
+	        pagination: {
+	          el: ".swiper-pagination",
+	        },
+	      });
+	    </script>
+	    <!-- 슬라이드 배너 끝 -->
+	 			   
+	    <div>
+	    	<h5 style="text-align:center; margin-top:50px;"><b>상품</b></h5>
+	    	<c:if test="${count == 0}">
+				<div class="result-display">
+					등록된 상품이 없습니다.
+				</div>
+				</c:if>
+				<c:if test="${count > 0}">
+				<div>
+					<c:forEach var="product" items="${list}">
+					<div class="horizonal-area">
+						<a href="${pageContext.request.contextPath}/product/productDetail.do?x_code=${productDetailVO.x_code}">
+							<c:if test="${!empty productDetailVO.x_file}">
+								<img src="${pageContext.request.contextPath}/upload/${productDetailVO.x_file}">
+							</c:if>
+							<c:if test="${empty productDetailVO.x_file}">
+								<img src="${pageContext.request.contextPath}/images/blank.gif">
+							</c:if>
+							<span>${productDetailVO.x_name}</span>
+						</a>
 					</div>
 					</c:forEach>
 				</div>
-				<a class="carousel-control-prev" href="#carouselIndicators" data-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="sr-only">Previous</span>
-				</a>
-				<a class="carousel-control-next" href="#carouselIndicators" data-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="sr-only">Next</span>
-				</a>
-			</div>
-		</div>
-		</c:if>
-		
-		<!-- 푸터 -->
-		<div id="footer">
-			<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
-		</div>
+				</c:if>
+	    </div>
+	</div>	
+    
+    <div id="footer">
+    	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+    </div>
 
-		<script src="../js/jquery-3.6.0.min.js"></script>
-		<script src="../js/bootstrap.bundle.min.js"></script>
-	</body>
+</body>
 </html>
