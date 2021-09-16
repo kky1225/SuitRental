@@ -28,12 +28,12 @@
 				${reviewVO.content}
 			</p>
 			<hr size="1" noshade width="100%">
-			<div class="align-center">
+			<div class="align-right">
 				작성일 : ${reviewVO.reg_date}
 				<c:if test="${!empty reviewVO.modify_date}">최근 수정일 : ${reviewVO.modify_date}</c:if>
 				<c:if test="${user_num == reviewVO.mem_num}">
-					<input type="button" value="수정" onclick="location.href='reviewModifyForm.do?review_num=${reviewVO.review_num}'">
-					<input type="button" value="삭제" id="delete_btn">
+					<input type="button" class="btn btn-dark" value="수정" onclick="location.href='reviewModifyForm.do?review_num=${reviewVO.review_num}'">
+					<input type="button" class="btn btn-dark" value="삭제" id="delete_btn">
 					<script type="text/javascript">
 						var delete_btn = document.getElementById('delete_btn');
 						delete_btn.onclick = function(){
@@ -44,7 +44,7 @@
 						};
 					</script>
 				</c:if>
-				<input type="button" value="목록" onclick="location.href='reviewList.do'">
+				<input type="button" class="btn btn-dark" value="목록" onclick="location.href='reviewList.do'">
 			</div>
 			<div id="loading" style="display:none;">
 				<img src="${pageContext.request.contextPath}/images/ajax-loader.gif">
