@@ -21,6 +21,10 @@
 				return false;
 			}
 		});
+		
+		if($('#filename').change(function(){
+			$('#filename_text').val($(this)[0].files[0].name);
+		}));
 	});
 </script>
 </head>
@@ -42,8 +46,15 @@
 					<textarea cols="30" class="form-control" rows="5" name="q_content" id="q_content"></textarea>
 				</li>
 				<li>
-					<label for="filename" class="form-label mt-4">파일</label>
-					<input type="file" class="form-control" name="filename" id="filename" accept="image/gif, image/png, image/jpeg">
+					<div class="row">
+						<div class="col-auto" style="margin-left:-14px;">
+							<input id="filename_text" class="form-control mt-4" value="파일선택" style="width:200px; margin-left:14px;" readonly>
+						</div>
+						<div class="col-auto" style="margin-top:26px;">
+							<label for="filename" class="btn btn-dark" style="width:60px;">파일</label>
+						</div>
+						<input type="file" id="filename" name="filename" style="display:none;">
+					</div>
 				</li>
 			</ul>
 			<div class="align-center">

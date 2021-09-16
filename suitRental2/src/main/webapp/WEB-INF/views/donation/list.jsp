@@ -25,7 +25,7 @@ $(document).ready(function(){
 <body>
 <div class="page-main">
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<h3 style="text-align:center; margin-top:50px;"><b>기부게시판</b></h3>
+	<h3 style="text-align:center; margin-top:50px;"><b>기부</b></h3>
 	
 	<div class="list-space align-right">
 		<input type="button" value="글쓰기" onclick="location.href='writeForm.do'"

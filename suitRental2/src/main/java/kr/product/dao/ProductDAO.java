@@ -454,7 +454,7 @@ public class ProductDAO {
 					board.setX_hit(rs.getInt("x_hit"));
 					board.setX_like(rs.getInt("x_like"));
 					board.setX_reg_date(rs.getDate("x_reg_date"));
-					board.setX_purchase_cnt(rs.getInt("x_purchase_cnt"));
+					board.setX_purchase_cnt(rs.getInt("x_purchase"));
 					board.setX_type(rs.getString("x_type"));
 					board.setX_contents(rs.getString("x_contents"));
 				}
@@ -589,25 +589,25 @@ public class ProductDAO {
 			}
 		}
 		
-		
-		
 		public int updatePurchase(int x_code)throws Exception{
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			String sql = null;
 			int count = 0;
 			
+			
 			try {
 				//커넥션풀로부터 커넥션을 할당
 				conn=DBUtil.getConnection();
 				
-				sql = "update suit set x_purchase = x_purchase+1 where x_code=?";
+				sql = "update suit set x_purchase = x_purchase + 1 where x_code=?";
 				
 				//PreparedStatement객체 생성
 				pstmt=conn.prepareStatement(sql);
 				
 				pstmt.setInt(1, x_code);
 				
+				pstmt.executeQuery();
 				 
 			}catch(Exception e) {
 				throw new Exception(e);
@@ -645,7 +645,7 @@ public class ProductDAO {
 			
 			pstmt2.executeQuery();
 			
-			sql = "DELETE FROM rental_detail WHERE x_code = ?";
+			sql = "DELETE FROM rental WHERE x_code = ?";
 			pstmt3 = conn.prepareStatement(sql);
 			pstmt3.setInt(1, x_code);
 			
@@ -658,10 +658,10 @@ public class ProductDAO {
 			pstmt4.executeQuery();
 			
 			sql = "DELETE FROM suit WHERE x_code = ?";
-			pstmt4 = conn.prepareStatement(sql);
-			pstmt4.setInt(1, x_code);
+			pstmt5 = conn.prepareStatement(sql);
+			pstmt5.setInt(1, x_code);
 			
-			pstmt4.executeQuery();
+			pstmt5.executeQuery();
 			
 			conn.commit();
 		} catch (Exception e) {

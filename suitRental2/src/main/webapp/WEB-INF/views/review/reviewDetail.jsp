@@ -11,7 +11,7 @@
 	<body>
 		<div class="page-main">
 			<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-			<h2>게시글 보기</h2>
+			<h5 style="text-align:center; margin-top:50px;"><b>리뷰</b></h5>
 			<ul>
 				<li>글번호 : ${reviewVO.review_num}</li>
 				<li>글제목 : ${reviewVO.title}</li>

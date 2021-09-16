@@ -22,6 +22,18 @@
 				return false;
 			}
 		});
+		
+		if($('#file_delete').click(function(){
+			$('#filename').val('');
+			$('#file_check1').text('');
+			$('#file_check2').attr('value', 'none');
+		}));
+		
+		if($('#filename').change(function(){
+			$('#file_check1').text('');
+			$('#file_check2').attr('value', 'none');
+			$('#filename_text').val($(this)[0].files[0].name);
+		}));
 	});
 </script>
 </head>
@@ -43,12 +55,25 @@
 					<textarea cols="30" class="form-control" rows="5" name="q_content" id="q_content"></textarea>
 				</li>
 				<li>
-					<label for="filename">파일</label>
-					<input type="file" name="filename" id="filename" accept="image/gif, image/png, image/jpeg">
 					<c:if test="${!empty boardQna.filename}">
-						<br>
-						<span>(${boardQna.filename})파일이 등록되어 있습니다.<br>수정 시 기존파일은 삭제됩니다.</span>
+						<p id="file_check1" style="margin-top:10px; margin-left:12px;">${boardQna.filename}</p>
+						<input type="hidden" name="file_check2" id="file_check2" value="${boardQna.filename}">
 					</c:if>
+					<c:if test="${empty boardQna.filename}">
+						<input type="hidden" name="file_check2" id="file_check2" value="none">
+					</c:if>
+				</li>
+				<li>
+					<div class="row">
+					<div class="col-auto" style="margin-left:-14px;">
+						<input id="filename_text" class="form-control mt-4" value="파일선택" style="width:200px; margin-left:14px;" readonly>
+					</div>
+					<div class="col-auto">
+						<label for="filename" class="btn btn-dark" style="width:60px; margin-top:26px;">파일</label>
+					</div>
+						<input type="button" name="file_delete" id="file_delete" class="btn btn-dark" style="width:100px; height:38px; margin-top:26px;" value="파일 삭제">
+						<input type="file" id="filename" name="filename" style="display:none;">
+					</div>
 				</li>
 			</ul>
 			<div class="align-center">

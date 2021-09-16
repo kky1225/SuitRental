@@ -29,7 +29,6 @@
 				  <c:if test="${productDetailVO.x_gender == 'female'}">여자</c:if>
 		</li>
 		<li>사이즈 : ${productDetailVO.x_size}</li>
-		<li>총 대여수 : ${productDetailVO.x_rental_count}</li>
 		<li>조회수 : ${productDetailVO.x_hit}</li>
 		<li>좋아요수 : ${productDetailVO.x_like}</li>
 		<li>옷 종류 : <c:if test="${productDetailVO.x_type == 'jacket'}">자켓</c:if>
@@ -37,7 +36,7 @@
 					<c:if test="${productDetailVO.x_type == 'slacks'}">슬랙스</c:if>
 					<c:if test="${productDetailVO.x_type == 'shoes'}">구두</c:if>
 		</li>
-		<li>구매수 : ${productDetailVO.x_purchase_cnt}</li>
+		<li>총 대여수 : ${productDetailVO.x_purchase_cnt}</li>
 	</ul>
 	<c:if test="${!empty board.x_file}">
 	<div class="align-center">

@@ -22,6 +22,10 @@
 			return false;
 		} 
 	 });
+	 
+	 if($('#filename').change(function(){
+			$('#filename_text').val($(this)[0].files[0].name);
+		}));
  });
 </script>
 </head>
@@ -33,15 +37,22 @@
 		<ul>
 			<li>
 				<label for="title" class="form-label">제목</label>
-				<input type="text" id="title" name="title" class="form-control mt-4" style="width:285px;" maxlength="50">
+				<input type="text" id="title" name="title" class="form-control mt-4" maxlength="50">
 			</li>
 			<li>
 				<label for="content" class="form-label">내용</label>
 				<textarea rows="5" cols="40" name="content" id="content" class="form-control"></textarea>
 			</li>
 			<li>
-				<label for="filename" class="form-label">파일</label>
-				<input type="file" id="filename" name="filename" class="form-control" accept="image/gif,image/png,image/jpeg">
+				<div class="row">
+					<div class="col-auto" style="margin-left:-14px;">
+						<input id="filename_text" class="form-control mt-4" value="파일선택" style="width:200px; margin-left:14px;" readonly>
+					</div>
+					<div class="col-auto" style="margin-top:26px;">
+						<label for="filename" class="btn btn-dark" style="width:60px;">파일</label>
+					</div>
+					<input type="file" id="filename" name="filename" style="display:none;">
+				</div>
 			</li>
 		</ul>
 		<div class="align-center">

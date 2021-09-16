@@ -34,6 +34,7 @@
 	if($('#filename').change(function(){
 		$('#file_check1').text('');
 		$('#file_check2').attr('value', 'none');
+		$('#filename_text').val($(this)[0].files[0].name);
 	}));
 });
 </script>
@@ -44,7 +45,7 @@
 	<h5 class="align-center" style="margin-bottom:10px;">기부 수정</h5>
 	<form action="modifyDonation.do" method="post" id="modify_form" enctype="multipart/form-data">
 		<input type="hidden" name="donation_num" value="${donation.donation_num}" >
-	<ul>
+		<ul>
 			<li>
 				<label for="title" class="form-label">제목</label>
 				<input type="text" class="form-control mt-4" style="width:285px;" id="title" name="title" value="${donation.title }" maxlength="50">
@@ -56,15 +57,27 @@
 				<span style="font-size:11pt;color:#999;padding-left:45px;">*물품의 종류, 갯수, 사이즈 등 설명을 입력하세요.*</span>
 			</li>
 			<li>
-				<label for="filename" class="form-label">파일</label>
-				<input type="file" id="filename" name="filename" class="form-control" accept="image/gif,image/png,image/jpeg">
 				<c:if test="${!empty donation.filename}">
-						<p id="file_check1" style="font-size:11pt;color:#999;padding-left:10px;">${donation.filename}</p>
-						<input type="hidden" name="file_check2" id="file_check2" value="${donation.filename}">
-						<input type="button" name="file_delete" id="file_delete" value="파일 삭제" class="btn btn-outline-dark" style="width:70px; margin-top:-12px; margin-bottom:11px;font-size:11px;">
+					<p id="file_check1" style="margin-top:10px; margin-left:12px;">${donation.filename}</p>
+					<input type="hidden" name="file_check2" id="file_check2" value="${donation.filename}">
+				</c:if>
+				<c:if test="${empty donation.filename}">
+					<input type="hidden" name="file_check2" id="file_check2" value="none">
 				</c:if>
 			</li>
-	</ul>
+			<li>
+				<div class="row">
+				<div class="col-auto" style="margin-left:-14px;">
+					<input id="filename_text" class="form-control mt-4" value="파일선택" style="width:200px; margin-left:14px;" readonly>
+				</div>
+				<div class="col-auto">
+					<label for="filename" class="btn btn-dark" style="width:60px; margin-top:26px;">파일</label>
+				</div>
+					<input type="button" name="file_delete" id="file_delete" class="btn btn-dark" style="width:100px; height:38px; margin-top:26px;" value="파일 삭제">
+					<input type="file" id="filename" name="filename" style="display:none;">
+				</div>
+			</li>
+		</ul>
 	<div class="align-center">
 		<input type="submit" value="수정" class="btn btn-dark" style="width:120px; margin-top:10px;">
 		<input type="button" value="목록" onclick="location.href='list.do'" class="btn btn-dark" style="width:120px; margin-top:10px;">

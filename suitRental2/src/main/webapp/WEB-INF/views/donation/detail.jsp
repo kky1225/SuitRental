@@ -253,7 +253,7 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<h5 style="text-align:center; margin-top:50px;"><b>기부 게시판</b></h5>
+	<h5 style="text-align:center; margin-top:50px;"><b>기부</b></h5>
 	
 	<ul>
 		<li>글번호 : ${donation.donation_num } </li>

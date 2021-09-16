@@ -46,6 +46,8 @@ public class RentalAction implements Action{
 			
 			RentalDAO dao = RentalDAO.getInstance();
 			dao.rent(board);
+			
+			ProductDAO.getInstance().updatePurchase(x_code);
 	
 			return "/WEB-INF/views/rental/rental.jsp";
 			}
