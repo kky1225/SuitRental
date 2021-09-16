@@ -30,7 +30,6 @@
 				<c:if test="${empty user_num}"> disabled = "disabled" </c:if>
 			>	<!-- 로그인 안되어있을 시 글쓰기 비활성화 -->
 			<input type="button"  class="btn btn-dark"  value="목록" onclick="location.href='listQna.do'">
-			<input type="button"  class="btn btn-dark"  value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
 		</div>
 		<c:if test="${count == 0}">
 			<div class="result-display">
