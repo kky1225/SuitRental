@@ -62,9 +62,11 @@
 	<body>
 		<div class="page-main">
 			<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-			<h2>대여</h2>
 			<form id="rental_form" method="post" action="rental.do">
 				<ul>
+					<li>
+					<h5 style="text-align:center; margin-top:50px;"><b>대여</b></h5>
+					</li>
 					<li>
 						<input type="hidden" value="${dto.x_code}" name="code">
 						<input type="hidden" value="${dto.mem_num}" name="num">
