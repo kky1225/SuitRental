@@ -1,7 +1,5 @@
 package kr.main.action;
 
-import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,33 +8,22 @@ import javax.servlet.http.HttpServletResponse;
 import kr.controller.Action;
 import kr.product.dao.ProductDAO;
 import kr.productdetail.vo.ProductDetailVO;
-import kr.util.PagingUtil;
 
 public class MainAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		String pageNum = request.getParameter("page_num");
-		if(pageNum == null) {
-			pageNum = "1";
-		}
+		ProductDAO dao = ProductDAO.getInstance();
+		int count = dao.getProductCount(null, null);
 		
-		int count = ProductDAO.getInstance().getProductCount(null,null);
-		
-		PagingUtil page = new PagingUtil(Integer.parseInt(pageNum), count, 20, 10, "productList.do");
-		
-		List<ProductDetailVO> productList = new ArrayList<ProductDetailVO>();
+		List<ProductDetailVO> list = null;
 		if(count > 0) {
-			productList = ProductDAO.getInstance().getProductList(2, 4,null,null);
+			list = dao.getProductList(1, 4, null, null);
 		}
 		
-		ProductDetailVO productDetailVO = ProductDAO.getInstance().getBestProduct();
-        
-		request.setAttribute("productDetailVO", productDetailVO);
-        request.setAttribute("count", count);
-		request.setAttribute("productList", productList);
-		request.setAttribute("pagingHtml", page.getPagingHtml());
+		request.setAttribute("count", count);
+		request.setAttribute("list", list);
 		
 		return "/WEB-INF/views/main/main.jsp";
 	}

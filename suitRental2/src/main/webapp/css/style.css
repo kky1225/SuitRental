@@ -64,7 +64,7 @@ body {
 	object-fit: cover;
 }
 
-/* 메인 - 상품 진열*/
+/* 메인 상품 진열*/
 a:link{
 	text-decoration: none;
 	color: #000;
@@ -78,8 +78,8 @@ a:hover{
 	color: #999;
 }
 .horizonal-area{
-	margin: 2px;
-	padding: 3px;
+	margin: 12px;
+	padding: 5px;
 	width: 200px;
 	height:200px;
 	float: left;
