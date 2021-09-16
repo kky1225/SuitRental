@@ -16,7 +16,7 @@
 		<h3 style="text-align:center; margin-top:50px;"><b>회원정보</b></h3>
 		<br><br>
 		<b>[${member.id}]님 환영합니다!</b>
-		<div class="page-main">
+		<div>
 			<br>
 			<div class="d-grid gap-2">
 	  			<button class="btn btn-sm btn-dark" type="button" onclick="location.href='deleteUserForm.do'">회원탈퇴</button>
