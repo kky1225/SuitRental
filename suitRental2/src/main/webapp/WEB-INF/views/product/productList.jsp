@@ -33,13 +33,13 @@
 				</c:if>
 			</div>
 			<div class="list-space align-left">
-				<a class="navbar-brand" href="${pageContext.request.contextPath}/product/productList.do?list=1" style="color:black; font-size:20px;">좋아요 순</a>
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/product/productList.do?list=1" style="color:black; font-size:14px;">좋아요 순</a>
 				<a class="navbar-brand"></a>
-				<a class="navbar-brand" href="${pageContext.request.contextPath}/product/productList.do?list=2" style="color:black; font-size:20px;">판매 순</a>
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/product/productList.do?list=2" style="color:black; font-size:14px;">판매 순</a>
 				<a class="navbar-brand"></a>
-				<a class="navbar-brand" href="${pageContext.request.contextPath}/product/productList.do?list=3" style="color:black; font-size:20px;">남자 정장</a>
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/product/productList.do?list=3" style="color:black; font-size:14px;">남자 정장</a>
 				<a class="navbar-brand"></a>
-				<a class="navbar-brand" href="${pageContext.request.contextPath}/product/productList.do?list=4" style="color:black; font-size:20px;">여자 정장</a>
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/product/productList.do?list=4" style="color:black; font-size:14px;">여자 정장</a>
 			</div>
 			<c:if test="${count == 0 && list == 1}">
 				<div class="result-display">

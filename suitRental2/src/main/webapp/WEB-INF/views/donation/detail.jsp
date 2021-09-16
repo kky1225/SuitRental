@@ -253,23 +253,26 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<h5 style="text-align:center; margin-top:50px;"><b>기부</b></h5>
+	<h3 style="text-align:center; margin-top:50px;"><b>기부</b></h3>
 	
-	<ul>
-		<li>글번호 : ${donation.donation_num } </li>
-		<li>제목 : ${donation.title } </li>
-		<li>작성자 : ${donation.mem_id } </li>
-		<li>조회수 : ${donation.hit } </li>
-	</ul>
-	<hr size="1" noshade width="100%">
-	<c:if test="${!empty donation.filename}">
-		<div>
-			<img src="${pageContext.request.contextPath }/upload/${donation.filename}" class="detail-img">
-		</div>
-	</c:if>
-	<p>
-		${donation.content }
-	</p>
+	<div class="board-title">
+		<h5>${donation.title } </h5>
+		<ul>
+			<li>글번호 : ${donation.donation_num } </li>
+			<li>작성자 : ${donation.mem_id } </li>
+			<li>조회수 : ${donation.hit } </li>
+		</ul>
+		<hr size="1" noshade width="100%">
+		
+		<p>${donation.content }</p>
+		
+		<c:if test="${!empty donation.filename}">
+			<div>
+				<img src="${pageContext.request.contextPath }/upload/${donation.filename}" class="detail-img">
+			</div>
+		</c:if>
+	</div>
+	
 	<hr size="1" noshade width="100%">
 	<div class="align-right">
 	작성일 : ${donation.reg_date }

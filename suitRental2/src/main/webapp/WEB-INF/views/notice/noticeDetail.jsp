@@ -254,22 +254,26 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<h5 style="text-align:center; margin-top:50px;"><b>공지사항</b></h5>
-	<ul>
-		<li>글번호 : ${notice.notice_num }</li>
-		<li>제목 : ${notice.title }</li>
-		<li>작성자 : ${notice.mem_id }</li>
-		<li>조회수 : ${notice.hit }</li>
-	</ul>
-	<hr size="1" noshade width="100%">
-	<c:if test="${!empty notice.filename }">
-		<div>
-			<img src="${pageContext.request.contextPath }/upload/${notice.filename}" class="detail-img">
-		</div>
-	</c:if>
-	<p>
-		${notice.content }
-	</p>
+	<h3 style="text-align:center; margin-top:50px;"><b>공지사항</b></h3>
+	
+	<div class="board-title">
+		<h5>제목 : ${notice.title }</h5>
+		<ul>
+			<li>글번호 : ${notice.notice_num }</li>
+			<li>작성자 : ${notice.mem_id }</li>
+			<li>조회수 : ${notice.hit }</li>
+		</ul>
+		<hr size="1" noshade width="100%">
+		
+		<p>${notice.content }</p>
+		
+		<c:if test="${!empty notice.filename }">
+			<div>
+				<img src="${pageContext.request.contextPath }/upload/${notice.filename}" class="detail-img">
+			</div>
+		</c:if>
+	</div>
+	
 	<hr size="1" noshade width="100%">
 	<div class="align-right">
 		작성일 : ${notice.reg_date }

@@ -11,22 +11,26 @@
 	<body>
 		<div class="page-main">
 			<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-			<h5 style="text-align:center; margin-top:50px;"><b>리뷰</b></h5>
-			<ul>
-				<li>글번호 : ${reviewVO.review_num}</li>
-				<li>글제목 : ${reviewVO.title}</li>
-				<li>작성자 : ${reviewVO.id}</li>
-				<li>조회수 : ${reviewVO.hit}</li>
-			</ul>
-			<hr size="1" noshade width="100%">
-			<c:if test="${!empty reviewVO.filename}">
-				<div class="align-center">
-					<img src="${pageContext.request.contextPath}/upload/${reviewVO.filename}" class="detail-img">
-				</div>
-			</c:if>
-			<p>
-				${reviewVO.content}
-			</p>
+			<h3 style="text-align:center; margin-top:50px;"><b>리뷰</b></h3>
+			
+			<div class="board-title">
+				<h5>${reviewVO.title}</h5>
+				<ul>
+					<li>글번호 : ${reviewVO.review_num}</li>
+					<li>작성자 : ${reviewVO.id}</li>
+					<li>조회수 : ${reviewVO.hit}</li>
+				</ul>
+				<hr size="1" noshade width="100%">
+				
+				<p>${reviewVO.content}</p>
+				
+				<c:if test="${!empty reviewVO.filename}">
+					<div class="align-center">
+						<img src="${pageContext.request.contextPath}/upload/${reviewVO.filename}" class="detail-img">
+					</div>
+				</c:if>
+			</div>
+			
 			<hr size="1" noshade width="100%">
 			<div class="align-right">
 				작성일 : ${reviewVO.reg_date}
