@@ -85,6 +85,7 @@ $(document).ready(function(){
 	
 </div>
 
+<!-- 푸터 -->
 <div id="footer">
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </div>
