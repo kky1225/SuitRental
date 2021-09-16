@@ -78,7 +78,7 @@
 						};
 		</script>
 		</c:if>
-		<input type="button" class="btn btn-dark"  value="목록" onclick="location.href='productList.do'">
+		<input type="button" class="btn btn-dark"  value="목록" onclick="location.href='productList.do?list=1'">
 	</div>
 	<div class="page-main">
 			<h2>상품 후기</h2>
