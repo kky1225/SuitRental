@@ -6,41 +6,33 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>상품 게시판 목록</title>
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" type="text/css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
-		<script>
-	$(document).ready(function(){
-		$('#search_form').submit(function(){
-			if($('#keyword').val().trim() == ''){
-				alert('검색어를 입력하세요.');
-				$('#keyword').val('').focus();
-				return false;
-			}
-		});
-	});
-</script>
-	
 	</head>
 	<body>
 		<div class="page-main">
 			<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 			<h3 style="text-align:center; margin-top:50px;"><b>SUIT</b></h3>
-			
 			<div class="list-space align-right">
 				<c:if test="${user_auth == 3}">
-				<input type="button" class="btn btn-dark" value="상품 등록" onclick="location.href='productWriteForm.do'"
+				<input type="button" value="상품 등록" class="btn btn-dark" onclick="location.href='productWriteForm.do'"
 					<c:if test="${empty user_num}">disabled="disabled"</c:if>
 				>
 				</c:if>
-				</div>
-			<c:if test="${count == 0}">
+			</div>
+			<div class="list-space align-left">
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/product/productList.do?list=1" style="color:black; font-size:20px;">좋아요 순</a>
+				<a class="navbar-brand"></a>
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/product/productList.do?list=2" style="color:black; font-size:20px;">판매 순</a>
+			</div>
+			<c:if test="${count == 0 && list == 1}">
 				<div class="result-display">
 					등록된 게시물이 없습니다.
 				</div>
 			</c:if>
-			<c:if test="${count > 0}">
-				<table>
+			<c:if test="${count > 0 && list == 1}">
+				<table class="table table-hover">
 					<tr>
 						<th>사진</th>
 						<th>이름</th>
@@ -62,22 +54,19 @@
 					${pagingHtml}
 				</div>
 			</c:if>
-			<form id="search_form" action="productList.do" method="get">
-				<ul class="search">
-					<li>
-						<select name="keyfield">
-							<option value="1">상품명</option>
-							<option value="2">브랜드</option>
-						</select>
-					</li>
-					<li>
-						<input type="search" size="16" name="keyword" id="keyword">
-					</li>
-					<li>
-						<input type="submit" value="찾기">
-					</li>
-				</ul>
-			</form>
+			<c:if test="${count == 0 && list == 2}">
+				<div class="result-display">
+					등록된 게시물이 없습니다.
+				</div>
+			</c:if>
+			<c:if test="${count > 0 && list == 2}">
+				<div class="result-display">
+					등록된 게시물이 없습니다.
+				</div>
+				<div class="align-center">
+					${pagingHtml}
+				</div>
+			</c:if>
 		</div>
 		<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	</body>

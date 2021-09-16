@@ -20,26 +20,21 @@ public class ProductListAction implements Action{
 		if(pageNum == null) {
 			pageNum = "1";
 		}
-
-		String keyfield = request.getParameter("keyfield");
-		String keyword = request.getParameter("keyword");
 		
-		if(keyfield == null) {
-			keyfield = "";
-		}
-		if(keyword == null) {
-			keyword = "";
-		}
+		int count = ProductDAO.getInstance().getProductCount();
 		
-		int count = ProductDAO.getInstance().getProductCount(keyfield, keyword);
-		
-		PagingUtil page = new PagingUtil(keyfield,keyword,Integer.parseInt(pageNum), count, 20, 10, "productList.do");
+		PagingUtil page = new PagingUtil(Integer.parseInt(pageNum), count, 20, 10, "productList.do");
 		
 		List<ProductDetailVO> productList = new ArrayList<ProductDetailVO>();
 		if(count > 0) {
-			productList = ProductDAO.getInstance().getProductList(page.getStartCount(), page.getEndCount(),keyfield,keyword);
+			productList = ProductDAO.getInstance().getProductList(page.getStartCount(), page.getEndCount());
 		}
+
+		
+		int list = Integer.parseInt(request.getParameter("list"));
+		System.out.println(list);
         
+		request.setAttribute("list", list);
         request.setAttribute("count", count);
 		request.setAttribute("productList", productList);
 		request.setAttribute("pagingHtml", page.getPagingHtml());

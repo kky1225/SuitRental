@@ -34,7 +34,7 @@
 		<div class="collapse navbar-collapse" id="menu">
 			<ul class="navbar-nav me-auto">
 				<li class="nav-product">
-					<a class="nav-link" href="${pageContext.request.contextPath}/product/productList.do">상품</a>
+					<a class="nav-link" href="${pageContext.request.contextPath}/product/productList.do?list=1">상품</a>
 				</li>
 				<li class="nav-review">
 					<a class="nav-link" href="${pageContext.request.contextPath}/review/reviewList.do">리뷰</a>
