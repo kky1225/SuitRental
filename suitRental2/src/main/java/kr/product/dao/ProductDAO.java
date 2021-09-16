@@ -226,24 +226,44 @@ public class ProductDAO {
 		return list;
 	}
 	
-	//구매순리스트
-	public List<ProductDetailVO> getBestPurchaseList(int start, int end) throws Exception {
+	//구매순 리스트
+	public List<ProductDetailVO> getBestPurchaseList(int start, int end, String keyfield, String keyword) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
+		String sub_sql = null;
 		List<ProductDetailVO> list = null;
 		
 		try {
 			//커넥션풀로부터 커넥션 할당
 			conn=DBUtil.getConnection();
-			sql = "SELECT * FROM (SELECT a.*, rownum AS rnum FROM (SELECT * FROM suit ORDER BY x_purchase_cnt DESC)a) WHERE rnum >=? AND rnum <= ?";
-		
+			
+			if(keyword == null || keyword.equals("")) {
+				
+			sql = "SELECT * FROM (SELECT a.*, rownum AS rnum FROM (SELECT * FROM suit ORDER BY x_purchase DESC)a) WHERE rnum >=? AND rnum <= ?";
+
 			//PreparedStatement 객체 생성
 			pstmt=conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
+			
+		}else {
+			if(keyfield.equals("1")) sub_sql = "x_name LIKE ?";
+			else if(keyfield.equals("2")) sub_sql = "x_brand LIKE ?";
+			
+			sql = "SELECT * FROM (SELECT a.*, rownum AS rnum FROM (SELECT * FROM suit WHERE " + sub_sql + " ORDER BY  x_purchase DESC)a) WHERE rnum >= ? AND rnum <= ?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, "%" + keyword + "%");
+
+			
+		pstmt.setInt(2, start);
+		pstmt.setInt(3, end);
+	
+		}
+				
 			//SQL문 실행하고 결과행을 ResultSet에 담음
 			rs=pstmt.executeQuery();
 			
@@ -256,6 +276,7 @@ public class ProductDAO {
 				board.setX_code(rs.getInt("x_code"));
 				board.setX_brand(rs.getString("x_brand"));
 				board.setX_price(rs.getInt("x_price"));
+				board.setX_purchase(rs.getInt("x_purchase"));
 				
 				list.add(board);
 			}
@@ -269,11 +290,7 @@ public class ProductDAO {
 		return list;
 	}
 	
-	
-	
-	
-	
-	
+
 	
 	
 	

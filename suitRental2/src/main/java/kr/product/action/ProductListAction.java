@@ -35,17 +35,20 @@ public class ProductListAction implements Action{
 		PagingUtil page = new PagingUtil(Integer.parseInt(pageNum), count, 20, 10, "productList.do");
 		
 		List<ProductDetailVO> productList = new ArrayList<ProductDetailVO>();
+		List<ProductDetailVO> productList2 = new ArrayList<ProductDetailVO>();
+		
 		if(count > 0) {
 			productList = ProductDAO.getInstance().getProductList(page.getStartCount(), page.getEndCount(),keyfield,keyword);
+			productList2 = ProductDAO.getInstance().getBestPurchaseList(page.getStartCount(), page.getEndCount(),keyfield,keyword);
 		}
 
-		
 		int list = Integer.parseInt(request.getParameter("list"));
 		System.out.println(list);
         
 		request.setAttribute("list", list);
         request.setAttribute("count", count);
 		request.setAttribute("productList", productList);
+		request.setAttribute("productList2", productList2);
 		request.setAttribute("pagingHtml", page.getPagingHtml());
 		
 		return "/WEB-INF/views/product/productList.jsp";
