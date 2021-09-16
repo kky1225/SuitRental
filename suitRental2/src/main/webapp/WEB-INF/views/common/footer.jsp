@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div id="footer" >
+<div id="footer" style="height:170px;">
 	<hr size="1" width="100%" noshade="noshade">
 	<p class="text-center" style="font-weight:bold;">&copy; Suit Rental</p>
 	<div style="font-size:12px; margin-left:150px; color:gray; ">
