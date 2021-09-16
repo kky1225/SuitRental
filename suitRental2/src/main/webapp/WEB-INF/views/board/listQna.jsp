@@ -38,40 +38,47 @@
 			</div>
 		</c:if>
 		<c:if test="${count > 0}">
-			<table>
-				<tr>
-					<th>글번호</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>작성일</th>
-					<th>조회수</th>
-				</tr>
-				<c:forEach var="boardQna" items="${listQna}">
-				<tr>
-					<td>${boardQna.qna_num}</td>
-					<td>
-                    	[질문]<a href="detailQna.do?qna_num=${boardQna.qna_num}">${boardQna.title}</a>
-					</td>
-					<td>${boardQna.id}</td>
-					<td>${boardQna.reg_date}</td>
-					<td>${boardQna.hit}</td>
-				</tr>
-				<c:if test="${!empty boardQna.a_content}">
+			<table class="table table-hover">
+				<thead>
 					<tr>
-						<td></td>
-						<td>
-	                    	┖[답변]<a href="answerDetail.do?qna_num=${boardQna.qna_num}">${boardQna.title}</a>
-						</td>
-						<td>관리자</td>
-						<td>${boardQna.ans_date}</td>
-						<td></td>
+						<th scope="row">글번호</th>
+						<th scope="row">제목</th>
+						<th scope="row">작성자</th>
+						<th scope="row">작성일</th>
+						<th scope="row">조회수</th>
 					</tr>
-				</c:if>
-				</c:forEach>
+				</thead>
+				<tbody>
+					<c:forEach var="boardQna" items="${listQna}">
+					<tr class="table-light">
+						<td>${boardQna.qna_num}</td>
+						<td>
+	                    	[질문]<a href="detailQna.do?qna_num=${boardQna.qna_num}">${boardQna.title}</a>
+						</td>
+						<td>${boardQna.id}</td>
+						<td>${boardQna.reg_date}</td>
+						<td>${boardQna.hit}</td>
+					</tr>
+					<c:if test="${!empty boardQna.a_content}">
+						<tr class="table-light">
+							<td></td>
+							<td>
+		                    	┖[답변]<a href="answerDetail.do?qna_num=${boardQna.qna_num}">${boardQna.title}</a>
+							</td>
+							<td>관리자</td>
+							<td>${boardQna.ans_date}</td>
+							<td></td>
+						</tr>
+					</c:if>
+					</c:forEach>
+				<tbody>
 			</table>
+			
+			<!-- 버튼 부분 -->
 			<div class="align-center">
 				${pagingHtml}
 			</div>
+
 		</c:if>
 		
 		<!-- 검색 부분 -->
