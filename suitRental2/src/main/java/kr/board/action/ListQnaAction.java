@@ -16,7 +16,9 @@ public class ListQnaAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		String pageNum = request.getParameter("pageNum");
-		if(pageNum == null)pageNum = "1";
+		if(pageNum == null) {
+			pageNum = "1";
+		}
 		
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
@@ -24,8 +26,8 @@ public class ListQnaAction implements Action{
 		BoardQnaDAO dao = BoardQnaDAO.getInstance();
 		int count = dao.getBoardQnaCount(keyfield, keyword);
 		
-		// ÆäÀÌÁö Ã³¸® (keyfield, keyword, currentPage, count, rowCount, pageCount, url)
-		PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 20, 10, "listQna.do");
+		// í˜ì´ì§€ ì²˜ë¦¬ (keyfield, keyword, currentPage, count, rowCount, pageCount, url)
+		PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 10, 10, "listQna.do");
 		
 		List<BoardQnaVO> list = null;
 		if(count > 0) {

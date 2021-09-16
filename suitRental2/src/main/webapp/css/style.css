@@ -20,7 +20,7 @@
 	text-align:right;
 }
 
-/*목록*/
+/*검색*/
 form#search_form{
 	border:none;
 }
@@ -35,16 +35,25 @@ ul.search li{
 	padding:0;
 	display:inline;	
 }
+
+/* 게시판 목록 */
 table{
 	width: 100%;
-    border-top: 1px solid #444444;
+    border-top: 1px solid #444;
     border-collapse: collapse;
     margin-top: 5px;
 }
 table td,table th{
-	border-bottom: 1px solid #444444;
+	border-bottom: 1px solid #444;
     padding: 10px;
 }
+
+/* 상품 등록 */
+table#pd-write td,table th{
+	border:1px solid #000;
+	padding:5px;
+}
+
 /*등록, 수정폼*/
 form{
 	width:500px;

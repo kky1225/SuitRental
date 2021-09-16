@@ -113,7 +113,7 @@ $(document).ready(function() {
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<h3>상품 등록 페이지</h3>
 	<form id="productWrite_form" action="productWrite.do" method="post" enctype="multipart/form-data">
-		<table border="0">
+		<table id="pd-write">
 			<tr>
 				<th>상품명</th>
 				<td>
