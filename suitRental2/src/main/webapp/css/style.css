@@ -21,7 +21,7 @@
 	text-align:right;
 }
 
-/* 메인 슬라이드 배너 */
+/* 메인 - 슬라이드 배너 */
 html,body {
 	position: relative;
 	height: 100%;
@@ -64,7 +64,7 @@ body {
 	object-fit: cover;
 }
 
-/* 메인 상품 진열*/
+/* 메인 - 상품 진열*/
 a:link{
 	text-decoration: none;
 	color: #000;
