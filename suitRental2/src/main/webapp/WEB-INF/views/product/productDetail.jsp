@@ -37,7 +37,7 @@
 					<c:if test="${productDetailVO.x_type == 'slacks'}">슬랙스</c:if>
 					<c:if test="${productDetailVO.x_type == 'shoes'}">구두</c:if>
 		</li>
-		<li>구매수 : ${productDetailVO.x_purchase}</li>
+		<li>구매수 : ${productDetailVO.x_purchase_cnt}</li>
 	</ul>
 	<c:if test="${!empty board.x_file}">
 	<div class="align-center">

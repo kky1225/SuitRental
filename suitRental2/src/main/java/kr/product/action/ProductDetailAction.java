@@ -38,6 +38,11 @@ public class ProductDetailAction implements Action{
 		request.setAttribute("price", price);
 		request.setAttribute("productDetailVO", productDetailVO);
 		
+		
+		
+		
+		
+		
 		/* ----------------------------------------------- */
 		
 		String pageNum = request.getParameter("page_num");

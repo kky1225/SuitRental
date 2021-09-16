@@ -26,22 +26,6 @@
 		<div class="page-main">
 			<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 			<h3 style="text-align:center; margin-top:50px;"><b>SUIT</b></h3>
-		<form id="search_form" action="productList.do" method="get">
-				<ul class="search">
-					<li>
-						<select name="keyfield">
-							<option value="1">상품명</option>
-							<option value="2">브랜드</option>
-						</select>
-					</li>
-					<li>
-						<input type="search" size="16" name="keyword" id="keyword">
-					</li>
-					<li>
-						<input type="submit" value="찾기">
-					</li>
-				</ul>
-			</form>
 			
 			<div class="list-space align-right">
 				<c:if test="${user_auth == 3}">
@@ -78,6 +62,22 @@
 					${pagingHtml}
 				</div>
 			</c:if>
+			<form id="search_form" action="productList.do" method="get">
+				<ul class="search">
+					<li>
+						<select name="keyfield">
+							<option value="1">상품명</option>
+							<option value="2">브랜드</option>
+						</select>
+					</li>
+					<li>
+						<input type="search" size="16" name="keyword" id="keyword">
+					</li>
+					<li>
+						<input type="submit" value="찾기">
+					</li>
+				</ul>
+			</form>
 		</div>
 		<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	</body>

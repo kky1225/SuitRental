@@ -15,7 +15,8 @@ public class ProductDetailVO {
 	private int x_hit;
 	private int x_like;
 	private Date x_reg_date;
-	private int x_purchase;
+	//private int x_purchase;
+	private int x_purchase_cnt;
 	private String x_type;
 	private String x_contents;
 	private int mem_num;
@@ -98,14 +99,23 @@ public class ProductDetailVO {
 	public void setX_reg_date(Date x_reg_date) {
 		this.x_reg_date = x_reg_date;
 	}
+	/*
 	public int getX_purchase() {
 		return x_purchase;
 	}
 	public void setX_purchase(int x_purchase) {
 		this.x_purchase = x_purchase;
 	}
+	*/
+	
 	public String getX_type() {
 		return x_type;
+	}
+	public int getX_purchase_cnt() {
+		return x_purchase_cnt;
+	}
+	public void setX_purchase_cnt(int x_purchase_cnt) {
+		this.x_purchase_cnt = x_purchase_cnt;
 	}
 	public void setX_type(String x_type) {
 		this.x_type = x_type;
