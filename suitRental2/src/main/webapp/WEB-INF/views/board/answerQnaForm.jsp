@@ -36,7 +36,7 @@
 				</li>
 				<li>
 					<label>질문 내용</label>
-					<textarea cols="30" class="form-control" rows="3" name="a_content" id="a_content" readonly>${boardQna.q_content}</textarea>
+					<textarea cols="30" class="form-control" rows="3" name="q_content" id="q_content" readonly>${boardQna.q_content}</textarea>
 				</li>
 				<li>
 					<br>

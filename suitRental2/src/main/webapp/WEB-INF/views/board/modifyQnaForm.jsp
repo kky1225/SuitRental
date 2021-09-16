@@ -52,7 +52,8 @@
 				</li>
 				<li>
 					<label for="q_content">내용</label>
-					<textarea cols="30" class="form-control" rows="5" name="q_content" id="q_content"></textarea>
+					<textarea cols="30" class="form-control" rows="5" name="q_content" id="q_content">${boardQna.q_content}</textarea>
+
 				</li>
 				<li>
 					<c:if test="${!empty boardQna.filename}">
