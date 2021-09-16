@@ -27,7 +27,6 @@
 		<div class="list-space align-right">
 			<input type="button"class="btn btn-dark" value="등급 변경" onclick="location.href='updateAuthForm.do'">
 			<input type="button" class="btn btn-dark" value="목록" onclick="location.href='managerPage.do'">
-			<input type="button" class="btn btn-dark" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'"> 
 		</div>
 		<c:if test="${count==0}">
 		<div class="result-display">
