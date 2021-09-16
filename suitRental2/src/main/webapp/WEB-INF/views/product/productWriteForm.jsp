@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>상품 등록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -129,7 +129,7 @@ $(document).ready(function() {
 			<tr>
 				<th>상품 이미지</th>
 				<td>
-					<input type="file" name="filename" id="filename">
+					<input type="file" class="btn btn-dark" name="filename" id="filename">
 				</td>
 			</tr>
 			<tr>
@@ -188,8 +188,8 @@ $(document).ready(function() {
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="submit" value="상품등록">
-					<input type="reset" value="초기화">
+					<input type="submit" class="btn btn-dark" value="상품등록">
+					<input type="reset" class="btn btn-dark" value="초기화">
 				</td>
 			</tr>
 		</table>

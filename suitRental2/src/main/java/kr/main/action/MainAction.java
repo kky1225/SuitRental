@@ -22,13 +22,13 @@ public class MainAction implements Action{
 			pageNum = "1";
 		}
 		
-		int count = ProductDAO.getInstance().getProductCount();
+		int count = ProductDAO.getInstance().getProductCount(null,null);
 		
 		PagingUtil page = new PagingUtil(Integer.parseInt(pageNum), count, 20, 10, "productList.do");
 		
 		List<ProductDetailVO> productList = new ArrayList<ProductDetailVO>();
 		if(count > 0) {
-			productList = ProductDAO.getInstance().getProductList(2, 4);
+			productList = ProductDAO.getInstance().getProductList(2, 4,null,null);
 		}
 		
 		ProductDetailVO productDetailVO = ProductDAO.getInstance().getBestProduct();

@@ -44,23 +44,30 @@ public class ProductDAO {
 	};
 	
 	
-	
-	
-	
-	public int getProductCount()throws Exception{
+	public int getProductCount(String keyfield, String keyword)throws Exception{
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		String sql=null;
+		String sub_sql = null;
 		int count=0;
 		try {
 			//커넥션풀로부터 커넥션 할당
 			conn=DBUtil.getConnection();
 			//SQL문 작성
+			if(keyword == null || keyword.equals("")) {
 			sql="SELECT COUNT (*) FROM suit";
-		
+			
 			//PreparedStatement 객체 생성
 			pstmt=conn.prepareStatement(sql);
+			}else {
+				if(keyfield.equals("1")) sub_sql = "x_name LIKE ?";
+				else if(keyfield.equals("2")) sub_sql = "x_brand LIKE ?";
+				
+				sql = "SELECT COUNT(*) FROM suit WHERE "+ sub_sql;
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, "%" + keyword + "%");
+			}
 			//SQL문 실행하고 결과행을 ResultSet에 담음
 			rs=pstmt.executeQuery();
 			
@@ -78,24 +85,43 @@ public class ProductDAO {
 		return count;
 	}
 	
-	//게시물을 보여주는 메서드
-	public List<ProductDetailVO> getProductList(int start, int end) throws Exception {
+	public List<ProductDetailVO> getProductList(int start, int end, String keyfield, String keyword) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
+		String sub_sql = null;
 		List<ProductDetailVO> list = null;
 		
 		try {
 			//커넥션풀로부터 커넥션 할당
 			conn=DBUtil.getConnection();
+			
+			if(keyword == null || keyword.equals("")) {
+				
 			sql = "SELECT * FROM (SELECT a.*, rownum AS rnum FROM (SELECT * FROM suit ORDER BY x_like DESC)a) WHERE rnum >=? AND rnum <= ?";
-		
+			
 			//PreparedStatement 객체 생성
 			pstmt=conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
+			
+		}else {
+			if(keyfield.equals("1")) sub_sql = "x_name LIKE ?";
+			else if(keyfield.equals("2")) sub_sql = "x_brand LIKE ?";
+			
+			sql = "SELECT * FROM (SELECT a.*, rownum AS rnum FROM (SELECT * FROM suit WHERE " + sub_sql + " ORDER BY  x_like DESC)a) WHERE rnum >= ? AND rnum <= ?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, "%" + keyword + "%");
+
+			
+		pstmt.setInt(2, start);
+		pstmt.setInt(3, end);
+	
+		}
+				
 			//SQL문 실행하고 결과행을 ResultSet에 담음
 			rs=pstmt.executeQuery();
 			
@@ -121,6 +147,7 @@ public class ProductDAO {
 		}
 		return list;
 	}
+	
 	
 	public ProductDetailVO getBestProduct() throws Exception {
 		Connection conn = null;
@@ -342,7 +369,6 @@ public class ProductDAO {
 	}
 		
 	
-		
 		//조회수 증가
 		public void updateReadcount(int x_code)throws Exception{
 			Connection conn=null;
