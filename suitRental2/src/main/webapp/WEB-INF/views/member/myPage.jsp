@@ -13,7 +13,7 @@
 	<div class="page-main">
 		<div> 
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-		<h4 style="text-align:center; margin-top:50px;">회원정보</h4>
+		<h3 style="text-align:center; margin-top:50px;"><b>회원정보</b></h3>
 		<br><br>
 		<div class="d-grid gap-2">
   			<button class="btn btn-lg btn-dark" type="button" onclick="location.href='deleteUserForm.do'">회원탈퇴</button>
@@ -28,7 +28,7 @@
 				</div>
 			</c:if>
 			<c:if test="${count > 0}">
-			<h6 class="align-center">주문 목록</h6>
+			<h5 style="text-align:center; margin-top:50px;"><b>주문 목록</b></h5>
 			<br>
 			<table>
 				<tr>

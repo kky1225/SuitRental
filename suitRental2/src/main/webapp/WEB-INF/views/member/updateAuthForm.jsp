@@ -33,7 +33,7 @@
 	<div class="page-main">
 		<div>
 			<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-			<h6 style="text-align:center; margin-top:50px;">회원 권한 수정</h6>
+			<h5 style="text-align:center; margin-top:50px;"><b>회원 권한 수정</b></h5>
 			<form action="updateAuth.do" id="updateAuth_form" method="post">
 				<ul>
 					<li>

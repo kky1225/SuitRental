@@ -57,7 +57,7 @@
 <body>
 	<div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-		<h6 style="text-align:center; margin-top:50px;">비밀번호 수정</h6>
+		<h5 style="text-align:center; margin-top:50px;"><b>비밀번호 수정</b></h5>
 		<form action="modifyPassword.do" method="post" id="password_form">
 			<ul>
 				<li>

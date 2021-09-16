@@ -47,7 +47,7 @@
 <body>
 <div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-		<h6 style="text-align:center; margin-top:50px;">회원정보 수정</h6>
+		<h5 style="text-align:center; margin-top:50px;"><b>회원정보 수정</b></h5>
 		<form id="modify_form" action="modifyUser.do" method="post">
 			<!-- 세션에 회원번호가 있기 때문에 hidden으로 처리할 필요가 없다 -->
 			<ul>

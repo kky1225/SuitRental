@@ -11,7 +11,7 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<h6 style="text-align:center; margin-top:50px;">주문 취소</h6>
+	<h5 style="text-align:center; margin-top:50px;"><b>주문취소</b></h5>
 	<form action="deleteItem.do" method="post">
 		<input type="hidden" value="${order.rent_num}" name="num">
 			<ul>

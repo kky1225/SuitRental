@@ -52,7 +52,7 @@
 <body>
 	<div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-		<h6 style="text-align:center; margin-top:50px;">주문정보 수정</h6>
+		<h5 style="text-align:center; margin-top:50px;"><b>주문정보 수정</b></h5>
 		<form action="modifyItem.do" method="post" id="modify_form">
 			<input type="hidden" value="${order.rent_num}" name="rent_num">
 			<ul>

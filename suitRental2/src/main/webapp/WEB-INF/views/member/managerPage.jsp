@@ -23,7 +23,7 @@
 <body>
 	<div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-		<h6 style="text-align:center; margin-top:50px;">회원목록(관리자 전용)</h6>
+		<h5 style="text-align:center; margin-top:50px; margin-right:20px;"><b>회원목록(관리자 전용)</b></h5>
 		<div class="list-space align-right">
 			<input type="button"class="btn btn-dark" value="등급 변경" onclick="location.href='updateAuthForm.do'">
 			<input type="button" class="btn btn-dark" value="목록" onclick="location.href='managerPage.do'">
