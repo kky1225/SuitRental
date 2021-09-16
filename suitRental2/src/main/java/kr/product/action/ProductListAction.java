@@ -36,10 +36,15 @@ public class ProductListAction implements Action{
 		
 		List<ProductDetailVO> productList = new ArrayList<ProductDetailVO>();
 		List<ProductDetailVO> productList2 = new ArrayList<ProductDetailVO>();
+		List<ProductDetailVO> productList3 = new ArrayList<ProductDetailVO>();
+		List<ProductDetailVO> productList4 = new ArrayList<ProductDetailVO>();
+		
 		
 		if(count > 0) {
-			productList = ProductDAO.getInstance().getProductList(page.getStartCount(), page.getEndCount(),keyfield,keyword);
+			productList = ProductDAO.getInstance().getProductList(page.getStartCount(), page.getEndCount(), keyfield, keyword);
 			productList2 = ProductDAO.getInstance().getBestPurchaseList(page.getStartCount(), page.getEndCount(),keyfield,keyword);
+			productList3 = ProductDAO.getInstance().getMaleProductList(page.getStartCount(), page.getEndCount(), keyfield, keyword);
+			productList4 = ProductDAO.getInstance().getFemaleProductList(page.getStartCount(), page.getEndCount(), keyfield, keyword);
 		}
 
 		int list = 1;
@@ -52,6 +57,8 @@ public class ProductListAction implements Action{
         request.setAttribute("count", count);
 		request.setAttribute("productList", productList);
 		request.setAttribute("productList2", productList2);
+		request.setAttribute("productList3", productList3);
+		request.setAttribute("productList4", productList4);
 		request.setAttribute("pagingHtml", page.getPagingHtml());
 		
 		return "/WEB-INF/views/product/productList.jsp";
