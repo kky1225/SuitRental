@@ -12,24 +12,25 @@
 
 	<div class="page-main">
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />		
-		<ul>
-			<li>
-				<h5 style="text-align:center; margin-top:50px;"><b>Q&amp;A</b></h5>
-			</li>
-			<li>글번호 : ${boardQna.qna_num}</li>
-			<li>글제목 : ${boardQna.title}</li>
-			<li>작성자 : ${boardQna.id}</li>
-			<li>조회수 : ${boardQna.hit}</li>
-		</ul>
-		<hr size="1" noshade width="100%">
-		<p>
-			${boardQna.q_content}
-		</p>
-		<c:if test="${!empty boardQna.filename}">
-			<div class="align-center">
-				<img src="${pageContext.request.contextPath}/upload/${boardQna.filename}" class="detail-img">
-			</div>
-		</c:if>
+		<h3 style="text-align:center; margin-top:50px;"><b>Q&amp;A</b></h3>
+		
+		<div class="board-title">
+			<h5>${boardQna.title}</h5>
+			<ul>
+				<li>글번호 : ${boardQna.qna_num}</li>
+				<li>작성자 : ${boardQna.id}</li>
+				<li>조회수 : ${boardQna.hit}</li>
+			</ul>
+			<hr size="1" noshade width="100%">
+			
+			<p>${boardQna.q_content}</p>
+			
+			<c:if test="${!empty boardQna.filename}">
+				<div class="align-center">
+					<img src="${pageContext.request.contextPath}/upload/${boardQna.filename}" class="detail-img">
+				</div>
+			</c:if>
+		</div>
 			
 		<hr size="1" noshade width="100%">
 		<div class="align-right">

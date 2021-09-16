@@ -16,37 +16,47 @@
 </head>
 <body>
 <div class="page-main">
+	
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<h3 style="text-align:center; margin-top:50px;"><b>제품 상세</b></h3>
-	<ul>
-		<li>상품코드 : ${x_code}</li>
-		<li>상품명 : ${productDetailVO.x_name}</li>
-		<li>브랜드 : ${productDetailVO.x_brand} <br><br> </li>
-		<li><hr size="1" noshade width="100%"></li>
-		<li><img src="${pageContext.request.contextPath}/upload/${productDetailVO.x_file}" class="detail-img"></li>
-		<li>가격 : ${price}</li>
-		<li>성별 : <c:if test="${productDetailVO.x_gender == 'male'}">남자</c:if>
-				  <c:if test="${productDetailVO.x_gender == 'female'}">여자</c:if>
-		</li>
-		<li>사이즈 : ${productDetailVO.x_size}</li>
-		<li>조회수 : ${productDetailVO.x_hit}</li>
-		<li>좋아요수 : ${productDetailVO.x_like}</li>
-		<li>옷 종류 : <c:if test="${productDetailVO.x_type == 'jacket'}">자켓</c:if>
-					<c:if test="${productDetailVO.x_type == 'shirts'}">셔츠</c:if>
-					<c:if test="${productDetailVO.x_type == 'slacks'}">슬랙스</c:if>
-					<c:if test="${productDetailVO.x_type == 'shoes'}">구두</c:if>
-		</li>
-		<li>총 대여수 : ${productDetailVO.x_purchase_cnt}</li>
-	</ul>
-	<c:if test="${!empty board.x_file}">
-	<div class="align-center">
-		<img src="${pageContext.request.contextPath}/uploadFile/${board.x_file}" class="detail-img">
+	
+	<div class="product-detail">
+		<div class="product-img">
+			<img src="${pageContext.request.contextPath}/upload/${productDetailVO.x_file}" class="detail-img" width="300px">
+		</div>
+		<div class="product-info">
+			<ul>
+				<li><h4>${productDetailVO.x_name}</h4></li>
+				<li>${productDetailVO.x_contents}<br><br></li>
+				<li><b>상품코드</b><span class="badge rounded-pill bg-light">${x_code}</span></li>
+				<li>가 격 : ${price}</li>
+				<li>브랜드 : ${productDetailVO.x_brand}</li>
+				<li>분류 : <c:if test="${productDetailVO.x_type == 'jacket'}">자켓</c:if>
+							<c:if test="${productDetailVO.x_type == 'shirts'}">셔츠</c:if>
+							<c:if test="${productDetailVO.x_type == 'slacks'}">슬랙스</c:if>
+							<c:if test="${productDetailVO.x_type == 'shoes'}">구두</c:if>
+				</li>
+				<li>성별 : <c:if test="${productDetailVO.x_gender == 'male'}">남자</c:if>
+						  <c:if test="${productDetailVO.x_gender == 'female'}">여자</c:if>
+				</li>
+				<li>사이즈 : ${productDetailVO.x_size}</li>
+			</ul>
+			<hr size="1" noshade width="100%">
+			<ul class="info-etc">				
+				<li>총 대여수 : ${productDetailVO.x_rental_count}</li>
+				<li>조회수 : ${productDetailVO.x_hit}</li>
+				<li>좋아요수 : ${productDetailVO.x_like}</li>
+				<li>구매수 : ${productDetailVO.x_purchase_cnt}</li>
+			</ul>
+		</div>
 	</div>
+
+	<c:if test="${!empty board.x_file}">
+		<div class="align-center">
+			<img src="${pageContext.request.contextPath}/uploadFile/${board.x_file}" class="detail-img">
+		</div>
 	</c:if>
-	<p>
-		${productDetailVO.x_contents}
-	</p>
-	<hr size="1" noshade width="100%">
+	
 	<div class="align-right">
 		<c:if test="${user_auth == 2}">
 			<c:if test="${likey == true}">
@@ -113,5 +123,6 @@
 				</div>
 			</c:if>
 		</div>
+</div>
 </body>
 </html>
