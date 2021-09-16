@@ -23,7 +23,39 @@
 	<body>
 		<div class="page-main">
 			<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-			<h2>리뷰 게시판 목록</h2>
+			<h3 style="text-align:center; margin-top:50px;"><b>리뷰</b></h3><br>
+			<c:if test="${count == 0}">
+				<div class="result-display">
+					등록된 게시물이 없습니다.
+				</div>
+			</c:if>
+			<c:if test="${count > 0}">
+				<table class="table table-hober">
+					<thead>
+						<tr>
+							<th>글번호</th>
+							<th>제목</th>
+							<th>작성자</th>
+							<th>작성일</th>
+							<th>조회수</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="reviewVO" items="${reviewList}">
+							<tr class="table-light">
+								<td>${reviewVO.review_num}</td>
+								<td><a href="reviewDetail.do?review_num=${reviewVO.review_num}" style="text-color:#000000;">${reviewVO.title}</a></td>
+								<td>${reviewVO.id}</td>
+								<td>${reviewVO.reg_date}</td>
+								<td>${reviewVO.hit}</td>
+   							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+				<div class="align-center">
+					${pagingHtml}
+				</div>
+			</c:if>
 			<form id="search_form" action="reviewList.do" method="get">
 				<ul class="search">
 					<li>
@@ -41,37 +73,6 @@
 					</li>
 				</ul>
 			</form>
-			<div class="list-space align-right">
-				<input type="button" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/main/main.do'">
-			</div>
-			<c:if test="${count == 0}">
-				<div class="result-display">
-					등록된 게시물이 없습니다.
-				</div>
-			</c:if>
-			<c:if test="${count > 0}">
-				<table>
-					<tr>
-						<th>글번호</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>작성일</th>
-						<th>조회</th>
-					</tr>
-					<c:forEach var="reviewVO" items="${reviewList}">
-						<tr>
-							<td>${reviewVO.review_num}</td>
-							<td><a href="reviewDetail.do?review_num=${reviewVO.review_num}">${reviewVO.title}</a></td>
-							<td>${reviewVO.id}</td>
-							<td>${reviewVO.reg_date}</td>
-							<td>${reviewVO.hit}</td>
-						</tr>
-					</c:forEach>
-				</table>
-				<div class="align-center">
-					${pagingHtml}
-				</div>
-			</c:if>
 		</div>
 	</body>
 </html>

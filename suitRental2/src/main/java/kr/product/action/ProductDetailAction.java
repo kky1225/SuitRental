@@ -13,6 +13,7 @@ import kr.likey.dao.LikeyDAO;
 import kr.likey.vo.LikeyVO;
 import kr.product.dao.ProductDAO;
 import kr.productdetail.vo.ProductDetailVO;
+import kr.rental.dao.RentalDAO;
 import kr.review.dao.ReviewDAO;
 import kr.review.vo.ReviewVO;
 import kr.util.PagingUtil;
@@ -37,11 +38,6 @@ public class ProductDetailAction implements Action{
 
 		request.setAttribute("price", price);
 		request.setAttribute("productDetailVO", productDetailVO);
-		
-		
-		
-		
-		
 		
 		/* ----------------------------------------------- */
 		
@@ -68,9 +64,24 @@ public class ProductDetailAction implements Action{
 		}
 		
 		if(likeyVO == null) {
-			request.setAttribute("check", true);
+			request.setAttribute("likey", true);
 		}else {
-			request.setAttribute("check", false);
+			request.setAttribute("likey", false);
+		}
+		
+		/* ----------------------------------------------- */
+		int reviewCount = 0;
+		int rentalCount = 0;
+		
+		if(user_num != null) {
+			rentalCount = RentalDAO.getInstance().checkRental(x_code, user_num);
+			reviewCount = ReviewDAO.getInstance().checkReview(x_code, user_num);
+		}
+		
+		if(reviewCount < rentalCount) {
+			request.setAttribute("review", true);
+		}else {
+			request.setAttribute("review", false);
 		}
 		
 		request.setAttribute("count", count);

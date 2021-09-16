@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>상품 등록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" type="text/css">
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -104,6 +104,10 @@ $(document).ready(function() {
 		
 	});
     
+    if($('#filename').change(function(){
+		$('#filename_text').val($(this)[0].files[0].name);
+	}));
+    
     
 });
 </script>
@@ -115,31 +119,43 @@ $(document).ready(function() {
 	<form id="productWrite_form" action="productWrite.do" method="post" enctype="multipart/form-data">
 		<table id="pd-write">
 			<tr>
-				<th>상품명</th>
+				<th><label for="content" class="form-label mt-4">상품명</label></th>
 				<td>
-					<input type="text" name="name" id="name" maxlength="20">
+					<input type="text" class="form-control" name="name" id="name" maxlength="20">
 				</td>
 			</tr>
 			<tr>
-				<th>브랜드</th>
+				<th><label for="content" class="form-label mt-4">브랜드</label></th>
 				<td>
-					<input type="text" name="brand" id="brand" maxlength="20">
+					<input type="text" class="form-control" name="brand" id="brand" maxlength="20">
 				</td>
 			</tr>
 			<tr>
-				<th>상품 이미지</th>
+				<th><label for="content" class="form-label mt-4">이미지</label></th>
 				<td>
-					<input type="file" class="btn btn-dark" name="filename" id="filename">
+					<div class="row">
+						<div class="col-auto" style="margin-left:-14px;">
+							<input id="filename_text" class="form-control mt-4" value="파일선택" style="width:200px; margin-left:14px;" readonly>
+						</div>
+						<div class="col-auto" style="margin-top:26px;">
+							<label for="filename" class="btn btn-dark" style="width:60px;">파일</label>
+						</div>
+						<input type="file" id="filename" name="filename" style="display:none;">
+					</div>
 				</td>
 			</tr>
 			<tr>
-				<th>성별</th>
+				<th><label for="content" class="form-label mt-4">성별</label></th>
 				<td>
-					<input type="radio" name="gender" id="male" value="male" checked>남자
+					<input type="radio" name="gender" id="male" value="male" checked style="margin-top:40px;">남자
 					<input type="radio" name="gender" id="female" value="female">여자
 					<br>
         			<br>
-        <span id="viewMale">
+        	</td>
+        	</tr>
+        	<tr>
+        		<th><label for="content" class="form-label mt-4">사이즈</label></th>
+        		<td> <span id="viewMale">
             남성 사이즈: 
             <select class="form-control male" name="male_size" id="male_size" style="width:200px">
                 <option value="100" selected>100</option>
@@ -156,11 +172,10 @@ $(document).ready(function() {
                 <option value="66">66</option>
                 <option value="77">77</option>
             </select>
-        </span>
-        	</td>
+        </span></td>
         	</tr>
         	<tr>
-				<th>종류</th>
+				<th><label for="content" class="form-label mt-4">종류</label></th>
 				<td>
 					<input type="radio" name="type" id="jacket" value="jacket">재킷
 					<input type="radio" name="type" id="shirts" value="shirts">셔츠
@@ -169,27 +184,28 @@ $(document).ready(function() {
         		</td>
         	</tr>
 			<tr>
-				<th>가격</th>
+				<th><label for="content" class="form-label mt-4">가격</label></th>
 				<td>
-					<input type="number" name="price" id="price" maxlength="10">
+					<input type="number" class="form-control" name="price" id="price" maxlength="10">
 				</td>
 			</tr>
 			<tr>
-				<th>재고</th>
+				<th><label for="content" class="form-label mt-4">재고</label></th>
 				<td>
-					<input type="number" name="stock" id="stock" maxlength="10">
+					<input type="number" class="form-control" name="stock" id="stock" maxlength="10">
 				</td>
 			</tr>
 			<tr>
-				<th>상세 설명</th>
+				<th><label for="content" class="form-label mt-4">상세 내용</label></th>
 				<td>
-					<textarea name="content" rows="5" cols="50" id="content"></textarea>
+					<textarea name="content" class="form-control" rows="5" cols="50" name="contents" id="content"></textarea>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
+					<br>
 					<input type="submit" class="btn btn-dark" value="상품등록">
-					<input type="reset" class="btn btn-dark" value="초기화">
+					<input type="reset" class="btn btn-dark" value="초기화" style="margin-left:20px;">
 				</td>
 			</tr>
 		</table>

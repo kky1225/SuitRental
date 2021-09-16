@@ -54,7 +54,37 @@ public class RentalDAO {
 			return result;
 		}
 		
-		
+		public int checkRental(int x_code, int mem_num) {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			
+			int count = 0;
+			
+			try {
+				conn = DBUtil.getConnection();
+				sql = "SELECT * FROM rental WHERE x_code = ? AND mem_num = ?";
+				
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, x_code);
+				pstmt.setInt(2, mem_num);
+				
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					count = count + 1;
+				}
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+			
+			return count;
+		}
 		
 		
 		

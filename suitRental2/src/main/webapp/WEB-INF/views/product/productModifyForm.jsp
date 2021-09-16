@@ -97,7 +97,9 @@ $(document).ready(function() {
 		
 	});
     
-    
+    if($('#filename').change(function(){
+		$('#filename_text').val($(this)[0].files[0].name);
+	}));
 });
 </script>
 </head>
@@ -107,47 +109,55 @@ $(document).ready(function() {
 	<h3>상품 등록 페이지</h3>
 	<form id="productWrite_form" action="productModify.do" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="x_code" value="${productDetailVO.x_code}">
-	<input type="hidden" name="x_rental_count" value="${productDetailVO.x_rental_count}">
-	<input type="hidden" name="x_hit" value="${productDetailVO.x_hit}">
-	<input type="hidden" name="x_reg_date" value="${productDetailVO.x_reg_date}">
-	<input type="hidden" name="x_purchase" value="${productDetailVO.x_purchase}">
-		<table border="0">
+		<table border="0" id="pd-write">
 			<tr>
-				<th>상품명</th>
+				<th><label for="content" class="form-label mt-4">상품명</label></th>
 				<td>
-					<input type="text" name="name" id="name" maxlength="20" value="${productDetailVO.x_name}">
+					<input type="text" class="form-control" name="name" id="name" maxlength="20" value="${productDetailVO.x_name}">
 				</td>
 			</tr>
 			<tr>
-				<th>브랜드</th>
+				<th><label for="content" class="form-label mt-4">브랜드</label></th>
 				<td>
-					<input type="text" name="brand" id="brand" maxlength="20" value="${productDetailVO.x_brand}">
+					<input type="text" class="form-control" name="brand" id="brand" maxlength="20" value="${productDetailVO.x_brand}">
 				</td>
 			</tr>
 			<tr>
-				<th>상품 이미지</th>
+				<th><label for="content" class="form-label mt-4">이미지</label></th>
 				<td>
-					<input type="file" name="filename" id="filename">
+					<div class="row">
+						<div class="col-auto" style="margin-left:-14px;">
+							<input id="filename_text" class="form-control mt-4" value="파일선택" style="width:200px; margin-left:14px; margin-bottom:20px;" readonly>
+						</div>
+						<div class="col-auto" style="margin-top:26px;">
+							<label for="filename" class="btn btn-dark" style="width:60px;">파일</label>
+						</div>
+						<input type="file" id="filename" name="filename" style="display:none;">
+					</div>
 					<c:if test="${!empty productDetailVO.x_file}">
 						<p id="file_check1">${productDetailVO.x_file}</p>
-						<input type="hidden" name="file_check2" id="file_check2" value="${reviewVO.filename}">
+						<input type="hidden" name="file_check2" id="file_check2" value="${productDetailVO.x_file}">
 					</c:if>
 				</td>
 			</tr>
 			<tr>
-				<th>성별</th>
+				<th><label for="content" class="form-label mt-4">성별</label></th>
 				<td>
 					<c:if test="${productDetailVO.x_gender == 'male'}">
-						<input type="radio" name="gender" id="male" value="male" checked>남자
+						<input type="radio" name="gender" id="male" value="male" checked style="margin-top:40px;">남자
 						<input type="radio" name="gender" id="female" value="female">여자
 					</c:if>
 					<c:if test="${productDetailVO.x_gender == 'female'}">
-						<input type="radio" name="gender" id="male" value="male">남자
+						<input type="radio" name="gender" id="male" value="male" style="margin-top:40px;">남자
 						<input type="radio" name="gender" id="female" value="female" checked>여자
 					</c:if>
 					<br>
         			<br>
-        <c:if test="${productDetailVO.x_gender == 'male' && productDetailVO.x_size == 100}">
+        	</td>
+        	<tr>
+        		<th><label for="content" class="form-label mt-4">사이즈</label></th>
+        		<td>
+        		 <c:if test="${productDetailVO.x_gender == 'male' && productDetailVO.x_size == 100}">
         <span id="viewMale">
         	남성 사이즈:
         	<select class="form-control male" name="male_size" id="male_size" style="width:200px">
@@ -327,10 +337,10 @@ $(document).ready(function() {
             	</select>
        		 </span>
 			</c:if>
-        	</td>
+			</td>
         	</tr>
         	<tr>
-				<th>종류</th>
+				<th><label for="content" class="form-label mt-4">종류</label></th>
 				<td>
 					<c:if test="${productDetailVO.x_type == 'jacket'}">
 					<input type="radio" name="type" id="jacket" value="jacket" checked>재킷
@@ -359,26 +369,27 @@ $(document).ready(function() {
         		</td>
         	</tr>
 			<tr>
-				<th>가격</th>
+				<th><label for="content" class="form-label mt-4">가격</label></th>
 				<td>
-					<input type="number" name="price" id="price" maxlength="10" value="${productDetailVO.x_price}">
+					<input type="number" class="form-control" name="price" id="price" maxlength="10" value="${productDetailVO.x_price}">
 				</td>
 			</tr>
 			<tr>
-				<th>재고</th>
+				<th><label for="content" class="form-label mt-4">재고</label></th>
 				<td>
-					<input type="number" name="stock" id="stock" maxlength="10" value="${productDetailVO.x_stock}">
+					<input type="number" class="form-control" name="stock" id="stock" maxlength="10" value="${productDetailVO.x_stock}">
 				</td>
 			</tr>
 			<tr>
-				<th>상세 설명</th>
+				<th><label for="content" class="form-label mt-4">상세 설명</label></th>
 				<td>
-					<textarea name="content" rows="5" cols="50" id="content">${productDetailVO.x_contents}</textarea>
+					<textarea name="content" class="form-control" rows="5" cols="50" id="content">${productDetailVO.x_contents}</textarea>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="submit" value="상품등록">
+					<input type="submit" class="btn btn-dark" value="상품등록">
+					<input type="button" class="btn btn-dark" value="목록" onclick="location.href='productList.do'" style="width:100px; margin-left:20px; margin-top:30px; margin-bottom:30px;">
 				</td>
 			</tr>
 		</table>
