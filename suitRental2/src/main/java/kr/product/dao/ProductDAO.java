@@ -499,41 +499,55 @@ public class ProductDAO {
 		
 		
 		
-	public void deleteProduct(int x_code) throws SQLException{
-		Connection conn = null;
-		PreparedStatement pstmt1 = null;
-		PreparedStatement pstmt2 = null;
-		PreparedStatement pstmt3 = null;
-		String sql = null;
-		try {
-			conn= DBUtil.getConnection();
-			conn.setAutoCommit(false);
-			
-			sql = "DELETE FROM xreview WHERE x_code = ?";
-			pstmt1 = conn.prepareStatement(sql);
-			pstmt1.setInt(1, x_code);
-			
-			pstmt1.executeQuery();
-			
-			sql = "DELETE FROM xlikey WHERE x_code = ?";
-			pstmt2 = conn.prepareStatement(sql);
-			pstmt2.setInt(1, x_code);
-			
-			pstmt2.executeQuery();
-			
-			sql = "DELETE FROM suit WHERE x_code = ?";
-			pstmt3 = conn.prepareStatement(sql);
-			pstmt3.setInt(1, x_code);
-			
-			pstmt3.executeQuery();
-			
-			conn.commit();
-		} catch (Exception e) {
-			conn.rollback();
-			e.printStackTrace();
-		}finally {
-			DBUtil.executeClose(null, pstmt, conn);
+		public void deleteProduct(int x_code) throws SQLException{
+			Connection conn = null;
+			PreparedStatement pstmt1 = null;
+			PreparedStatement pstmt2 = null;
+			PreparedStatement pstmt3 = null;
+			PreparedStatement pstmt4 = null;
+			PreparedStatement pstmt5 = null;
+			String sql = null;
+			try {
+				conn= DBUtil.getConnection();
+				conn.setAutoCommit(false);
+				
+				sql = "DELETE FROM xreview WHERE x_code = ?";
+				pstmt1 = conn.prepareStatement(sql);
+				pstmt1.setInt(1, x_code);
+				
+				pstmt1.executeQuery();
+				
+				sql = "DELETE FROM xlikey WHERE x_code = ?";
+				pstmt2 = conn.prepareStatement(sql);
+				pstmt2.setInt(1, x_code);
+				
+				pstmt2.executeQuery();
+				
+				sql = "DELETE FROM rental_detail WHERE x_code = ?";
+				pstmt3 = conn.prepareStatement(sql);
+				pstmt3.setInt(1, x_code);
+				
+				pstmt3.executeQuery();
+				
+				sql = "DELETE FROM rental_detail WHERE x_code = ?";
+				pstmt4 = conn.prepareStatement(sql);
+				pstmt4.setInt(1, x_code);
+				
+				pstmt4.executeQuery();
+				
+				sql = "DELETE FROM suit WHERE x_code = ?";
+				pstmt4 = conn.prepareStatement(sql);
+				pstmt4.setInt(1, x_code);
+				
+				pstmt4.executeQuery();
+				
+				conn.commit();
+			} catch (Exception e) {
+				conn.rollback();
+				e.printStackTrace();
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+						
 		}
-					
-	}
 }

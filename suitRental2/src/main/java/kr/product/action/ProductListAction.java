@@ -42,8 +42,11 @@ public class ProductListAction implements Action{
 			productList2 = ProductDAO.getInstance().getBestPurchaseList(page.getStartCount(), page.getEndCount(),keyfield,keyword);
 		}
 
-		int list = Integer.parseInt(request.getParameter("list"));
-		System.out.println(list);
+		int list = 1;
+		
+		if(request.getParameter("list") != null) {
+			list = Integer.parseInt(request.getParameter("list"));
+		}
         
 		request.setAttribute("list", list);
         request.setAttribute("count", count);
