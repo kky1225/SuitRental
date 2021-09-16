@@ -115,7 +115,7 @@ $(document).ready(function() {
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<h3>상품 등록 페이지</h3>
+	<h3 style="text-align:center; margin-top:50px;"><b>상품 등록</b></h3>
 	<form id="productWrite_form" action="productWrite.do" method="post" enctype="multipart/form-data">
 		<table id="pd-write">
 			<tr>
