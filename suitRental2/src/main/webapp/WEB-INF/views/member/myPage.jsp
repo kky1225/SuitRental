@@ -15,12 +15,15 @@
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<h3 style="text-align:center; margin-top:50px;"><b>회원정보</b></h3>
 		<br><br>
-		<div class="d-grid gap-2 align-center">
-  			<button class="btn btn-lg btn-dark" type="button" onclick="location.href='deleteUserForm.do'">회원탈퇴</button>
-  			<button class="btn btn-lg btn-dark" type="button" onclick="location.href='modifyUserForm.do'">개인정보 수정</button>
-  			<button class="btn btn-lg btn-dark" type="button" onclick="location.href='modifyPasswordForm.do'">비밀번호 수정</button>
+		<b>[${member.id}]님 환영합니다!</b>
+		<div class="page-main">
+			<br>
+			<div class="d-grid gap-2">
+	  			<button class="btn btn-sm btn-dark" type="button" onclick="location.href='deleteUserForm.do'">회원탈퇴</button>
+	  			<button class="btn btn-sm btn-dark" type="button" onclick="location.href='modifyUserForm.do'">개인정보 수정</button>
+	  			<button class="btn btn-sm btn-dark" type="button" onclick="location.href='modifyPasswordForm.do'">비밀번호 수정</button>
+			</div>
 		</div>
-			<br><br>
 			<c:if test="${member.auth == 2}">
 			<c:if test="${count == 0}">
 				<div class="result-display">
