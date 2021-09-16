@@ -31,7 +31,6 @@ $(document).ready(function(){
 		<input type="button" value="글쓰기" onclick="location.href='writeForm.do'"
 			<c:if test="${empty user_num}">disabled="disabled"</c:if>
 		 class="btn btn-dark">
-		<input type="button" value="목록" onclick="location.href='list.do'" class="btn btn-dark">
 	</div>
 	<c:if test="${count==0 }">
 		<div class="result-display">

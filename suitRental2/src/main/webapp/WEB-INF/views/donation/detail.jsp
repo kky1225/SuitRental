@@ -313,7 +313,7 @@
 	</div>
 	<!-- 댓글 목록 출력 시작 -->
 	<div id="output"></div>
-	<div class="paging-button" style="display:none;">
+	<div class="paging-button align-right" style="display:none;">
 		<input type="button" value="댓글 더보기" class="btn btn-dark" >
 	</div>
 	<div id="loading" style="display:none;">
