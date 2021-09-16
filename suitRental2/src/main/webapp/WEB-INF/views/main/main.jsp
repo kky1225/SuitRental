@@ -53,9 +53,9 @@
 				<div>
 					<c:forEach var="product" items="${list}">
 					<div class="horizonal-area">
-						<a href="${pageContext.request.contextPath}/product/productDetail.do?x_code=${productDetailVO.x_code}">
-							<c:if test="${!empty productDetailVO.x_file}">
-								<img src="${pageContext.request.contextPath}/upload/${productDetailVO.x_file}">
+						<a href="../product/productDetail.do?x_code=${product.x_code}">
+							<c:if test="${!empty product.x_file}">
+								<img src="${pageContext.request.contextPath}/upload/${product.x_file}">
 							</c:if>
 							<c:if test="${empty productDetailVO.x_file}">
 								<img src="${pageContext.request.contextPath}/images/blank.gif">

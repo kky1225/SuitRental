@@ -1,5 +1,6 @@
 package kr.main.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,7 @@ public class MainAction implements Action{
 		ProductDAO dao = ProductDAO.getInstance();
 		int count = dao.getProductCount(null, null);
 		
-		List<ProductDetailVO> list = null;
+		List<ProductDetailVO> list = new ArrayList<ProductDetailVO>();
 		if(count > 0) {
 			list = dao.getProductList(1, 4, null, null);
 		}
