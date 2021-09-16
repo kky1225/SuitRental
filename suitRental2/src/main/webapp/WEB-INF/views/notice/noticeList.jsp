@@ -29,9 +29,11 @@ $(document).ready(function(){
 	<h3 style="text-align:center; margin-top:50px;"><b>공지사항</b></h3>
 	
 	<div class="list-space align-right">
+	<c:if test="${user_auth == 3}">
 		<input type="button" value="글쓰기" onclick="location.href='writeNoticeForm.do'"
 			<c:if test="${empty user_num}">disabled="disabled"</c:if>
 		 class="btn btn-dark">
+	</c:if>
 	</div>
 	<c:if test="${count==0 }">
 		<div class="result-display">
