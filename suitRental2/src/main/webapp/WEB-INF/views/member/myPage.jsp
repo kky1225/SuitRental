@@ -48,7 +48,7 @@
 					<c:forEach var="order" items="${list}">
 					<tr class="table-light">
 						<td>${order.rent_num}</td>
-						<td>${order.x_code}</td>
+						<td><a href="${pageContext.request.contextPath}/product/productDetail.do?x_code=${order.x_code}">${order.x_code}</a></td>
 						<td>${order.x_name}</td>
 						<td>${order.rental_date}</td>
 						<td>${order.return_date}</td>
