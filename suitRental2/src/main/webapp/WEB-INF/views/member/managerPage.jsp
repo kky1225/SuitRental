@@ -87,6 +87,7 @@
 				</li>
 			</ul>
 		</form>
+		<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	</div>
 </body>
 </html>
