@@ -110,7 +110,7 @@
 					<c:forEach var="reviewVO" items="${reviewList}">
 						<tr onclick="location.href='../review/reviewDetail.do?review_num=${reviewVO.review_num}'">
 							<td><c:if test="${!empty reviewVO.filename}"><a href="../review/reviewDetail.do?review_num=${reviewVO.review_num}"><img src="${pageContext.request.contextPath}/upload/${reviewVO.filename}" class="detail-img" border="0" width="100" height="100"></a></c:if>
-							<c:if test="${empty reviewVO.filename}"><a style="color:black;">사진 없음</a></c:if></td>
+							<c:if test="${empty reviewVO.filename}"><img src="${pageContext.request.contextPath}/images/blank.gif" width="100" height="100"></c:if></td>
 							<td colspan="2" width="200">${reviewVO.content}</td>
 							<td>작성자 : ${reviewVO.id}<br>
 								작성일 : ${reviewVO.reg_date}</td>
