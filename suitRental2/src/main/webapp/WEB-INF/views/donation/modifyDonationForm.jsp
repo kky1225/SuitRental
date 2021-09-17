@@ -42,7 +42,7 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<h5 class="align-center" style="margin-bottom:10px;">기부 수정</h5>
+	<h3 style="text-align:center; margin-top:50px;"><b>기부 수정</b></h3>
 	<form action="modifyDonation.do" method="post" id="modify_form" enctype="multipart/form-data">
 		<input type="hidden" name="donation_num" value="${donation.donation_num}" >
 		<ul>

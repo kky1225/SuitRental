@@ -86,9 +86,18 @@ a:hover{
 	margin: 12px;
 	padding: 5px;
 	width: 200px;
-	height:200px;
+	height:240px;
 	float: left;
 	overflow: hidden;
+}
+.horizonal-area ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.horizonal-area li{
+	display: block;
+	text-decoration: none;
 }
 .horizonal-area img{
 	width: 195px;

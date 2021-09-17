@@ -106,7 +106,7 @@ $(document).ready(function() {
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<h3>상품 등록 페이지</h3>
+	<h3 style="text-align:center; margin-top:50px;"><b>상품수정</b></h3>
 	<form id="productWrite_form" action="productModify.do" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="x_code" value="${productDetailVO.x_code}">
 		<table border="0" id="pd-write">

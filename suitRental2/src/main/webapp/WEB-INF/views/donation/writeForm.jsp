@@ -33,7 +33,7 @@
 <body>
 <div class="page-main">
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<h5 class="align-center" style="margin-bottom:10px;">기부하기</h5>
+	<h3 style="text-align:center; margin-top:50px;"><b>기부</b></h3>
 	<form action="write.do" method="post" id="write_form" enctype="multipart/form-data">
 		<ul>
 			<li>

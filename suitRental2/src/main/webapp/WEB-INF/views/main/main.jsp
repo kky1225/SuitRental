@@ -51,26 +51,25 @@
 				</div>
 				</c:if>
 				<c:if test="${count > 0}">
-				<div>
+				<div class="align-center">
 					<c:forEach var="product" items="${list}">
 					<div class="horizonal-area">
-						<a href="../product/productDetail.do?x_code=${product.x_code}">
-							<c:if test="${!empty product.x_file}">
-								<img src="${pageContext.request.contextPath}/upload/${product.x_file}">
-							</c:if>
-							<c:if test="${empty product.x_file}">
-								<img src="${pageContext.request.contextPath}/images/blank.gif">
-							</c:if>
-							<c:if test="${!empty product.x_name}">
-								${product.x_name}
-							</c:if>
-							<c:if test="${!empty product.x_brand}">
-								${product.x_brand}
-							</c:if>
-							<c:if test="${!empty product.x_price}">
-								<fmt:formatNumber value="${product.x_price}" pattern="#,###"/>
-							</c:if>
-						</a>
+						<ul>
+							<li>
+								<a href="../product/productDetail.do?x_code=${product.x_code}">
+									<c:if test="${!empty product.x_file}">
+										<img src="${pageContext.request.contextPath}/upload/${product.x_file}">
+									</c:if>
+									<c:if test="${empty product.x_file}">
+										<img src="${pageContext.request.contextPath}/images/blank.gif">
+									</c:if>
+								</a>
+							</li>
+							<li class="align-center">
+								<a href="../product/productDetail.do?x_code=${product.x_code}">${product.x_name}</a>
+							</li>
+							<li class="align-center"><fmt:formatNumber value="${product.x_price}" type="number"/></li>
+						</ul>
 					</div>
 					</c:forEach>
 				</div>
