@@ -78,8 +78,8 @@
 				</li>
 			</ul>
 			<div class="align-center">
-				<input type="submit" class="btn btn-dark" value="수정">
-				<input type="button" class="btn btn-dark" value="목록" onclick="location.href='listQna.do'">
+				<input type="submit" class="btn btn-dark" value="수정" style="width:120px; margin-top:10px; margin-left:20px;">
+				<input type="button" class="btn btn-dark" value="목록" onclick="location.href='listQna.do'" style="width:120px; margin-top:10px; margin-left:8px;">
 			</div>
 		</form>
 	</div>

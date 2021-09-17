@@ -388,8 +388,8 @@ $(document).ready(function() {
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="submit" class="btn btn-dark" value="상품등록">
-					<input type="button" class="btn btn-dark" value="목록" onclick="location.href='productList.do'" style="width:100px; margin-left:20px; margin-top:30px; margin-bottom:30px;">
+					<input type="submit" class="btn btn-dark" value="상품등록" style="width:120px; margin-left:20px; margin-top:30px;">
+					<input type="button" class="btn btn-dark" value="목록" onclick="location.href='productList.do'" style="width:120px; margin-left:8px; margin-top:30px;">
 				</td>
 			</tr>
 		</table>

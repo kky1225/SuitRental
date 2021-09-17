@@ -23,7 +23,7 @@
 	<body>
 		<div class="page-main">
 			<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-			<h3 style="text-align:center; margin-top:50px;"><b>리뷰</b></h3>
+			<h3 style="text-align:center; margin-top:50px;"><b>리뷰</b></h3><br>
 			<c:if test="${count == 0}">
 				<div class="result-display">
 					등록된 게시물이 없습니다.

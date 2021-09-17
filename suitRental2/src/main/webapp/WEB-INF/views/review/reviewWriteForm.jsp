@@ -60,8 +60,8 @@
 					</li>
 				</ul>
 				<div class="align-center">
-					<input type="submit" class="btn btn-dark" value="작성" style="width:100px; margin-left:40px; margin-top:30px;">
-					<input type="button"  class="btn btn-dark" value="목록" onclick="location.href='reviewList.do'" style="width:100px; margin-left:20px; margin-top:30px;">
+					<input type="submit" class="btn btn-dark" value="작성" style="width:120px; margin-left:20px; margin-top:30px;">
+					<input type="button"  class="btn btn-dark" value="목록" onclick="location.href='reviewList.do'" style="width:120px; margin-left:8px; margin-top:30px;">
 				</div>
 			</form>
 		</div>

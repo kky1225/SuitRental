@@ -66,7 +66,7 @@
 								</a>
 							</li>
 							<li class="align-center">
-								<a href="../product/productDetail.do?x_code=${product.x_code}">${product.x_name}</a>
+								<a href="../product/productDetail.do?x_code=${product.x_code}"><span class="badge bg-danger" style="color:white;">Best</span>${product.x_name}</a>
 							</li>
 							<li class="align-center"><fmt:formatNumber value="${product.x_price}" type="number"/></li>
 						</ul>

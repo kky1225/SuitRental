@@ -97,8 +97,8 @@
 					</li>
 				</ul>
 				<div class="align-center">
-					<input type="submit" class="btn btn-dark" style="width:330px; margin-top:30px;" value="대여하기">
-					<input type="button" class="btn btn-dark" style="width:330px; margin-top:30px;" value="상품목록" onclick="location.href='${pageContext.request.contextPath}/product/productList.do'">
+					<input type="submit" class="btn btn-dark" style="width:120px; margin-top:30px;" value="대여하기">
+					<input type="button" class="btn btn-dark" style="width:120px; margin-top:30px; margin-left:8px;" value="상품목록" onclick="location.href='${pageContext.request.contextPath}/product/productList.do'">
 				</div>
 			</form>
 		</div>

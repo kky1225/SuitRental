@@ -77,8 +77,8 @@
 					</li>
 		</ul>
 		<div class="align-center">
-			<input type="submit" value="수정" class="btn btn-dark" style="width:120px; margin-top:10px;">
-			<input type="button" value="목록" onclick="location.href='noticeList.do'" class="btn btn-dark" style="width:120px; margin-top:10px;">
+			<input type="submit" value="수정" class="btn btn-dark" style="width:120px; margin-top:10px; margin-left:20px;">
+			<input type="button" value="목록" onclick="location.href='noticeList.do'" class="btn btn-dark" style="width:120px; margin-top:10px; margin-left:8px;">
 		</div>
 	</form>
 </div>

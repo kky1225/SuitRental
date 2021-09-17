@@ -204,8 +204,8 @@ $(document).ready(function() {
 			<tr>
 				<td colspan="2" align="center">
 					<br>
-					<input type="submit" class="btn btn-dark" value="상품등록">
-					<input type="reset" class="btn btn-dark" value="초기화" style="margin-left:20px;">
+					<input type="submit" class="btn btn-dark" value="상품등록" style="width:120px; margin-left:20px;">
+					<input type="reset" class="btn btn-dark" value="초기화" style="width:120px; margin-left:8px;">
 				</td>
 			</tr>
 		</table>

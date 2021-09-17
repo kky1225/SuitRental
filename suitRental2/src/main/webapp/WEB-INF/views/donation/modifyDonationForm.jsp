@@ -48,7 +48,7 @@
 		<ul>
 			<li>
 				<label for="title" class="form-label">제목</label>
-				<input type="text" class="form-control mt-4" style="width:285px;" id="title" name="title" value="${donation.title }" maxlength="50">
+				<input type="text" class="form-control mt-4" id="title" name="title" value="${donation.title }" maxlength="50">
 			</li>
 			<li>
 				<label for="content" class="form-label">내용</label>
@@ -79,8 +79,8 @@
 			</li>
 		</ul>
 	<div class="align-center">
-		<input type="submit" value="수정" class="btn btn-dark" style="width:120px; margin-top:10px;">
-		<input type="button" value="목록" onclick="location.href='list.do'" class="btn btn-dark" style="width:120px; margin-top:10px;">
+		<input type="submit" value="수정" class="btn btn-dark" style="width:120px; margin-top:10px; margin-left:20px;">
+		<input type="button" value="목록" onclick="location.href='list.do'" class="btn btn-dark" style="width:120px; margin-top:10px; margin-left:8px;">
 	</div>
 	</form>
 </div>

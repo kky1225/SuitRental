@@ -59,8 +59,8 @@
 			</li>
 		</ul>
 		<div class="align-center">
-			<input type="submit" value="등록" class="btn btn-dark" style="width:120px; margin-top:20px;">
-			<input type="button" value="목록" onclick="location.href='list.do'" class="btn btn-dark" style="width:120px; margin-top:20px;">
+			<input type="submit" value="등록" class="btn btn-dark" style="width:120px; margin-top:20px; margin-left:20px;">
+			<input type="button" value="목록" onclick="location.href='list.do'" class="btn btn-dark" style="width:120px; margin-top:20px; margin-left:8px;">
 			
 		</div>
 	</form>
