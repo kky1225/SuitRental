@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <nav class="navbar navbar-expand-lg navbar-light">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="${pageContext.request.contextPath}/main/main.do">정장대여</a>
+		<a class="navbar-brand" href="${pageContext.request.contextPath}/main/main.do"><img src="${pageContext.request.contextPath}/images/logo.png" alt="로고" style="width: 80px;"></a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
