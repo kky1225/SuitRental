@@ -43,10 +43,9 @@
 			</ul>
 			<hr size="1" noshade width="100%">
 			<ul class="info-etc">				
-				<li>총 대여수 : ${productDetailVO.x_rental_count}</li>
 				<li>조회수 : ${productDetailVO.x_hit}</li>
 				<li>좋아요수 : ${productDetailVO.x_like}</li>
-				<li>구매수 : ${productDetailVO.x_purchase_cnt}</li>
+				<li>총 대여수 : ${productDetailVO.x_purchase_cnt}</li>
 			</ul>
 		</div>
 	</div>

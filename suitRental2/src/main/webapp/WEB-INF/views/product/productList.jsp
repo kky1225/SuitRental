@@ -36,7 +36,7 @@
 			<div class="list-space align-left">
 				<a class="navbar-brand" href="${pageContext.request.contextPath}/product/productList.do?list=1" style="color:black; font-size:14px;">좋아요 순</a>
 				<a class="navbar-brand"></a>
-				<a class="navbar-brand" href="${pageContext.request.contextPath}/product/productList.do?list=2" style="color:black; font-size:14px;">판매 순</a>
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/product/productList.do?list=2" style="color:black; font-size:14px;">대여 순</a>
 				<a class="navbar-brand"></a>
 				<a class="navbar-brand" href="${pageContext.request.contextPath}/product/productList.do?list=3" style="color:black; font-size:14px;">남자 정장</a>
 				<a class="navbar-brand"></a>
@@ -82,7 +82,7 @@
 						<th>이름</th>
 						<th>브랜드</th>
 						<th>가격</th>
-						<th>판매수</th>
+						<th>대여수</th>
 					</tr>
 					<c:forEach var="productDetailVO" items="${productList2}">
 						<tr class="table-light">
@@ -110,7 +110,7 @@
 						<th>이름</th>
 						<th>브랜드</th>
 						<th>가격</th>
-						<th>판매수</th>
+						<th>대여수</th>
 					</tr>
 					<c:forEach var="productDetailVO" items="${productList3}">
 						<tr class="table-light">
@@ -138,7 +138,7 @@
 						<th>이름</th>
 						<th>브랜드</th>
 						<th>가격</th>
-						<th>판매수</th>
+						<th>대여수</th>
 					</tr>
 					<c:forEach var="productDetailVO" items="${productList4}">
 						<tr class="table-light">
