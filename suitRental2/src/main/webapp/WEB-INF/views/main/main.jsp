@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,10 +58,18 @@
 							<c:if test="${!empty product.x_file}">
 								<img src="${pageContext.request.contextPath}/upload/${product.x_file}">
 							</c:if>
-							<c:if test="${empty productDetailVO.x_file}">
+							<c:if test="${empty product.x_file}">
 								<img src="${pageContext.request.contextPath}/images/blank.gif">
 							</c:if>
-							<span>${productDetailVO.x_name}</span>
+							<c:if test="${!empty product.x_name}">
+								${product.x_name}
+							</c:if>
+							<c:if test="${!empty product.x_brand}">
+								${product.x_brand}
+							</c:if>
+							<c:if test="${!empty product.x_price}">
+								<fmt:formatNumber value="${product.x_price}" pattern="#,###"/>
+							</c:if>
 						</a>
 					</div>
 					</c:forEach>

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import kr.productdetail.vo.ProductDetailVO;
@@ -117,8 +118,8 @@ public class ProductDAO {
 			pstmt.setString(1, "%" + keyword + "%");
 
 			
-		pstmt.setInt(2, start);
-		pstmt.setInt(3, end);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
 	
 		}
 				
