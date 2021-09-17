@@ -257,7 +257,7 @@
 	<h3 style="text-align:center; margin-top:50px;"><b>공지사항</b></h3>
 	
 	<div class="board-title">
-		<h5>제목 : ${notice.title }</h5>
+		<h5>${notice.title }</h5>
 		<ul>
 			<li>글번호 : ${notice.notice_num }</li>
 			<li>작성자 : ${notice.mem_id }</li>
