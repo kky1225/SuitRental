@@ -278,12 +278,9 @@
 	작성일 : ${donation.reg_date }
 	수정일 : ${donation.modify_date}
 	
-	<%-- 로그인한 회원번호와 작성자 회원번호가 일치해야 수정 가능 --%>
-	<c:if test="${user_num == donation.mem_num}">
-		<input type="button" value="수정" class="btn btn-dark" onclick="location.href='modifyDonationForm.do?donation_num=${donation.donation_num}'">		
-	</c:if>
-	<%-- 로그인한 회원번호와 작성자 회원번호가 일치하거나 관리자일 경우 삭제 가능 --%>
-	<c:if test="${user_num == donation.mem_num || user_auth ==  3}">
+	<%--로그인한 회원번호와 작성자의 회원번호가 일치 시 수정, 삭제 가능 --%>
+	<c:if test="${user_num == donation.mem_num }">
+		<input type="button" value="수정" class="btn btn-dark" onclick="location.href='modifyDonationForm.do?donation_num=${donation.donation_num}'">
 		<input type="button" value="삭제" id="delete_btn" class="btn btn-dark">
 			<script type="text/javascript">
 				var delete_btn = document.getElementById('delete_btn');
